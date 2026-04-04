@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniqBee — Digital Media Agency</title>
+  <meta name="description" content="UniqBee is a premium digital media agency crafting intelligent brand experiences through strategy, design, and technology." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <svg class="nav__bee" viewBox="0 0 36 36" fill="none">
+          <path d="M18 3 L32 10 L32 26 L18 33 L4 26 L4 10 Z" stroke="#f0a500" stroke-width="1.5" fill="none"/>
+          <path d="M18 10 L26 14.5 L26 21.5 L18 26 L10 21.5 L10 14.5 Z" fill="rgba(240,165,0,0.12)"/>
+          <circle cx="18" cy="18" r="3" fill="#f0a500"/>
+        </svg>
+        <span>UniqBee</span>
+      </a>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#work">Çalışmalar</a></li>
+        <li><a href="#services">Hizmetler</a></li>
+        <li><a href="#about">Hakkımızda</a></li>
+        <li><a href="#process">Süreç</a></li>
+        <li><a href="#contact" class="nav__cta">Proje Başlat</a></li>
+      </ul>
+      <button class="nav__burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <video
+        class="hero__video"
+        id="heroVideo"
+        autoplay muted loop playsinline
+        poster="https://v3b.fal.media/files/b/0a94f2d1/Ac8_7ffKkYtdHJw7E3WPE_IVfpZ1Dd.png"
+      >
+        <source src="hero.mp4" type="video/mp4" />
+      </video>
+      <div class="hero__overlay"></div>
+    </div>
+
+    <div class="hero__content">
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        Dijital Medya Ajansı
+      </div>
+      <h1 class="hero__title">
+        Zekâyla<br/>
+        <em>örülmüş</em><br/>
+        marka dünyaları.
+      </h1>
+      <p class="hero__desc">
+        Strateji, tasarım ve hareket — bir arı kolonisinin<br class="d-md"/>
+        koordinasyonuyla yaratılmış dijital deneyimler.
+      </p>
+      <div class="hero__btns">
+        <a href="#work" class="btn btn--gold">Çalışmaları Gör</a>
+        <a href="#contact" class="btn btn--outline">İletişime Geç</a>
+      </div>
+    </div>
+
+    <div class="hero__scroll-hint">
+      <div class="hero__scroll-line"></div>
+      <span>Kaydır</span>
+    </div>
+
+    <div class="hero__stats">
+      <div class="hero__stat"><strong>120<sup>+</sup></strong><span>Proje</span></div>
+      <div class="hero__stat-sep"></div>
+      <div class="hero__stat"><strong>8</strong><span>Yıl</span></div>
+      <div class="hero__stat-sep"></div>
+      <div class="hero__stat"><strong>3</strong><span>Kıta</span></div>
+      <div class="hero__stat-sep"></div>
+      <div class="hero__stat"><strong>98<sup>%</sup></strong><span>Sadakat</span></div>
+    </div>
+  </section>
+
+  <!-- ═══ TICKER ═══ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>Reklam Filmleri</span><span class="ticker__sep">◆</span>
+      <span>Müzik Videoları</span><span class="ticker__sep">◆</span>
+      <span>Sosyal Medya</span><span class="ticker__sep">◆</span>
+      <span>Moda &amp; Lifestyle</span><span class="ticker__sep">◆</span>
+      <span>Kurumsal &amp; Etkinlik</span><span class="ticker__sep">◆</span>
+      <span>Brand Identity</span><span class="ticker__sep">◆</span>
+      <span>Motion Design</span><span class="ticker__sep">◆</span>
+      <span>Reklam Filmleri</span><span class="ticker__sep">◆</span>
+      <span>Müzik Videoları</span><span class="ticker__sep">◆</span>
+      <span>Sosyal Medya</span><span class="ticker__sep">◆</span>
+      <span>Moda &amp; Lifestyle</span><span class="ticker__sep">◆</span>
+      <span>Kurumsal &amp; Etkinlik</span><span class="ticker__sep">◆</span>
+      <span>Brand Identity</span><span class="ticker__sep">◆</span>
+      <span>Motion Design</span><span class="ticker__sep">◆</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       WORK — Netflix-style category rows
+  ═══════════════════════════════════════════ -->
+  <section class="work section" id="work">
+    <div class="container">
+      <div class="work__header reveal">
+        <p class="label">Seçili Çalışmalar</p>
+        <h2>Her kare<br/><em>bir karar.</em></h2>
+        <p class="work__header-sub">Stratejiden sahneye — her iş kendi dilini konuşur.</p>
+      </div>
+    </div>
+
+    <!-- ─ Category 1: Reklam Filmleri ─ -->
+    <div class="cat-row reveal" data-cat="01">
+      <div class="container">
+        <div class="cat-row__head">
+          <div class="cat-row__label">
+            <span class="cat-row__num">01</span>
+            <div>
+              <h3 class="cat-row__title">Reklam Filmleri</h3>
+              <p class="cat-row__desc">Marka kampanyaları, ürün filmleri, lansman videoları, ticari prodüksiyonlar.</p>
+            </div>
+          </div>
+          <a href="#contact" class="cat-row__all">Tüm Projeler →</a>
+        </div>
+      </div>
+      <div class="cat-row__scroll-wrap">
+        <div class="cat-row__track">
+          <div class="work-card work-card--wide">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#0d0d0d,#1a1200,#2a1800); --glow: rgba(240,165,0,0.18);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Lansman Kampanyası</span>
+                <h4>Aurum Finance</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#0a0e1a,#0d1626); --glow: rgba(60,120,255,0.14);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Ürün Filmi</span>
+                <h4>Vertus Pro</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#0d0a12,#190f24); --glow: rgba(160,80,255,0.13);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Marka Kampanyası</span>
+                <h4>Nocturne Parfüm</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card work-card--wide">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#080d0a,#0e1a12); --glow: rgba(40,200,100,0.12);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Ticari Prodüksiyon</span>
+                <h4>NovaTech Systems</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#12080a,#1e0d10); --glow: rgba(220,60,80,0.12);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Lansman Filmi</span>
+                <h4>Cardinal Red</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ Category 2: Müzik Videoları ─ -->
+    <div class="cat-row reveal" data-cat="02">
+      <div class="container">
+        <div class="cat-row__head">
+          <div class="cat-row__label">
+            <span class="cat-row__num">02</span>
+            <div>
+              <h3 class="cat-row__title">Müzik Videoları</h3>
+              <p class="cat-row__desc">Klipler, performans videoları, konsept müzik projeleri.</p>
+            </div>
+          </div>
+          <a href="#contact" class="cat-row__all">Tüm Projeler →</a>
+        </div>
+      </div>
+      <div class="cat-row__scroll-wrap">
+        <div class="cat-row__track">
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#0a0808,#1a0e0e); --glow: rgba(255,100,80,0.14);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Klip</span>
+                <h4>Ember — "Yalnız"</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card work-card--wide">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#07080d,#0d1020); --glow: rgba(80,140,255,0.15);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Performans Videosu</span>
+                <h4>Lyra Ensemble</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#090d08,#121a10); --glow: rgba(100,220,80,0.12);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Konsept Film</span>
+                <h4>Forêt — "Roots"</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#0d0a0d,#1a1020); --glow: rgba(200,80,255,0.13);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Klip</span>
+                <h4>Solène — "Cipher"</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ Category 3: Sosyal Medya ─ -->
+    <div class="cat-row reveal" data-cat="03">
+      <div class="container">
+        <div class="cat-row__head">
+          <div class="cat-row__label">
+            <span class="cat-row__num">03</span>
+            <div>
+              <h3 class="cat-row__title">Sosyal Medya İçerikleri</h3>
+              <p class="cat-row__desc">Reels, TikTok, kısa format videolar, dikey içerikler, campaign cutdown'lar.</p>
+            </div>
+          </div>
+          <a href="#contact" class="cat-row__all">Tüm Projeler →</a>
+        </div>
+      </div>
+      <div class="cat-row__scroll-wrap">
+        <div class="cat-row__track">
+          <!-- Dikey (9:16) kartlar burada -->
+          <div class="work-card work-card--tall">
+            <div class="work-card__img" style="--img-grad: linear-gradient(170deg,#0d0a08,#1a1408); --glow: rgba(240,165,0,0.2);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Instagram Reels</span>
+                <h4>Aurum × Summer</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card work-card--tall">
+            <div class="work-card__img" style="--img-grad: linear-gradient(170deg,#080d0e,#0e1c20); --glow: rgba(0,200,220,0.15);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">TikTok Series</span>
+                <h4>Vertex Labs</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card work-card--tall">
+            <div class="work-card__img" style="--img-grad: linear-gradient(170deg,#0d0808,#201010); --glow: rgba(255,80,80,0.13);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Cutdown Ads</span>
+                <h4>Cardinal Red</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card work-card--tall">
+            <div class="work-card__img" style="--img-grad: linear-gradient(170deg,#08090d,#10121e); --glow: rgba(100,100,255,0.14);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Stories Campaign</span>
+                <h4>Nocturne</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card work-card--tall">
+            <div class="work-card__img" style="--img-grad: linear-gradient(170deg,#08100a,#101e12); --glow: rgba(60,200,80,0.13);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Campaign Reels</span>
+                <h4>NovaTech</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ Category 4: Moda & Lifestyle ─ -->
+    <div class="cat-row reveal" data-cat="04">
+      <div class="container">
+        <div class="cat-row__head">
+          <div class="cat-row__label">
+            <span class="cat-row__num">04</span>
+            <div>
+              <h3 class="cat-row__title">Moda &amp; Lifestyle</h3>
+              <p class="cat-row__desc">Moda çekimleri, editorial işler, estetik odaklı marka filmleri, lookbook projeleri.</p>
+            </div>
+          </div>
+          <a href="#contact" class="cat-row__all">Tüm Projeler →</a>
+        </div>
+      </div>
+      <div class="cat-row__scroll-wrap">
+        <div class="cat-row__track">
+          <div class="work-card work-card--wide">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#0d0a0d,#1e1226); --glow: rgba(220,160,255,0.14);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Editorial Film</span>
+                <h4>Maison Soleil S/S</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#0d0a08,#1e1608); --glow: rgba(240,200,100,0.13);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Lookbook</span>
+                <h4>Studio Blanc</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#08090d,#121420); --glow: rgba(80,140,255,0.12);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Marka Filmi</span>
+                <h4>Aether Wear</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#0d080a,#241014); --glow: rgba(255,80,120,0.12);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Fashion Film</span>
+                <h4>Voss Collection</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ Category 5: Kurumsal & Etkinlik ─ -->
+    <div class="cat-row reveal" data-cat="05">
+      <div class="container">
+        <div class="cat-row__head">
+          <div class="cat-row__label">
+            <span class="cat-row__num">05</span>
+            <div>
+              <h3 class="cat-row__title">Kurumsal &amp; Etkinlik</h3>
+              <p class="cat-row__desc">Kurumsal tanıtım filmleri, röportajlar, organizasyon videoları, backstage ve event recap işleri.</p>
+            </div>
+          </div>
+          <a href="#contact" class="cat-row__all">Tüm Projeler →</a>
+        </div>
+      </div>
+      <div class="cat-row__scroll-wrap">
+        <div class="cat-row__track">
+          <div class="work-card work-card--wide">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#08080d,#0e1020); --glow: rgba(100,140,255,0.14);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Tanıtım Filmi</span>
+                <h4>Global Summit 2025</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#0a0d08,#161e10); --glow: rgba(80,220,100,0.12);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Event Recap</span>
+                <h4>Vertex Conference</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#0d0808,#1e1010); --glow: rgba(255,140,80,0.12);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Röportaj Serisi</span>
+                <h4>Aurum Leadership</h4>
+              </div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad: linear-gradient(135deg,#0a080d,#14101e); --glow: rgba(180,100,255,0.12);">
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Backstage Film</span>
+                <h4>NovaTech Launch</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="services section" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label">Ne Yapıyoruz</p>
+        <h2>Tam kapsamlı<br/><em>kreatif stüdyo.</em></h2>
+      </div>
+      <div class="services__grid">
+        <div class="svc reveal">
+          <div class="svc__num">01</div>
+          <h3>Marka Stratejisi</h3>
+          <p>Konumlandırma, ses tonu ve görsel kimlik — her temas noktası hassasiyetle kurgulanmış.</p>
+          <a href="#contact">Keşfet →</a>
+        </div>
+        <div class="svc svc--featured reveal">
+          <div class="svc__num">02</div>
+          <h3>Web &amp; Dijital Deneyim</h3>
+          <p>Premium web siteleri ve etkileşimli deneyimler — performans estetiği asla feda etmez.</p>
+          <a href="#contact">Keşfet →</a>
+        </div>
+        <div class="svc reveal">
+          <div class="svc__num">03</div>
+          <h3>Hareket &amp; Video</h3>
+          <p>Marka filmlerinden sosyal reels'e — sinematik hikâyeler kaydırmayı durdurur.</p>
+          <a href="#contact">Keşfet →</a>
+        </div>
+        <div class="svc reveal">
+          <div class="svc__num">04</div>
+          <h3>İçerik &amp; Sosyal</h3>
+          <p>Instagram, LinkedIn, TikTok ve ötesi. Strateji odaklı, estetik sürücülü, veri destekli.</p>
+          <a href="#contact">Keşfet →</a>
+        </div>
+        <div class="svc reveal">
+          <div class="svc__num">05</div>
+          <h3>Performans &amp; Büyüme</h3>
+          <p>Ücretli medya, SEO ve dönüşüm hunisi mimarisi — güzel kreatifi ölçülebilir ROI'ye bağlar.</p>
+          <a href="#contact">Keşfet →</a>
+        </div>
+        <div class="svc reveal">
+          <div class="svc__num">06</div>
+          <h3>AI Destekli Kreatif</h3>
+          <p>Üretken yapay zeka üretim süreçlerine entegre — hız ve ölçekte premium çıktı.</p>
+          <a href="#contact">Keşfet →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__hex reveal">
+          <div class="hex-ring hex-ring--1"></div>
+          <div class="hex-ring hex-ring--2"></div>
+          <div class="hex-ring hex-ring--3"></div>
+          <svg class="hex-icon" viewBox="0 0 100 100" fill="none">
+            <path d="M50 6 L90 28 L90 72 L50 94 L10 72 L10 28 Z" stroke="rgba(240,165,0,0.35)" stroke-width="1" fill="none"/>
+            <path d="M50 22 L74 35 L74 65 L50 78 L26 65 L26 35 Z" stroke="rgba(240,165,0,0.6)" stroke-width="1" fill="none"/>
+            <circle cx="50" cy="50" r="11" fill="#f0a500" opacity="0.9"/>
+            <circle cx="50" cy="50" r="19" stroke="#f0a500" stroke-width="0.5" fill="none" opacity="0.25"/>
+          </svg>
+        </div>
+        <div class="about__copy reveal">
+          <p class="label">Felsefemiz</p>
+          <h2>Oğul<br/><em>prensibi.</em></h2>
+          <p>Bir arı kolonisi gibi — her birey amacıyla, bütün durdurulamaz — ekibimiz koordineli zekâyla işler. Strateji, tasarım, teknoloji ve hikâye anlatımı tek bir organizma olarak markanın en yüksek potansiyeline doğru hareket eder.</p>
+          <p>Hizmet sunmuyoruz. Markaları görmezden gelinmesi imkânsız kılan sistemler kuruyoruz.</p>
+          <div class="about__tags">
+            <span>Bal zaman alır.</span>
+            <span>Her piksel yerini hak eder.</span>
+            <span>Veri bilgilendirir, yönetmez.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROCESS ═══ -->
+  <section class="process section" id="process">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label">Nasıl Çalışıyoruz</p>
+        <h2>Dört aşama.<br/><em>Tek sonuç.</em></h2>
+      </div>
+      <div class="process__steps">
+        <div class="pstep reveal">
+          <div class="pstep__num">01</div>
+          <h3>Keşfet</h3>
+          <p>Markan, pazarın ve kitlenin derinliklerine iniş. Gerçek fırsatı ortaya çıkaran soruları soruyoruz.</p>
+        </div>
+        <div class="pstep__arrow reveal">→</div>
+        <div class="pstep reveal">
+          <div class="pstep__num">02</div>
+          <h3>Stratejile</h3>
+          <p>Her kararın ölçülebilir bir marka çıktısına bağlandığı hassas bir yaratıcı yol haritası çiziyoruz.</p>
+        </div>
+        <div class="pstep__arrow reveal">→</div>
+        <div class="pstep reveal">
+          <div class="pstep__num">03</div>
+          <h3>Yarat</h3>
+          <p>Kimlik, hareket, web ve içerik alanlarında dünya standartlarında icra. Şablon yok, kısayol yok.</p>
+        </div>
+        <div class="pstep__arrow reveal">→</div>
+        <div class="pstep reveal">
+          <div class="pstep__num">04</div>
+          <h3>Güçlendir</h3>
+          <p>Sürekli deploy, ölçüm ve optimizasyon — kreatif çalışmayı bileşik marka sermayesine dönüştürürüz.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section class="testimonials section">
+    <div class="container">
+      <p class="label reveal" style="text-align:center; margin-bottom:3rem;">Müşteri Sesi</p>
+      <div class="testimonials__grid">
+        <div class="tcard reveal">
+          <div class="tcard__stars">★★★★★</div>
+          <p>"UniqBee markamızı yeniden tasarlamakla kalmadı — kendimiz hakkında düşünme biçimimizi yeniden inşa etti."</p>
+          <div class="tcard__author">
+            <div class="tcard__av">A</div>
+            <div><strong>Alexandra Voss</strong><span>CMO, Aurum Finance</span></div>
+          </div>
+        </div>
+        <div class="tcard reveal">
+          <div class="tcard__stars">★★★★★</div>
+          <p>"Her ajans premium vaat eder. UniqBee teslim eder. Web sitesi lansmanımızdaki detay hassasiyeti olağanüstüydü."</p>
+          <div class="tcard__author">
+            <div class="tcard__av">K</div>
+            <div><strong>Kerem Arslan</strong><span>Kurucu, Vertex Labs</span></div>
+          </div>
+        </div>
+        <div class="tcard reveal">
+          <div class="tcard__stars">★★★★★</div>
+          <p>"Sosyal medya etkileşimimiz ilk çeyrekte üç katına çıktı. Geliştirdikleri içerik sistemi artık marka iletişimimizin omurgası."</p>
+          <div class="tcard__author">
+            <div class="tcard__av">S</div>
+            <div><strong>Sophie Marchetti</strong><span>Marka Direktörü, Maison Soleil</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="cta-section section" id="contact">
+    <div class="container">
+      <div class="cta-box reveal">
+        <div class="cta-box__glow"></div>
+        <p class="label" style="color:rgba(240,165,0,.7); text-align:center;">Başlamaya Hazır mısınız?</p>
+        <h2>Markanızın bir sonraki<br/><em>tanımlayıcı bölümü</em><br/>burada başlıyor.</h2>
+        <p>Her çeyrekte sınırlı sayıda proje alıyoruz — olağanüstü odak için. Sonraki kotamız dolmadan ulaşın.</p>
+        <a href="mailto:hello@uniqbee.agency" class="btn btn--gold btn--lg">hello@uniqbee.agency</a>
+        <div class="cta-box__meta">
+          <span>İstanbul · Londra · Dubai</span>
+          <span class="sep">·</span>
+          <span>Q3 2026 Müsait</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <a href="#" class="nav__logo">
+          <svg class="nav__bee" viewBox="0 0 36 36" fill="none">
+            <path d="M18 3 L32 10 L32 26 L18 33 L4 26 L4 10 Z" stroke="#f0a500" stroke-width="1.5" fill="none"/>
+            <path d="M18 10 L26 14.5 L26 21.5 L18 26 L10 21.5 L10 14.5 Z" fill="rgba(240,165,0,0.12)"/>
+            <circle cx="18" cy="18" r="3" fill="#f0a500"/>
+          </svg>
+          <span>UniqBee</span>
+        </a>
+        <div class="footer__cols">
+          <div class="footer__col">
+            <h4>Stüdyo</h4>
+            <a href="#work">Çalışmalar</a>
+            <a href="#services">Hizmetler</a>
+            <a href="#about">Hakkımızda</a>
+            <a href="#process">Süreç</a>
+          </div>
+          <div class="footer__col">
+            <h4>Bağlan</h4>
+            <a href="#">Instagram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Behance</a>
+            <a href="#">Vimeo</a>
+          </div>
+          <div class="footer__col">
+            <h4>İletişim</h4>
+            <a href="mailto:hello@uniqbee.agency">hello@uniqbee.agency</a>
+            <a href="tel:+905001234567">+90 500 123 45 67</a>
+            <span>İstanbul, Türkiye</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2026 UniqBee Agency. Tüm hakları saklıdır.</p>
+        <p>Hassasiyet ve amaçla yaratılmıştır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
