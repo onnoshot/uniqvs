@@ -194,85 +194,137 @@ const counterObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 document.querySelectorAll('.stat-item__num[data-count]').forEach(el => counterObs.observe(el));
 
-// ── Work tab filter + show more ──
-const tabs      = document.querySelectorAll('.work__tab');
-const cards     = document.querySelectorAll('.work-card');
-const workMore  = document.getElementById('workMore');
-const moreBtn   = document.getElementById('workMoreBtn');
-let expanded    = false;
+// ── Work filter + show-more — premium motion system ──
+(function initWork() {
+  const tabs    = document.querySelectorAll('.work__tab');
+  const cards   = [...document.querySelectorAll('.work-card')];
+  const moreWrap = document.getElementById('workMore');
+  const moreBtn  = document.getElementById('workMoreBtn');
+  const FADE_OUT = 160;  // ms fade-out duration
+  const STAGGER  = 42;   // ms between card entrances
+  let activeCat  = 'all';
+  let transitioning = false;
 
-function applyFilter(cat) {
-  expanded = false;
-  let visIdx = 0;
-
-  cards.forEach(card => {
-    const match = cat === 'all' || card.dataset.category === cat;
-
-    if (!match) {
-      card.classList.add('hidden');
-      card.classList.remove('show-extra');
-      return;
-    }
-
-    card.classList.remove('hidden');
-
-    if (cat === 'all' && card.classList.contains('work-card--extra')) {
-      // hide extras in "all" view until expanded
-      card.classList.remove('show-extra');
-      card.classList.remove('in');
-    } else {
-      // category view: show everything
-      card.classList.remove('work-card--extra'); // treat as visible
-      card.classList.add('show-extra');
-      card.classList.remove('in');
-      setTimeout(() => card.classList.add('in'), visIdx++ * 45);
-    }
-  });
-
-  // In "all" view animate first 4
-  if (cat === 'all') {
-    cards.forEach(card => {
-      if (!card.classList.contains('work-card--extra') && !card.classList.contains('hidden')) {
-        card.classList.remove('in');
-        setTimeout(() => card.classList.add('in'), visIdx++ * 45);
-      }
-    });
-    workMore && workMore.classList.remove('hidden');
-    if (moreBtn) moreBtn.textContent = 'Tümünü Gör';
-  } else {
-    workMore && workMore.classList.add('hidden');
+  // Mobile: scroll active tab into center
+  function scrollTabCenter(tab) {
+    const container = tab.closest('.work__tabs');
+    if (!container) return;
+    const tabCenter  = tab.offsetLeft + tab.offsetWidth / 2;
+    const scrollLeft = tabCenter - container.offsetWidth / 2;
+    container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
   }
-}
 
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    tabs.forEach(t => t.classList.remove('work__tab--active'));
-    tab.classList.add('work__tab--active');
-    applyFilter(tab.dataset.cat);
-  });
-});
-
-// Show more button
-if (moreBtn) {
-  moreBtn.addEventListener('click', () => {
-    expanded = true;
-    let visIdx = 0;
-    cards.forEach(card => {
-      if (card.classList.contains('work-card--extra') && !card.classList.contains('hidden')) {
-        card.classList.add('show-extra');
-        card.classList.remove('in');
-        setTimeout(() => card.classList.add('in'), visIdx++ * 45);
+  // Decide which cards are "visible" for a given category + expand state
+  function visibleCards(cat, expanded) {
+    if (cat === 'all') {
+      const base = cards.filter(c => !c.classList.contains('work-card--extra'));
+      if (expanded) {
+        const extra = cards.filter(c => c.classList.contains('work-card--extra'));
+        return [...base, ...extra];
       }
-    });
-    workMore.classList.add('hidden');
-    // Smooth scroll to first new card
-    const firstExtra = document.querySelector('.work-card--extra.show-extra');
-    if (firstExtra) setTimeout(() => firstExtra.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-  });
-}
+      return base;
+    }
+    // Category: show all matching cards (extras included)
+    return cards.filter(c => c.dataset.category === cat);
+  }
 
-// Init
-applyFilter('all');
+  function staggerIn(subset) {
+    subset.forEach((card, i) => {
+      card.classList.remove('wc-out', 'wc-hidden');
+      card.classList.remove('wc-in');
+      requestAnimationFrame(() => {
+        setTimeout(() => card.classList.add('wc-in'), i * STAGGER);
+      });
+    });
+  }
+
+  function applyFilter(cat, expanded) {
+    if (transitioning) return;
+    transitioning = true;
+
+    const nextVisible = visibleCards(cat, expanded);
+    const nextSet     = new Set(nextVisible);
+
+    // --- Phase 1: fade out cards that won't be in next view ---
+    const toHide = cards.filter(c => {
+      if (c.classList.contains('work-card--extra') && !nextSet.has(c)) return false;
+      return !c.classList.contains('wc-hidden') && !nextSet.has(c);
+    });
+    const toShow = nextVisible;
+
+    // Mark outgoing
+    toHide.forEach(c => {
+      c.classList.remove('wc-in');
+      c.classList.add('wc-out');
+    });
+
+    // After fade-out, update layout
+    setTimeout(() => {
+      // hide everything not in next view
+      cards.forEach(c => {
+        const isExtra = c.classList.contains('work-card--extra');
+        if (nextSet.has(c)) {
+          // ensure visible
+          if (isExtra) { c.classList.add('wc-show'); c.style.display = ''; }
+          c.classList.remove('wc-hidden', 'wc-out');
+        } else {
+          c.classList.remove('wc-in', 'wc-out', 'wc-show');
+          c.classList.add('wc-hidden');
+          if (isExtra) c.style.display = 'none';
+        }
+      });
+
+      // --- Phase 2: stagger in ---
+      staggerIn(toShow);
+
+      // Show/hide "more" button
+      const hasExtras = cards.some(c =>
+        c.classList.contains('work-card--extra') &&
+        (cat === 'all' ? true : c.dataset.category === cat)
+      );
+      const showMoreBtn = cat === 'all' && !expanded && hasExtras;
+      if (moreWrap) moreWrap.classList.toggle('wc-hidden', !showMoreBtn);
+
+      setTimeout(() => { transitioning = false; }, toShow.length * STAGGER + 200);
+    }, FADE_OUT);
+  }
+
+  // Tab clicks
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      if (tab.dataset.cat === activeCat) return;
+      tabs.forEach(t => t.classList.remove('work__tab--active'));
+      tab.classList.add('work__tab--active');
+      activeCat = tab.dataset.cat;
+      scrollTabCenter(tab);
+      applyFilter(activeCat, false);
+    });
+  });
+
+  // Show more
+  if (moreBtn) {
+    moreBtn.addEventListener('click', () => {
+      // Make extras display:block before animation
+      cards.filter(c => c.classList.contains('work-card--extra') && c.dataset.category !== 'music'
+        || c.classList.contains('work-card--extra')).forEach(c => {
+        c.style.display = 'block';
+        c.classList.add('wc-show');
+      });
+      applyFilter(activeCat, true);
+    });
+  }
+
+  // Init: show first 12 cards with stagger
+  const initial = visibleCards('all', false);
+  cards.forEach(c => {
+    if (!initial.includes(c)) {
+      c.classList.add('wc-hidden');
+      if (c.classList.contains('work-card--extra')) c.style.display = 'none';
+    }
+  });
+  setTimeout(() => staggerIn(initial), 80);
+  if (moreWrap) moreWrap.classList.remove('wc-hidden');
+})();
 
 // ── Process arrows sequential reveal ──
 const arrows = document.querySelectorAll('.pstep__arrow');
