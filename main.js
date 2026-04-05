@@ -324,19 +324,159 @@ document.querySelectorAll('.stat-item__num[data-count]').forEach(el => counterOb
   if (moreWrap) moreWrap.classList.remove('wc-hidden');
 })();
 
-// ── Process arrows sequential reveal ──
-const arrows = document.querySelectorAll('.pstep__arrow');
-if (arrows.length) {
-  const processObs = new IntersectionObserver((entries) => {
+// ── About: ab-reveal scroll entrance ──
+(function(){
+  const els = document.querySelectorAll('.ab-reveal');
+  if (!els.length) return;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      const delay = parseFloat(e.target.dataset.delay || 0);
+      setTimeout(() => e.target.classList.add('ab-in'), delay);
+      obs.unobserve(e.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  // Add stagger delays per section
+  let sectionDelay = 0;
+  let lastSection = null;
+  els.forEach(el => {
+    const section = el.closest('section');
+    if (section !== lastSection) { sectionDelay = 0; lastSection = section; }
+    el.dataset.delay = sectionDelay;
+    sectionDelay += 90;
+    obs.observe(el);
+  });
+})();
+
+// ── About: system canvas ──
+(function(){
+  const canvas = document.getElementById('aboutCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, dpr, animId;
+  let progress = 0; // 0→1 on scroll enter
+
+  const nodes = [
+    {x:.5, y:.5, r:6, label:'Core'},    // center
+    {x:.5, y:.18, r:3.5},
+    {x:.82, y:.34, r:3.5},
+    {x:.82, y:.66, r:3.5},
+    {x:.5, y:.82, r:3.5},
+    {x:.18, y:.66, r:3.5},
+    {x:.18, y:.34, r:3.5},
+  ];
+  const edges = [[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[1,2],[2,3],[3,4],[4,5],[5,6],[6,1]];
+  let pulse = 0;
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    const size = canvas.parentElement.offsetWidth;
+    W = H = Math.min(size, 340);
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.scale(dpr, dpr);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    pulse = (pulse + 0.012) % (Math.PI * 2);
+    const p = Math.min(progress, 1);
+
+    // Rings
+    [0.28, 0.42, 0.56].forEach((r, i) => {
+      const pr = Math.max(0, Math.min(1, (p - i * 0.15) / 0.5));
+      if (pr <= 0) return;
+      ctx.beginPath();
+      ctx.arc(W/2, H/2, r * W * pr, 0, Math.PI * 2);
+      const pulseFade = 0.06 + Math.sin(pulse - i * 0.8) * 0.02;
+      ctx.strokeStyle = `rgba(204,28,28,${pulseFade * pr})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    });
+
+    // Edges
+    edges.forEach(([a, b], i) => {
+      const pr = Math.max(0, Math.min(1, (p - i * 0.04) / 0.4));
+      if (pr <= 0) return;
+      const na = nodes[a], nb = nodes[b];
+      ctx.beginPath();
+      ctx.moveTo(na.x * W, na.y * H);
+      ctx.lineTo(
+        na.x * W + (nb.x * W - na.x * W) * pr,
+        na.y * H + (nb.y * H - na.y * H) * pr
+      );
+      ctx.strokeStyle = `rgba(204,28,28,${0.12 * pr})`;
+      ctx.lineWidth = .8;
+      ctx.stroke();
+    });
+
+    // Nodes
+    nodes.forEach((n, i) => {
+      const pr = Math.max(0, Math.min(1, (p - i * 0.06) / 0.3));
+      if (pr <= 0) return;
+      const px = n.x * W, py = n.y * H;
+      const pulsR = n.r + (i === 0 ? Math.sin(pulse) * 1.5 : Math.sin(pulse + i) * 0.6);
+      ctx.beginPath();
+      ctx.arc(px, py, pulsR * pr, 0, Math.PI * 2);
+      ctx.fillStyle = i === 0 ? `rgba(204,28,28,${0.85 * pr})` : `rgba(204,28,28,${0.35 * pr})`;
+      ctx.fill();
+    });
+
+    animId = requestAnimationFrame(draw);
+  }
+
+  // Activate on scroll
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      if (!animId) { resize(); draw(); }
+      // animate progress
+      let start = null;
+      const ramp = ts => {
+        if (!start) start = ts;
+        progress = Math.min((ts - start) / 1200, 1);
+        if (progress < 1) requestAnimationFrame(ramp);
+      };
+      requestAnimationFrame(ramp);
+    } else {
+      cancelAnimationFrame(animId); animId = null;
+      progress = 0;
+    }
+  }, { threshold: 0.2 });
+  obs.observe(canvas);
+  window.addEventListener('resize', () => { cancelAnimationFrame(animId); animId = null; resize(); if (progress > 0) draw(); });
+})();
+
+// ── About: principle pills ──
+(function(){
+  const pills = document.querySelectorAll('.ap-pill');
+  const texts = document.querySelectorAll('.ap-text');
+  if (!pills.length) return;
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('ap-pill--active'));
+      texts.forEach(t => t.classList.remove('ap-text--active'));
+      pill.classList.add('ap-pill--active');
+      texts[pill.dataset.principle].classList.add('ap-text--active');
+    });
+  });
+})();
+
+// ── Process: scroll-activated step reveal ──
+(function(){
+  const steps = document.querySelectorAll('.pstep2');
+  if (!steps.length) return;
+  const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      arrows.forEach((a, i) => setTimeout(() => a.classList.add('visible'), 400 + i * 300));
-      processObs.disconnect();
+      const i = parseInt(entry.target.dataset.step || 0);
+      setTimeout(() => entry.target.classList.add('ps-in'), i * 160);
+      obs.unobserve(entry.target);
     });
-  }, { threshold: 0.3 });
-  const processSection = document.querySelector('.process__steps');
-  if (processSection) processObs.observe(processSection);
-}
+  }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+  steps.forEach(s => obs.observe(s));
+})();
 
 // ── Work card touch reveal (mobile) ──
 document.querySelectorAll('.work-card').forEach(card => {

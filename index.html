@@ -265,48 +265,110 @@
   <!-- ═══ ABOUT ═══ -->
   <section class="about section" id="about">
     <div class="container">
-      <div class="about__grid">
-        <div class="about__hex reveal">
-          <div class="hex-ring hex-ring--1"></div>
-          <div class="hex-ring hex-ring--2"></div>
-          <div class="hex-ring hex-ring--3"></div>
-          <svg class="hex-icon" viewBox="0 0 100 100" fill="none">
-            <path d="M50 6 L90 28 L90 72 L50 94 L10 72 L10 28 Z" stroke="rgba(204,28,28,0.25)" stroke-width="1" fill="none"/>
-            <path d="M50 22 L74 35 L74 65 L50 78 L26 65 L26 35 Z" stroke="rgba(204,28,28,0.5)" stroke-width="1" fill="none"/>
-            <circle cx="50" cy="50" r="11" fill="#cc1c1c" opacity="0.9"/>
-            <circle cx="50" cy="50" r="19" stroke="#cc1c1c" stroke-width="0.5" fill="none" opacity="0.2"/>
-          </svg>
+
+      <!-- Top editorial block -->
+      <div class="about__editorial">
+        <div class="about__editorial-left">
+          <p class="label ab-reveal">Felsefemiz</p>
+          <h2 class="ab-reveal">Yaratıcılık,<br/><em>sistemle güçlenir.</em></h2>
+          <p class="about__lead ab-reveal">Güçlü iş yalnızca iyi görünmek değildir. Doğru stratejiye dayanmak, doğru mecrada çalışmak ve ölçülebilir sonuç üretmektir.</p>
+          <p class="about__body ab-reveal">Strateji, tasarım, içerik ve teknolojiyi ayrı disiplinler olarak değil, tek bir organik sistem olarak ele alırız. Her karar bir öncekini besler, her üretim bir sonrakini güçlendirir.</p>
+
+          <!-- Principle pills -->
+          <div class="about__principles ab-reveal">
+            <button class="ap-pill ap-pill--active" data-principle="0">Strateji</button>
+            <button class="ap-pill" data-principle="1">Tasarım</button>
+            <button class="ap-pill" data-principle="2">İçerik</button>
+            <button class="ap-pill" data-principle="3">Teknoloji</button>
+            <button class="ap-pill" data-principle="4">Performans</button>
+          </div>
+          <div class="about__principle-body ab-reveal">
+            <p class="ap-text ap-text--active">Markanızın konumunu, sesini ve görsel yönünü belirleriz. Her temas noktası birbiriyle tutarlı ve amaçlı olur.</p>
+            <p class="ap-text">Estetik ile işlevselliği aynı ciddiyetle ele alırız. Her piksel, kullanıcı deneyimini ve marka algısını şekillendirir.</p>
+            <p class="ap-text">Mecra odaklı, düzenli ve stratejik içerik sistemleri kurarız. İçerik yalnızca doldurma değil, bir iletişim katmanıdır.</p>
+            <p class="ap-text">Yüksek performanslı dijital deneyimler ve yapay zeka destekli üretim süreçleriyle hızı ve kaliteyi birleştiririz.</p>
+            <p class="ap-text">Yaratıcı çalışmayı veri, reklam ve optimizasyonla büyümeye bağlarız. Sonuç ölçülebilir olmak zorundadır.</p>
+          </div>
         </div>
-        <div class="about__copy reveal">
-          <p class="label">Felsefemiz</p>
-          <h2>Yaratıcılık,<br/><em>sistemle güçlenir.</em></h2>
-          <p>Bizim için güçlü iş; yalnızca iyi görünmek değil, doğru stratejiye dayanmak, doğru mecrada çalışmak ve ölçülebilir sonuç üretmektir.</p>
-          <p>Strateji, tasarım, içerik ve teknolojiyi tek bir bütün olarak ele alırız.</p>
-          <div class="about__tags">
-            <span>Bal zaman alır.</span>
-            <span>Her piksel yerini hak eder.</span>
-            <span>Veri bilgilendirir, yönetmez.</span>
+
+        <!-- Right: system graphic + image preview -->
+        <div class="about__editorial-right">
+          <!-- System motion graphic -->
+          <div class="about__system ab-reveal">
+            <canvas class="about__canvas" id="aboutCanvas" width="360" height="360"></canvas>
+          </div>
+
+          <!-- Editorial image strip -->
+          <div class="about__imgstrip ab-reveal">
+            <div class="ab-img ab-img--1">
+              <img src="images/jacobco.jpg" alt="Jacob &amp; Co" loading="lazy">
+              <div class="ab-img__label">Commercials</div>
+            </div>
+            <div class="ab-img ab-img--2">
+              <img src="images/antioch.jpg" alt="Antioch" loading="lazy">
+              <div class="ab-img__label">Fashion</div>
+            </div>
+            <div class="ab-img ab-img--3">
+              <img src="images/benesso.jpg" alt="Benesso" loading="lazy">
+              <div class="ab-img__label">Social</div>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Manifesto bar -->
+      <div class="about__manifesto ab-reveal">
+        <span>Bal zaman alır.</span>
+        <span class="ab-sep" aria-hidden="true"></span>
+        <span>Her piksel yerini hak eder.</span>
+        <span class="ab-sep" aria-hidden="true"></span>
+        <span>Veri bilgilendirir, yönetmez.</span>
+      </div>
+
     </div>
   </section>
 
   <!-- ═══ PROCESS ═══ -->
   <section class="process section" id="process">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="process__head ab-reveal">
         <p class="label">Nasıl Çalışıyoruz</p>
         <h2>Dört aşamalı<br/><em>net bir süreç.</em></h2>
+        <p class="process__sub">Her proje aynı disiplinli döngüden geçer. Tahmin değil, sistem.</p>
       </div>
-      <div class="process__steps">
-        <div class="pstep reveal"><div class="pstep__num">01</div><h3>Keşif ve Analiz</h3><p>Markanızı, kitlenizi ve fırsat alanlarını analiz ederiz.</p></div>
-        <div class="pstep__arrow">→</div>
-        <div class="pstep reveal"><div class="pstep__num">02</div><h3>Strateji Oluştur</h3><p>Projeye özel iletişim ve üretim planı kurarız.</p></div>
-        <div class="pstep__arrow">→</div>
-        <div class="pstep reveal"><div class="pstep__num">03</div><h3>Üret ve Uygula</h3><p>Tasarım, içerik, video ve dijital uygulamaları hayata geçiririz.</p></div>
-        <div class="pstep__arrow">→</div>
-        <div class="pstep reveal"><div class="pstep__num">04</div><h3>Ölç ve Optimize Et</h3><p>Performansı takip eder, sürekli iyileştiririz.</p></div>
+      <div class="process__flow" id="processFlow">
+        <div class="pstep2" data-step="0">
+          <div class="pstep2__connector"><div class="pstep2__line"></div></div>
+          <div class="pstep2__card">
+            <div class="pstep2__num">01</div>
+            <h3>Keşif ve Analiz</h3>
+            <p>Markanızı, kitlenizi ve rekabet alanını derinlemesine analiz ederiz. Doğru soruyu sormak, doğru işi üretmenin ilk adımıdır.</p>
+          </div>
+        </div>
+        <div class="pstep2" data-step="1">
+          <div class="pstep2__connector"><div class="pstep2__line"></div></div>
+          <div class="pstep2__card">
+            <div class="pstep2__num">02</div>
+            <h3>Strateji Oluştur</h3>
+            <p>Projeye özel iletişim planı, üretim takvimi ve başarı kriterleri belirlenir. Her karar gerekçelidir.</p>
+          </div>
+        </div>
+        <div class="pstep2" data-step="2">
+          <div class="pstep2__connector"><div class="pstep2__line"></div></div>
+          <div class="pstep2__card">
+            <div class="pstep2__num">03</div>
+            <h3>Üret ve Uygula</h3>
+            <p>Tasarım, içerik, video ve dijital uygulamalar hayata geçirilir. Şablon yoktur, kısayol yoktur.</p>
+          </div>
+        </div>
+        <div class="pstep2" data-step="3">
+          <div class="pstep2__connector"><div class="pstep2__line pstep2__line--last"></div></div>
+          <div class="pstep2__card">
+            <div class="pstep2__num">04</div>
+            <h3>Ölç ve Optimize Et</h3>
+            <p>Performansı takip eder, sürekli iyileştiririz. İş bitmez; evrilir.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
