@@ -39,24 +39,7 @@ const revealObs = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-// ── Netflix-row: drag-to-scroll ──
-document.querySelectorAll('.cat-row__scroll-wrap').forEach(wrap => {
-  let isDown = false, startX, scrollLeft;
-
-  wrap.addEventListener('mousedown', e => {
-    isDown = true; wrap.style.cursor = 'grabbing';
-    startX = e.pageX - wrap.offsetLeft;
-    scrollLeft = wrap.scrollLeft;
-  });
-  wrap.addEventListener('mouseleave', () => { isDown = false; wrap.style.cursor = ''; });
-  wrap.addEventListener('mouseup',    () => { isDown = false; wrap.style.cursor = ''; });
-  wrap.addEventListener('mousemove',  e => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - wrap.offsetLeft;
-    wrap.scrollLeft = scrollLeft - (x - startX) * 1.4;
-  });
-});
+// (drag-to-scroll removed — grid layout)
 
 // ── Smooth anchor scroll ──
 document.querySelectorAll('a[href^="#"]').forEach(a => {
