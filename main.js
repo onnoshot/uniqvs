@@ -216,6 +216,20 @@ tabs.forEach(tab => {
   });
 });
 
+// ── Process arrows sequential reveal ──
+const arrows = document.querySelectorAll('.pstep__arrow');
+if (arrows.length) {
+  const processObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      arrows.forEach((a, i) => setTimeout(() => a.classList.add('visible'), 400 + i * 300));
+      processObs.disconnect();
+    });
+  }, { threshold: 0.3 });
+  const processSection = document.querySelector('.process__steps');
+  if (processSection) processObs.observe(processSection);
+}
+
 // ── Smooth anchor scroll ──
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
