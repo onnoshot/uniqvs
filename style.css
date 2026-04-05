@@ -128,6 +128,9 @@ a{color:inherit;text-decoration:none}
 .work-card__img{position:relative;width:100%;aspect-ratio:4/3;background:var(--g,#e8e8e8);border-radius:var(--r);overflow:hidden;transition:transform .42s cubic-bezier(.22,1,.36,1),box-shadow .42s}
 .work-card__img::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 38% 38%,var(--glow,rgba(204,28,28,.06)),transparent 68%);transition:opacity .4s}
 
+/* Real image */
+.work-card__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
 /* Placeholder icon */
 .work-card__ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .work-card__ph svg{width:28px;height:28px;opacity:.2}
