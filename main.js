@@ -194,27 +194,85 @@ const counterObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 document.querySelectorAll('.stat-item__num[data-count]').forEach(el => counterObs.observe(el));
 
-// ── Work tab filter ──
-const tabs  = document.querySelectorAll('.work__tab');
-const cards = document.querySelectorAll('.work-card');
+// ── Work tab filter + show more ──
+const tabs      = document.querySelectorAll('.work__tab');
+const cards     = document.querySelectorAll('.work-card');
+const workMore  = document.getElementById('workMore');
+const moreBtn   = document.getElementById('workMoreBtn');
+let expanded    = false;
+
+function applyFilter(cat) {
+  expanded = false;
+  let visIdx = 0;
+
+  cards.forEach(card => {
+    const match = cat === 'all' || card.dataset.category === cat;
+
+    if (!match) {
+      card.classList.add('hidden');
+      card.classList.remove('show-extra');
+      return;
+    }
+
+    card.classList.remove('hidden');
+
+    if (cat === 'all' && card.classList.contains('work-card--extra')) {
+      // hide extras in "all" view until expanded
+      card.classList.remove('show-extra');
+      card.classList.remove('in');
+    } else {
+      // category view: show everything
+      card.classList.remove('work-card--extra'); // treat as visible
+      card.classList.add('show-extra');
+      card.classList.remove('in');
+      setTimeout(() => card.classList.add('in'), visIdx++ * 45);
+    }
+  });
+
+  // In "all" view animate first 4
+  if (cat === 'all') {
+    cards.forEach(card => {
+      if (!card.classList.contains('work-card--extra') && !card.classList.contains('hidden')) {
+        card.classList.remove('in');
+        setTimeout(() => card.classList.add('in'), visIdx++ * 45);
+      }
+    });
+    workMore && workMore.classList.remove('hidden');
+    if (moreBtn) moreBtn.textContent = 'Tümünü Gör';
+  } else {
+    workMore && workMore.classList.add('hidden');
+  }
+}
+
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
     tabs.forEach(t => t.classList.remove('work__tab--active'));
     tab.classList.add('work__tab--active');
-    const cat = tab.dataset.cat;
-    let visIdx = 0;
-    cards.forEach(card => {
-      const match = cat === 'all' || card.dataset.category === cat;
-      if (match) {
-        card.classList.remove('hidden');
-        card.classList.remove('in');
-        setTimeout(() => card.classList.add('in'), visIdx++ * 45);
-      } else {
-        card.classList.add('hidden');
-      }
-    });
+    applyFilter(tab.dataset.cat);
   });
 });
+
+// Show more button
+if (moreBtn) {
+  moreBtn.addEventListener('click', () => {
+    expanded = true;
+    let visIdx = 0;
+    cards.forEach(card => {
+      if (card.classList.contains('work-card--extra') && !card.classList.contains('hidden')) {
+        card.classList.add('show-extra');
+        card.classList.remove('in');
+        setTimeout(() => card.classList.add('in'), visIdx++ * 45);
+      }
+    });
+    workMore.classList.add('hidden');
+    // Smooth scroll to first new card
+    const firstExtra = document.querySelector('.work-card--extra.show-extra');
+    if (firstExtra) setTimeout(() => firstExtra.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  });
+}
+
+// Init
+applyFilter('all');
 
 // ── Process arrows sequential reveal ──
 const arrows = document.querySelectorAll('.pstep__arrow');

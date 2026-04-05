@@ -160,6 +160,16 @@ a{color:inherit;text-decoration:none}
 /* Hidden state for filter */
 .work-card.hidden{display:none}
 
+/* Extra cards (5+) hidden initially in "all" view */
+.work-card--extra{display:none}
+.work-card--extra.show-extra{display:block}
+
+/* Show more button */
+.work__more{text-align:center;margin-top:2.5rem}
+.work__more-btn{background:none;border:1.5px solid var(--border);border-radius:40px;padding:.6rem 2rem;font-size:.8rem;font-weight:600;color:var(--ink3);cursor:pointer;font-family:var(--ff);transition:all .2s}
+.work__more-btn:hover{border-color:rgba(10,10,10,.3);color:var(--ink)}
+.work__more.hidden{display:none}
+
 
 /* ═══ SERVICES ═══ */
 .services{background:var(--bg2)}
