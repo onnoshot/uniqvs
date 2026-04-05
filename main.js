@@ -24,22 +24,56 @@ navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   burger.querySelectorAll('span').forEach(s => s.style.transform = '');
 }));
 
-// ── Hero canvas wave animation ──
-(function initWaves() {
+// ── Hero canvas — particle network ──
+(function initNetwork() {
   const canvas = document.getElementById('heroCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  // Wave config — subtle, low density, red
-  const waves = [
-    { amp: 28, freq: 0.0022, speed: 0.00028, phase: 0,    yRatio: 0.22, opacity: 0.13, width: 0.7 },
-    { amp: 18, freq: 0.0035, speed: 0.00018, phase: 2.1,  yRatio: 0.38, opacity: 0.09, width: 0.5 },
-    { amp: 38, freq: 0.0015, speed: 0.00022, phase: 4.5,  yRatio: 0.52, opacity: 0.11, width: 0.8 },
-    { amp: 14, freq: 0.0048, speed: 0.00032, phase: 1.2,  yRatio: 0.65, opacity: 0.07, width: 0.4 },
-    { amp: 24, freq: 0.0026, speed: 0.00015, phase: 3.8,  yRatio: 0.78, opacity: 0.10, width: 0.6 },
-  ];
+  const CONFIG = {
+    count:       110,      // number of particles
+    maxDist:     160,      // max connection distance (px)
+    speed:       0.45,     // base movement speed
+    dotRadius:   2.2,      // particle dot size
+    dotOpacity:  0.55,     // dot fill opacity
+    lineOpacity: 0.18,     // max line opacity at closest range
+    color:       '180, 18, 18',  // r,g,b
+  };
 
-  let W, H, dpr, animId, t = 0;
+  let W, H, dpr, animId;
+  let particles = [];
+
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(initial) {
+      this.x  = Math.random() * W;
+      this.y  = initial ? Math.random() * H : (Math.random() < 0.5 ? -4 : H + 4);
+      this.vx = (Math.random() - 0.5) * CONFIG.speed;
+      this.vy = (Math.random() - 0.5) * CONFIG.speed;
+      this.r  = CONFIG.dotRadius * (0.6 + Math.random() * 0.8);
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      // Soft bounce
+      if (this.x < 0)   { this.x = 0;  this.vx *= -1; }
+      if (this.x > W)   { this.x = W;  this.vx *= -1; }
+      if (this.y < 0)   { this.y = 0;  this.vy *= -1; }
+      if (this.y > H)   { this.y = H;  this.vy *= -1; }
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${CONFIG.color}, ${CONFIG.dotOpacity})`;
+      ctx.fill();
+    }
+  }
+
+  function buildParticles() {
+    particles = [];
+    const n = Math.round(CONFIG.count * Math.min(1, (W * H) / (1440 * 900)));
+    for (let i = 0; i < n; i++) particles.push(new Particle());
+  }
 
   function resize() {
     dpr = window.devicePixelRatio || 1;
@@ -48,26 +82,35 @@ navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     canvas.width  = W * dpr;
     canvas.height = H * dpr;
     ctx.scale(dpr, dpr);
+    buildParticles();
   }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
 
-    waves.forEach(w => {
-      ctx.beginPath();
-      ctx.strokeStyle = `rgba(180, 20, 20, ${w.opacity})`;
-      ctx.lineWidth   = w.width;
-      ctx.lineCap     = 'round';
-
-      const baseY = H * w.yRatio;
-      for (let x = 0; x <= W; x += 2) {
-        const y = baseY + Math.sin(x * w.freq + t * w.speed * 1000 + w.phase) * w.amp;
-        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    // Draw connections first (under dots)
+    const maxD = CONFIG.maxDist;
+    for (let i = 0; i < particles.length; i++) {
+      const a = particles[i];
+      for (let j = i + 1; j < particles.length; j++) {
+        const b = particles[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < maxD) {
+          const alpha = CONFIG.lineOpacity * (1 - dist / maxD);
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(${CONFIG.color}, ${alpha})`;
+          ctx.lineWidth   = 0.6;
+          ctx.stroke();
+        }
       }
-      ctx.stroke();
-    });
+    }
 
-    t = performance.now();
+    // Draw dots
+    particles.forEach(p => { p.update(); p.draw(); });
+
     animId = requestAnimationFrame(draw);
   }
 
@@ -77,24 +120,24 @@ navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     draw();
   }
 
-  // Throttled resize
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(start, 120);
+    resizeTimer = setTimeout(start, 150);
   });
 
   start();
 
-  // Pause when hero is off screen (perf)
+  // Pause when scrolled past hero (perf)
   const heroEl = canvas.closest('.hero');
   if (heroEl) {
-    const pauseObs = new IntersectionObserver(entries => {
-      entries[0].isIntersecting
-        ? (animId || (animId = requestAnimationFrame(draw)))
-        : (cancelAnimationFrame(animId), animId = null);
-    }, { threshold: 0.01 });
-    pauseObs.observe(heroEl);
+    new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        if (!animId) animId = requestAnimationFrame(draw);
+      } else {
+        cancelAnimationFrame(animId); animId = null;
+      }
+    }, { threshold: 0.01 }).observe(heroEl);
   }
 })();
 
