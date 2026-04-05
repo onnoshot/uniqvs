@@ -126,17 +126,16 @@ a{color:inherit;text-decoration:none}
 /* Tabs — premium capsule system */
 .work__tabs{
   display:flex;align-items:center;gap:.35rem;
-  margin-bottom:2.8rem;
+  margin-bottom:1.6rem;
   overflow-x:auto;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
   padding-bottom:.25rem;
-  border-bottom:1px solid var(--border);
   flex-wrap:nowrap;
 }
 .work__tabs::-webkit-scrollbar{display:none}
 @media(max-width:600px){
-  .work__tabs{flex-wrap:wrap;overflow-x:visible;padding-bottom:.5rem}
+  .work__tabs{flex-wrap:wrap;overflow-x:visible;padding-bottom:.4rem;margin-bottom:1.2rem}
   .work__tab{font-size:.65rem;padding:.32rem .75rem}
 }
 .work__tab{
@@ -217,9 +216,9 @@ a{color:inherit;text-decoration:none}
   position:absolute;inset:0;
   background:linear-gradient(
     to top,
-    rgba(0,0,0,.72) 0%,
-    rgba(0,0,0,.08) 44%,
-    transparent 100%
+    rgba(140,10,10,.62) 0%,
+    rgba(80,5,5,.1) 38%,
+    transparent 70%
   );
   opacity:0;
   transition:opacity .35s ease;
@@ -229,7 +228,7 @@ a{color:inherit;text-decoration:none}
 .work-card__info{
   position:absolute;
   inset:0;
-  display:flex;flex-direction:column;justify-content:flex-end;
+  display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;
   padding:1rem;
   opacity:0;
   transition:opacity .3s ease;
@@ -256,11 +255,17 @@ a{color:inherit;text-decoration:none}
 /* Touch feedback — mobile */
 @media(hover:none){
   .work-card:active{transform:scale(.97) translateY(2px);transition:transform .15s ease}
-  /* overlay + info hidden by default, shown on touch via JS .wc-touched */
   .work-card.wc-touched .work-card__overlay{opacity:1}
   .work-card.wc-touched .work-card__info{opacity:1}
-  /* center text on mobile */
-  .work-card__info{justify-content:center;align-items:center;text-align:center;padding:.75rem}
+  /* bottom-center, small & minimal */
+  .work-card__info{
+    justify-content:flex-end;
+    align-items:center;
+    text-align:center;
+    padding:.6rem .5rem;
+  }
+  .work-card__info span{display:none}
+  .work-card__info h4{font-size:.72rem;font-weight:500;letter-spacing:.01em}
 }
 
 /* Dark card (music) */
