@@ -287,7 +287,8 @@ a{color:inherit;text-decoration:none}
 .work-card__play svg{width:14px;height:14px;margin-left:2px}
 .work-card--dark:hover .work-card__play,
 .work-card--dark:active .work-card__play{opacity:1;transform:translate(-50%,-50%) scale(1)}
-@media(hover:none){.work-card--dark .work-card__play{opacity:.7;transform:translate(-50%,-50%) scale(1)}}
+.work-card--dark .work-card__play{opacity:.85;transform:translate(-50%,-50%) scale(1)}
+.work-card--dark:hover .work-card__play{opacity:1;transform:translate(-50%,-50%) scale(1.1)}
 
 /* Hidden / extra */
 .work-card.wc-hidden{display:none}
