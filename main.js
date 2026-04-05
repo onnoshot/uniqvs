@@ -141,18 +141,16 @@ navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   }
 })();
 
-// ── Hero canvas + content parallax on scroll ──
+// ── Hero canvas + content parallax on scroll (desktop only) ──
 const heroCanvas  = document.getElementById('heroCanvas');
 const heroContent = document.querySelector('.hero__content');
+const isMobile    = () => window.innerWidth < 768;
 window.addEventListener('scroll', () => {
+  if (isMobile()) return;
   const y = window.scrollY;
   const vh = window.innerHeight;
   if (y > vh) return;
-
-  // Canvas drifts upward slowly (parallax depth)
   if (heroCanvas) heroCanvas.style.transform = `translateY(${y * 0.25}px)`;
-
-  // Content fades + lifts
   if (heroContent) {
     heroContent.style.transform = `translateY(${y * 0.12}px)`;
     heroContent.style.opacity = Math.max(0, 1 - y / (vh * 0.55));
@@ -339,6 +337,20 @@ if (arrows.length) {
   const processSection = document.querySelector('.process__steps');
   if (processSection) processObs.observe(processSection);
 }
+
+// ── Work card touch reveal (mobile) ──
+document.querySelectorAll('.work-card').forEach(card => {
+  card.addEventListener('touchstart', () => {
+    // clear others
+    document.querySelectorAll('.work-card.wc-touched').forEach(c => c.classList.remove('wc-touched'));
+    card.classList.add('wc-touched');
+  }, { passive: true });
+});
+document.addEventListener('touchstart', e => {
+  if (!e.target.closest('.work-card')) {
+    document.querySelectorAll('.work-card.wc-touched').forEach(c => c.classList.remove('wc-touched'));
+  }
+}, { passive: true });
 
 // ── Smooth anchor scroll ──
 document.querySelectorAll('a[href^="#"]').forEach(a => {

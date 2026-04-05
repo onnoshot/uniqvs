@@ -70,7 +70,7 @@ a{color:inherit;text-decoration:none}
 .hero__badge{display:inline-flex;align-items:center;gap:8px;font-size:.64rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--red);padding:.4rem 1rem;border:1px solid var(--red-line);border-radius:40px;background:var(--red-dim);margin-bottom:1rem}
 .hero__badge-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:blink 2.2s infinite}
 .hero__label{margin-bottom:1rem;opacity:0;animation:heroLineIn .6s .08s cubic-bezier(.22,1,.36,1) forwards}
-.hero__title{font-size:clamp(3rem,8vw,6.5rem);font-weight:800;letter-spacing:-0.05em;line-height:1;color:var(--ink);margin-bottom:1.5rem}
+.hero__title{font-size:clamp(2.6rem,7vw,6.5rem);font-weight:800;letter-spacing:-0.045em;line-height:1.05;color:var(--ink);margin-bottom:1.5rem}
 .hero__title em{color:var(--red)}
 
 /* Hero line-by-line animation */
@@ -132,8 +132,13 @@ a{color:inherit;text-decoration:none}
   scrollbar-width:none;
   padding-bottom:.25rem;
   border-bottom:1px solid var(--border);
+  flex-wrap:nowrap;
 }
 .work__tabs::-webkit-scrollbar{display:none}
+@media(max-width:600px){
+  .work__tabs{flex-wrap:wrap;overflow-x:visible;padding-bottom:.5rem}
+  .work__tab{font-size:.65rem;padding:.32rem .75rem}
+}
 .work__tab{
   background:none;
   border:1px solid var(--border);
@@ -251,8 +256,11 @@ a{color:inherit;text-decoration:none}
 /* Touch feedback — mobile */
 @media(hover:none){
   .work-card:active{transform:scale(.97) translateY(2px);transition:transform .15s ease}
-  .work-card__overlay{opacity:1}
-  .work-card__info{opacity:1}
+  /* overlay + info hidden by default, shown on touch via JS .wc-touched */
+  .work-card.wc-touched .work-card__overlay{opacity:1}
+  .work-card.wc-touched .work-card__info{opacity:1}
+  /* center text on mobile */
+  .work-card__info{justify-content:center;align-items:center;text-align:center;padding:.75rem}
 }
 
 /* Dark card (music) */
@@ -466,7 +474,7 @@ a{color:inherit;text-decoration:none}
 }
 
 @media(max-width:480px){
-  .hero__title{font-size:clamp(2.8rem,16vw,4rem)}
+  .hero__title{font-size:clamp(2.2rem,11vw,3rem);line-height:1.1}
   .work__grid{grid-template-columns:repeat(2,1fr)}
   .stats-grid{grid-template-columns:1fr}
   .stat-item{border-right:none}
