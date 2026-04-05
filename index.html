@@ -14,9 +14,9 @@
     <div class="nav__inner">
       <a href="#" class="nav__logo">
         <svg class="nav__bee" viewBox="0 0 36 36" fill="none">
-          <path d="M18 3 L32 10 L32 26 L18 33 L4 26 L4 10 Z" stroke="#d4920a" stroke-width="1.5" fill="none"/>
-          <path d="M18 10 L26 14.5 L26 21.5 L18 26 L10 21.5 L10 14.5 Z" fill="rgba(212,146,10,0.12)"/>
-          <circle cx="18" cy="18" r="3" fill="#d4920a"/>
+          <path d="M18 3 L32 10 L32 26 L18 33 L4 26 L4 10 Z" stroke="#cc1c1c" stroke-width="1.5" fill="none"/>
+          <path d="M18 10 L26 14.5 L26 21.5 L18 26 L10 21.5 L10 14.5 Z" fill="rgba(204,28,28,0.1)"/>
+          <circle cx="18" cy="18" r="3" fill="#cc1c1c"/>
         </svg>
         <span>UniqBee</span>
       </a>
@@ -37,7 +37,7 @@
   <section class="hero" id="hero">
     <div class="hero__bg">
       <video class="hero__video" autoplay muted loop playsinline
-        poster="https://v3b.fal.media/files/b/0a94f2d1/Ac8_7ffKkYtdHJw7E3WPE_IVfpZ1Dd.png">
+        poster="https://v3b.fal.media/files/b/0a94f8b1/ka51WH-bcSiLCjOmD2SC-_8cGz4Swm.png">
         <source src="hero.mp4" type="video/mp4" />
       </video>
       <div class="hero__overlay"></div>
@@ -54,11 +54,11 @@
         marka dünyaları.
       </h1>
       <p class="hero__desc">
-        Strateji, tasarım ve hareket — bir arı kolonisinin<br class="d-md"/>
+        Strateji, tasarım ve hareket — bir arı kolonisinin<br/>
         koordinasyonuyla yaratılmış dijital deneyimler.
       </p>
       <div class="hero__btns">
-        <a href="#work" class="btn btn--gold">Çalışmaları Gör</a>
+        <a href="#work" class="btn btn--dark">Çalışmaları Gör</a>
         <a href="#contact" class="btn btn--outline">İletişime Geç</a>
       </div>
     </div>
@@ -80,7 +80,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════════
-       WORK — 5 categories, 4 uniform cards each
+       WORK — 6 categories
   ═══════════════════════════════════════════ -->
   <section class="work section" id="work">
     <div class="container">
@@ -91,178 +91,217 @@
         <p class="work__header-sub">Stratejiden sahneye — her iş kendi dilini konuşur.</p>
       </div>
 
-      <!-- ─ 01 Reklam Filmleri ─ -->
-      <div class="cat-row reveal" data-cat="01">
+      <!-- ─ 01 Commercials ─ -->
+      <div class="cat-row reveal">
         <div class="cat-row__head">
           <div class="cat-row__label">
             <span class="cat-row__num">01</span>
             <div>
-              <h3 class="cat-row__title">Reklam Filmleri</h3>
-              <p class="cat-row__desc">Marka kampanyaları, ürün filmleri, lansman videoları, ticari prodüksiyonlar.</p>
+              <h3 class="cat-row__title">Commercials</h3>
+              <p class="cat-row__desc">Reklam çekimleri, marka kampanyaları, ticari prodüksiyonlar.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cat-row__grid">
+          <!-- Medprime Clinic -->
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#e8e4e0,#d4d0cc); --glow:rgba(204,28,28,0.08);">
+              <div class="work-card__placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              </div>
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Reklam Çekimi</span>
+                <h4>Medprime Clinic</h4>
+              </div>
+            </div>
+          </div>
+          <!-- Jacob Co -->
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#e0dcd8,#ccc8c4); --glow:rgba(204,28,28,0.07);">
+              <div class="work-card__placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              </div>
+              <div class="work-card__overlay">
+                <span class="work-card__cat">Reklam Çekimi</span>
+                <h4>Jacob &amp; Co</h4>
+              </div>
+            </div>
+          </div>
+          <!-- empty placeholders to maintain 4-col grid -->
+          <div class="work-card" style="pointer-events:none; opacity:0;"><div class="work-card__img"></div></div>
+          <div class="work-card" style="pointer-events:none; opacity:0;"><div class="work-card__img"></div></div>
+        </div>
+      </div>
+
+      <!-- ─ 02 Fashion & Campaigns ─ -->
+      <div class="cat-row reveal">
+        <div class="cat-row__head">
+          <div class="cat-row__label">
+            <span class="cat-row__num">02</span>
+            <div>
+              <h3 class="cat-row__title">Fashion &amp; Campaigns</h3>
+              <p class="cat-row__desc">Moda çekimleri, sezon kampanyaları, editorial işler, lookbook projeleri.</p>
             </div>
           </div>
         </div>
         <div class="cat-row__grid">
           <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#1a1200,#2e1e00); --glow:rgba(240,165,0,0.2);">
-              <div class="work-card__overlay"><span class="work-card__cat">Lansman Kampanyası</span><h4>Aurum Finance</h4></div>
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#d8d4d0,#c8c4c0); --glow:rgba(204,28,28,0.08);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="work-card__overlay"><span class="work-card__cat">Sezon Kampanyası</span><h4>Antioch</h4></div>
             </div>
           </div>
           <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#0a0e1a,#111e30); --glow:rgba(60,120,255,0.15);">
-              <div class="work-card__overlay"><span class="work-card__cat">Ürün Filmi</span><h4>Vertus Pro</h4></div>
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#dcd8d4,#ccc8c4); --glow:rgba(204,28,28,0.07);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="work-card__overlay"><span class="work-card__cat">Sezon Kampanyası</span><h4>Antioch Women</h4></div>
             </div>
           </div>
           <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#120d1c,#1e1430); --glow:rgba(160,80,255,0.15);">
-              <div class="work-card__overlay"><span class="work-card__cat">Marka Kampanyası</span><h4>Nocturne Parfüm</h4></div>
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#d4d0cc,#c4c0bc); --glow:rgba(204,28,28,0.07);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="work-card__overlay"><span class="work-card__cat">Kampanya Fotoğraf</span><h4>ArdemFur</h4></div>
             </div>
           </div>
           <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#0a1410,#12201a); --glow:rgba(40,200,100,0.14);">
-              <div class="work-card__overlay"><span class="work-card__cat">Ticari Prodüksiyon</span><h4>NovaTech Systems</h4></div>
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#d8d4d0,#c8c4c0); --glow:rgba(204,28,28,0.08);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="work-card__overlay"><span class="work-card__cat">Kampanya Foto &amp; Video</span><h4>Bedayz</h4></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ─ 02 Müzik Videoları ─ -->
-      <div class="cat-row reveal" data-cat="02">
+      <!-- ─ 03 Social Content ─ -->
+      <div class="cat-row reveal">
         <div class="cat-row__head">
           <div class="cat-row__label">
-            <span class="cat-row__num">02</span>
+            <span class="cat-row__num">03</span>
             <div>
-              <h3 class="cat-row__title">Müzik Videoları</h3>
+              <h3 class="cat-row__title">Social Content</h3>
+              <p class="cat-row__desc">Sosyal medya video çekimi, içerik üretimi ve yönetimi.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cat-row__grid">
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#e0dcd8,#d0ccc8); --glow:rgba(204,28,28,0.07);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="work-card__overlay"><span class="work-card__cat">Sosyal Medya Video</span><h4>Nihat Yıldız</h4></div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#dcdad6,#ccc8c4); --glow:rgba(204,28,28,0.07);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="work-card__overlay"><span class="work-card__cat">Sosyal Medya Video</span><h4>Kronospan</h4></div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#e0dcd8,#d0ccc8); --glow:rgba(204,28,28,0.08);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="work-card__overlay"><span class="work-card__cat">İçerik Yönetimi</span><h4>Benesso Coffee</h4></div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#dcd8d4,#ccc8c4); --glow:rgba(204,28,28,0.07);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="work-card__overlay"><span class="work-card__cat">Fotoğraf &amp; Video</span><h4>Soner Sarıkabadayı</h4></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─ 04 Product Shoots ─ -->
+      <div class="cat-row reveal">
+        <div class="cat-row__head">
+          <div class="cat-row__label">
+            <span class="cat-row__num">04</span>
+            <div>
+              <h3 class="cat-row__title">Product Shoots</h3>
+              <p class="cat-row__desc">Ürün fotoğraf ve video çekimleri.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cat-row__grid">
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#e4e0dc,#d4d0cc); --glow:rgba(204,28,28,0.08);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="work-card__overlay"><span class="work-card__cat">Ürün Çekimi</span><h4>Ljuso Kozmetik</h4></div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#dedad6,#cecac6); --glow:rgba(204,28,28,0.07);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="work-card__overlay"><span class="work-card__cat">Ürün Foto &amp; Video</span><h4>Retro Camera Land</h4></div>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#e0dcd8,#d0ccc8); --glow:rgba(204,28,28,0.07);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="work-card__overlay"><span class="work-card__cat">Ürün Foto &amp; Video</span><h4>Gourmeturca</h4></div>
+            </div>
+          </div>
+          <div class="work-card" style="pointer-events:none; opacity:0;"><div class="work-card__img"></div></div>
+        </div>
+      </div>
+
+      <!-- ─ 05 Digital & E-Commerce ─ -->
+      <div class="cat-row reveal">
+        <div class="cat-row__head">
+          <div class="cat-row__label">
+            <span class="cat-row__num">05</span>
+            <div>
+              <h3 class="cat-row__title">Digital &amp; E-Commerce</h3>
+              <p class="cat-row__desc">Sosyal medya yönetimi, web site tasarımı, e-ticaret platformları.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cat-row__grid">
+          <div class="work-card">
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#e4e0dc,#d4cec8); --glow:rgba(204,28,28,0.08);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="work-card__overlay"><span class="work-card__cat">Web &amp; Shopify</span><h4>Retro Camera Land</h4></div>
+            </div>
+          </div>
+          <div class="work-card" style="pointer-events:none; opacity:0;"><div class="work-card__img"></div></div>
+          <div class="work-card" style="pointer-events:none; opacity:0;"><div class="work-card__img"></div></div>
+          <div class="work-card" style="pointer-events:none; opacity:0;"><div class="work-card__img"></div></div>
+        </div>
+      </div>
+
+      <!-- ─ 06 Music Videos ─ -->
+      <div class="cat-row reveal">
+        <div class="cat-row__head">
+          <div class="cat-row__label">
+            <span class="cat-row__num">06</span>
+            <div>
+              <h3 class="cat-row__title">Music Videos</h3>
               <p class="cat-row__desc">Klipler, performans videoları, konsept müzik projeleri.</p>
             </div>
           </div>
         </div>
         <div class="cat-row__grid">
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#1a0e0e,#2e1414); --glow:rgba(255,100,80,0.15);">
-              <div class="work-card__overlay"><span class="work-card__cat">Klip</span><h4>Ember — "Yalnız"</h4></div>
+          <!-- Video link cards — will get Vimeo/YouTube href later -->
+          <div class="work-card" data-video-url="">
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#1a0a0a,#2a1010); --glow:rgba(204,28,28,0.2);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+              <div class="work-card__link-badge">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="work-card__overlay"><span class="work-card__cat">Müzik Videosu</span><h4>— Yakında —</h4></div>
             </div>
           </div>
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#08101e,#0e1830); --glow:rgba(80,140,255,0.16);">
-              <div class="work-card__overlay"><span class="work-card__cat">Performans Videosu</span><h4>Lyra Ensemble</h4></div>
+          <div class="work-card" data-video-url="">
+            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#0a0a1a,#10102a); --glow:rgba(100,100,204,0.2);">
+              <div class="work-card__placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+              <div class="work-card__link-badge">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="work-card__overlay"><span class="work-card__cat">Müzik Videosu</span><h4>— Yakında —</h4></div>
             </div>
           </div>
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#0a1a10,#102014); --glow:rgba(100,220,80,0.13);">
-              <div class="work-card__overlay"><span class="work-card__cat">Konsept Film</span><h4>Forêt — "Roots"</h4></div>
-            </div>
-          </div>
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#14101c,#201830); --glow:rgba(200,80,255,0.14);">
-              <div class="work-card__overlay"><span class="work-card__cat">Klip</span><h4>Solène — "Cipher"</h4></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ─ 03 Sosyal Medya ─ -->
-      <div class="cat-row reveal" data-cat="03">
-        <div class="cat-row__head">
-          <div class="cat-row__label">
-            <span class="cat-row__num">03</span>
-            <div>
-              <h3 class="cat-row__title">Sosyal Medya İçerikleri</h3>
-              <p class="cat-row__desc">Reels, TikTok, kısa format videolar, dikey içerikler, campaign cutdown'lar.</p>
-            </div>
-          </div>
-        </div>
-        <div class="cat-row__grid">
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#1a1408,#2e2210); --glow:rgba(240,165,0,0.2);">
-              <div class="work-card__overlay"><span class="work-card__cat">Instagram Reels</span><h4>Aurum × Summer</h4></div>
-            </div>
-          </div>
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#081418,#0e2028); --glow:rgba(0,200,220,0.15);">
-              <div class="work-card__overlay"><span class="work-card__cat">TikTok Series</span><h4>Vertex Labs</h4></div>
-            </div>
-          </div>
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#1a0c0c,#281414); --glow:rgba(255,80,80,0.14);">
-              <div class="work-card__overlay"><span class="work-card__cat">Cutdown Ads</span><h4>Cardinal Red</h4></div>
-            </div>
-          </div>
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#0c0e1c,#14162c); --glow:rgba(100,100,255,0.15);">
-              <div class="work-card__overlay"><span class="work-card__cat">Stories Campaign</span><h4>Nocturne</h4></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ─ 04 Moda & Lifestyle ─ -->
-      <div class="cat-row reveal" data-cat="04">
-        <div class="cat-row__head">
-          <div class="cat-row__label">
-            <span class="cat-row__num">04</span>
-            <div>
-              <h3 class="cat-row__title">Moda &amp; Lifestyle</h3>
-              <p class="cat-row__desc">Moda çekimleri, editorial işler, estetik odaklı marka filmleri, lookbook projeleri.</p>
-            </div>
-          </div>
-        </div>
-        <div class="cat-row__grid">
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#140e1e,#201630); --glow:rgba(220,160,255,0.15);">
-              <div class="work-card__overlay"><span class="work-card__cat">Editorial Film</span><h4>Maison Soleil S/S</h4></div>
-            </div>
-          </div>
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#1a1608,#2c2010); --glow:rgba(240,200,100,0.14);">
-              <div class="work-card__overlay"><span class="work-card__cat">Lookbook</span><h4>Studio Blanc</h4></div>
-            </div>
-          </div>
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#0c1018,#141824); --glow:rgba(80,140,255,0.13);">
-              <div class="work-card__overlay"><span class="work-card__cat">Marka Filmi</span><h4>Aether Wear</h4></div>
-            </div>
-          </div>
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#1a0e10,#2c1418); --glow:rgba(255,80,120,0.13);">
-              <div class="work-card__overlay"><span class="work-card__cat">Fashion Film</span><h4>Voss Collection</h4></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ─ 05 Kurumsal & Etkinlik ─ -->
-      <div class="cat-row reveal" data-cat="05">
-        <div class="cat-row__head">
-          <div class="cat-row__label">
-            <span class="cat-row__num">05</span>
-            <div>
-              <h3 class="cat-row__title">Kurumsal &amp; Etkinlik</h3>
-              <p class="cat-row__desc">Kurumsal tanıtım filmleri, röportajlar, organizasyon videoları, backstage ve event recap işleri.</p>
-            </div>
-          </div>
-        </div>
-        <div class="cat-row__grid">
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#0c1020,#14182e); --glow:rgba(100,140,255,0.15);">
-              <div class="work-card__overlay"><span class="work-card__cat">Tanıtım Filmi</span><h4>Global Summit 2025</h4></div>
-            </div>
-          </div>
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#0e1810,#162014); --glow:rgba(80,220,100,0.13);">
-              <div class="work-card__overlay"><span class="work-card__cat">Event Recap</span><h4>Vertex Conference</h4></div>
-            </div>
-          </div>
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#1c1008,#2c1810); --glow:rgba(255,140,80,0.14);">
-              <div class="work-card__overlay"><span class="work-card__cat">Röportaj Serisi</span><h4>Aurum Leadership</h4></div>
-            </div>
-          </div>
-          <div class="work-card">
-            <div class="work-card__img" style="--img-grad:linear-gradient(135deg,#10101c,#181828); --glow:rgba(180,100,255,0.13);">
-              <div class="work-card__overlay"><span class="work-card__cat">Backstage Film</span><h4>NovaTech Launch</h4></div>
-            </div>
-          </div>
+          <div class="work-card" style="pointer-events:none; opacity:0;"><div class="work-card__img"></div></div>
+          <div class="work-card" style="pointer-events:none; opacity:0;"><div class="work-card__img"></div></div>
         </div>
       </div>
 
@@ -326,10 +365,10 @@
           <div class="hex-ring hex-ring--2"></div>
           <div class="hex-ring hex-ring--3"></div>
           <svg class="hex-icon" viewBox="0 0 100 100" fill="none">
-            <path d="M50 6 L90 28 L90 72 L50 94 L10 72 L10 28 Z" stroke="rgba(212,146,10,0.3)" stroke-width="1" fill="none"/>
-            <path d="M50 22 L74 35 L74 65 L50 78 L26 65 L26 35 Z" stroke="rgba(212,146,10,0.55)" stroke-width="1" fill="none"/>
-            <circle cx="50" cy="50" r="11" fill="#d4920a" opacity="0.9"/>
-            <circle cx="50" cy="50" r="19" stroke="#d4920a" stroke-width="0.5" fill="none" opacity="0.2"/>
+            <path d="M50 6 L90 28 L90 72 L50 94 L10 72 L10 28 Z" stroke="rgba(204,28,28,0.25)" stroke-width="1" fill="none"/>
+            <path d="M50 22 L74 35 L74 65 L50 78 L26 65 L26 35 Z" stroke="rgba(204,28,28,0.5)" stroke-width="1" fill="none"/>
+            <circle cx="50" cy="50" r="11" fill="#cc1c1c" opacity="0.9"/>
+            <circle cx="50" cy="50" r="19" stroke="#cc1c1c" stroke-width="0.5" fill="none" opacity="0.2"/>
           </svg>
         </div>
         <div class="about__copy reveal">
@@ -355,29 +394,13 @@
         <h2>Dört aşama.<br/><em>Tek sonuç.</em></h2>
       </div>
       <div class="process__steps">
-        <div class="pstep reveal">
-          <div class="pstep__num">01</div>
-          <h3>Keşfet</h3>
-          <p>Markan, pazarın ve kitlenin derinliklerine iniş. Gerçek fırsatı ortaya çıkaran soruları soruyoruz.</p>
-        </div>
+        <div class="pstep reveal"><div class="pstep__num">01</div><h3>Keşfet</h3><p>Markan, pazarın ve kitlenin derinliklerine iniş. Gerçek fırsatı ortaya çıkaran soruları soruyoruz.</p></div>
         <div class="pstep__arrow reveal">→</div>
-        <div class="pstep reveal">
-          <div class="pstep__num">02</div>
-          <h3>Stratejile</h3>
-          <p>Her kararın ölçülebilir bir marka çıktısına bağlandığı hassas bir yaratıcı yol haritası çiziyoruz.</p>
-        </div>
+        <div class="pstep reveal"><div class="pstep__num">02</div><h3>Stratejile</h3><p>Her kararın ölçülebilir bir marka çıktısına bağlandığı hassas bir yaratıcı yol haritası çiziyoruz.</p></div>
         <div class="pstep__arrow reveal">→</div>
-        <div class="pstep reveal">
-          <div class="pstep__num">03</div>
-          <h3>Yarat</h3>
-          <p>Kimlik, hareket, web ve içerik alanlarında dünya standartlarında icra. Şablon yok, kısayol yok.</p>
-        </div>
+        <div class="pstep reveal"><div class="pstep__num">03</div><h3>Yarat</h3><p>Kimlik, hareket, web ve içerik alanlarında dünya standartlarında icra. Şablon yok, kısayol yok.</p></div>
         <div class="pstep__arrow reveal">→</div>
-        <div class="pstep reveal">
-          <div class="pstep__num">04</div>
-          <h3>Güçlendir</h3>
-          <p>Sürekli deploy, ölçüm ve optimizasyon — kreatif çalışmayı bileşik marka sermayesine dönüştürürüz.</p>
-        </div>
+        <div class="pstep reveal"><div class="pstep__num">04</div><h3>Güçlendir</h3><p>Sürekli deploy, ölçüm ve optimizasyon — kreatif çalışmayı bileşik marka sermayesine dönüştürürüz.</p></div>
       </div>
     </div>
   </section>
@@ -390,26 +413,17 @@
         <div class="tcard reveal">
           <div class="tcard__stars">★★★★★</div>
           <p>"UniqBee markamızı yeniden tasarlamakla kalmadı — kendimiz hakkında düşünme biçimimizi yeniden inşa etti."</p>
-          <div class="tcard__author">
-            <div class="tcard__av">A</div>
-            <div><strong>Alexandra Voss</strong><span>CMO, Aurum Finance</span></div>
-          </div>
+          <div class="tcard__author"><div class="tcard__av">A</div><div><strong>Alexandra Voss</strong><span>CMO, Aurum Finance</span></div></div>
         </div>
         <div class="tcard reveal">
           <div class="tcard__stars">★★★★★</div>
           <p>"Her ajans premium vaat eder. UniqBee teslim eder. Web sitesi lansmanımızdaki detay hassasiyeti olağanüstüydü."</p>
-          <div class="tcard__author">
-            <div class="tcard__av">K</div>
-            <div><strong>Kerem Arslan</strong><span>Kurucu, Vertex Labs</span></div>
-          </div>
+          <div class="tcard__author"><div class="tcard__av">K</div><div><strong>Kerem Arslan</strong><span>Kurucu, Vertex Labs</span></div></div>
         </div>
         <div class="tcard reveal">
           <div class="tcard__stars">★★★★★</div>
           <p>"Sosyal medya etkileşimimiz ilk çeyrekte üç katına çıktı. Geliştirdikleri içerik sistemi artık marka iletişimimizin omurgası."</p>
-          <div class="tcard__author">
-            <div class="tcard__av">S</div>
-            <div><strong>Sophie Marchetti</strong><span>Marka Direktörü, Maison Soleil</span></div>
-          </div>
+          <div class="tcard__author"><div class="tcard__av">S</div><div><strong>Sophie Marchetti</strong><span>Marka Direktörü, Maison Soleil</span></div></div>
         </div>
       </div>
     </div>
@@ -423,7 +437,7 @@
         <p class="label">Başlamaya Hazır mısınız?</p>
         <h2>Markanızın bir sonraki<br/><em>tanımlayıcı bölümü</em><br/>burada başlıyor.</h2>
         <p>Her çeyrekte sınırlı sayıda proje alıyoruz — olağanüstü odak için. Sonraki kotamız dolmadan ulaşın.</p>
-        <a href="mailto:hello@uniqbee.agency" class="btn btn--gold btn--lg">hello@uniqbee.agency</a>
+        <a href="mailto:hello@uniqbee.agency" class="btn btn--red btn--lg">hello@uniqbee.agency</a>
         <div class="cta-box__meta">
           <span>İstanbul · Londra · Dubai</span>
           <span class="sep">·</span>
@@ -439,9 +453,9 @@
       <div class="footer__top">
         <a href="#" class="nav__logo">
           <svg class="nav__bee" viewBox="0 0 36 36" fill="none">
-            <path d="M18 3 L32 10 L32 26 L18 33 L4 26 L4 10 Z" stroke="#d4920a" stroke-width="1.5" fill="none"/>
-            <path d="M18 10 L26 14.5 L26 21.5 L18 26 L10 21.5 L10 14.5 Z" fill="rgba(212,146,10,0.12)"/>
-            <circle cx="18" cy="18" r="3" fill="#d4920a"/>
+            <path d="M18 3 L32 10 L32 26 L18 33 L4 26 L4 10 Z" stroke="#cc1c1c" stroke-width="1.5" fill="none"/>
+            <path d="M18 10 L26 14.5 L26 21.5 L18 26 L10 21.5 L10 14.5 Z" fill="rgba(204,28,28,0.1)"/>
+            <circle cx="18" cy="18" r="3" fill="#cc1c1c"/>
           </svg>
           <span>UniqBee</span>
         </a>
@@ -457,8 +471,8 @@
             <h4>Bağlan</h4>
             <a href="#">Instagram</a>
             <a href="#">LinkedIn</a>
-            <a href="#">Behance</a>
             <a href="#">Vimeo</a>
+            <a href="#">YouTube</a>
           </div>
           <div class="footer__col">
             <h4>İletişim</h4>
