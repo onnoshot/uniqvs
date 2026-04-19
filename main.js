@@ -190,7 +190,7 @@ const counterObs = new IntersectionObserver((entries) => {
     counterObs.unobserve(el);
   });
 }, { threshold: 0.5 });
-document.querySelectorAll('.stat-item__num[data-count]').forEach(el => counterObs.observe(el));
+document.querySelectorAll('.stat-card__num[data-count]').forEach(el => counterObs.observe(el));
 
 // ── Work filter + show-more — premium motion system ──
 (function initWork() {
