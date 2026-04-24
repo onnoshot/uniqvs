@@ -515,29 +515,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   else { window.addEventListener('load', () => setTimeout(hide, 360)); }
 })();
 
-// ── Custom cursor (pointer devices only) ──
+// custom cursor removed
+
+// ── Impact strip reveal ──
 (function(){
-  if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
-  const dot  = document.getElementById('cursor-dot');
-  const ring = document.getElementById('cursor-ring');
-  if (!dot || !ring) return;
-  let mx = -200, my = -200, rx = -200, ry = -200;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
-  });
-  (function animRing(){
-    rx += (mx - rx) * 0.11;
-    ry += (my - ry) * 0.11;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    requestAnimationFrame(animRing);
-  })();
-  const over = () => document.body.classList.add('cursor-hover');
-  const out  = () => document.body.classList.remove('cursor-hover');
-  document.querySelectorAll('a,button,[role="button"]').forEach(el => {
-    el.addEventListener('mouseenter', over);
-    el.addEventListener('mouseleave', out);
-  });
+  const items = document.querySelectorAll('.impact-item');
+  if (!items.length) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (!e.isIntersecting) return;
+      setTimeout(() => e.target.classList.add('in'), i * 120);
+      obs.unobserve(e.target);
+    });
+  }, { threshold: 0.2 });
+  items.forEach(el => obs.observe(el));
 })();
