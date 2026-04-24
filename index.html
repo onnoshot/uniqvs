@@ -3,10 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UniqBee — Digital Media Agency</title>
-  <meta name="description" content="UniqBee, strateji, tasarım ve teknolojiyle marka deneyimleri inşa eden premium bir dijital medya ajansıdır." />
+  <title>UniqBee — Dijital Medya &amp; Sosyal Medya Ajansı | İstanbul</title>
+  <meta name="description" content="UniqBee, İstanbul merkezli dijital medya ve sosyal medya ajansıdır. Reklam prodüksiyonu, içerik üretimi, instagram yönetimi ve marka stratejisi hizmetleri sunuyoruz." />
+  <link rel="canonical" href="https://uniqbee.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="UniqBee — Dijital Medya &amp; Sosyal Medya Ajansı | İstanbul" />
+  <meta property="og:description" content="İstanbul merkezli dijital medya ajansı. Sosyal medya yönetimi, reklam, içerik üretimi ve marka stratejisi." />
+  <meta property="og:url" content="https://uniqbee.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="robots" content="index, follow" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ProfessionalService","name":"UniqBee","description":"İstanbul merkezli dijital medya ajansı. Sosyal medya yönetimi, reklam prodüksiyonu, içerik üretimi ve marka stratejisi.","url":"https://uniqbee.com","telephone":"+905437406855","email":"hello@uniqbee.agency","address":{"@type":"PostalAddress","streetAddress":"Finanskent Mah. Finans Cad. Sarphan Finanspark Rezidans B Blok D:110","addressLocality":"Ümraniye","addressRegion":"İstanbul","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":41.0082,"longitude":29.1243},"sameAs":["https://www.instagram.com/uniqbeedigital"],"priceRange":"₺₺₺","areaServed":"İstanbul","knowsAbout":["Sosyal Medya Yönetimi","Reklam Ajansı","Dijital Medya","İçerik Üretimi","Video Prodüksiyon","Marka Stratejisi"]}
+  </script>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B74WD2X7W"></script>
@@ -18,6 +28,19 @@
   </script>
 </head>
 <body>
+
+  <!-- ═══ PAGE LOADER ═══ -->
+  <div id="site-loader">
+    <svg width="52" height="52" viewBox="0 0 36 36" fill="none" class="loader__bee">
+      <path d="M18 3 L32 10 L32 26 L18 33 L4 26 L4 10 Z" stroke="#cc1c1c" stroke-width="1.5" fill="none"/>
+      <path d="M18 10 L26 14.5 L26 21.5 L18 26 L10 21.5 L10 14.5 Z" fill="rgba(204,28,28,0.12)"/>
+      <circle cx="18" cy="18" r="3" fill="#cc1c1c"/>
+    </svg>
+  </div>
+
+  <!-- ═══ CUSTOM CURSOR ═══ -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
 
   <!-- ═══ NAV ═══ -->
   <nav class="nav" id="nav">
@@ -31,6 +54,7 @@
         <li><a href="#services">Hizmetler</a></li>
         <li><a href="#about">Hakkımızda</a></li>
 <li><a href="#contact">İletişim</a></li>
+        <li><a href="/blog/">Blog</a></li>
         <li><a href="https://wa.me/905437406855" target="_blank" class="nav__cta">Proje Başlat</a></li>
       </ul>
       <button class="nav__burger" id="navBurger" aria-label="Menu">
@@ -65,6 +89,30 @@
       <span>Kaydır</span>
     </div>
   </section>
+
+  <!-- ═══ TICKER ═══ -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker">
+      <div class="ticker__track">
+        <span>Sosyal Medya Ajansı</span><span class="ticker__sep">·</span>
+        <span>Reklam Ajansı</span><span class="ticker__sep">·</span>
+        <span>Dijital Medya Ajansı</span><span class="ticker__sep">·</span>
+        <span>Video Prodüksiyon</span><span class="ticker__sep">·</span>
+        <span>İçerik Üretimi</span><span class="ticker__sep">·</span>
+        <span>Marka Stratejisi</span><span class="ticker__sep">·</span>
+        <span>Performans Reklamı</span><span class="ticker__sep">·</span>
+        <span>AI Destekli Üretim</span><span class="ticker__sep">·</span>
+        <span>Sosyal Medya Ajansı</span><span class="ticker__sep">·</span>
+        <span>Reklam Ajansı</span><span class="ticker__sep">·</span>
+        <span>Dijital Medya Ajansı</span><span class="ticker__sep">·</span>
+        <span>Video Prodüksiyon</span><span class="ticker__sep">·</span>
+        <span>İçerik Üretimi</span><span class="ticker__sep">·</span>
+        <span>Marka Stratejisi</span><span class="ticker__sep">·</span>
+        <span>Performans Reklamı</span><span class="ticker__sep">·</span>
+        <span>AI Destekli Üretim</span><span class="ticker__sep">·</span>
+      </div>
+    </div>
+  </div>
 
   <!-- ═══ STATS ═══ -->
   <section class="stats-section" id="stats">
@@ -534,6 +582,58 @@
     </div>
   </section>
 
+  <!-- ═══ BLOG PREVIEW ═══ -->
+  <section class="blog-preview section" id="blog">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label">İçgörüler</p>
+        <h2>Dijital dünyada <em>öne çıkmak</em> için.</h2>
+      </div>
+      <div class="bp-grid">
+
+        <a class="bp-card reveal" href="/blog/sosyal-medya-ajansi-secimi/">
+          <div class="bp-card__tag">Sosyal Medya</div>
+          <h3 class="bp-card__title">İstanbul'da Sosyal Medya Ajansı Seçimi: 2025'te Bilmeniz Gereken 7 Kriter</h3>
+          <p class="bp-card__excerpt">Doğru ajansı seçmek, markanızın dijital geleceğini belirler. Portföy değerlendirmeden veri analitiğine kadar 7 temel kriter.</p>
+          <div class="bp-card__meta">
+            <span>Nisan 2025</span>
+            <span class="bp-sep">·</span>
+            <span>5 dk okuma</span>
+            <span class="bp-card__arrow">→</span>
+          </div>
+        </a>
+
+        <a class="bp-card reveal" href="/blog/dijital-medya-ajansi-nedir/">
+          <div class="bp-card__tag">Marka Stratejisi</div>
+          <h3 class="bp-card__title">Dijital Medya Ajansı Nedir? Reklam Ajansından Farkı ve Markanıza Katkısı</h3>
+          <p class="bp-card__excerpt">İki kavram arasındaki farkı anlamak, markanız için doğru ortağı seçmenin ilk adımıdır. Kapsamlı 2025 rehberi.</p>
+          <div class="bp-card__meta">
+            <span>Mart 2025</span>
+            <span class="bp-sep">·</span>
+            <span>6 dk okuma</span>
+            <span class="bp-card__arrow">→</span>
+          </div>
+        </a>
+
+        <a class="bp-card reveal" href="/blog/reklam-ajansi-ile-calismak/">
+          <div class="bp-card__tag">Rehber</div>
+          <h3 class="bp-card__title">Reklam Ajansıyla Çalışmak: Beklentiler, Süreç ve Maksimum Sonuç Alma</h3>
+          <p class="bp-card__excerpt">Brief'ten kampanya ölçümüne kadar ajansla çalışma sürecini doğru yönetmek için kapsamlı rehber.</p>
+          <div class="bp-card__meta">
+            <span>Şubat 2025</span>
+            <span class="bp-sep">·</span>
+            <span>7 dk okuma</span>
+            <span class="bp-card__arrow">→</span>
+          </div>
+        </a>
+
+      </div>
+      <div class="bp-more reveal">
+        <a href="/blog/" class="btn btn--outline">Tüm Yazıları Gör</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ CONTACT ═══ -->
   <section class="contact section" id="contact">
     <div class="container">
@@ -598,6 +698,7 @@
             <a href="#services">Hizmetler</a>
             <a href="#about">Hakkımızda</a>
             <a href="#process">Süreç</a>
+            <a href="/blog/">Blog</a>
           </div>
           <div class="footer__col">
             <h4>Bağlan</h4>

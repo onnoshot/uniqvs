@@ -500,3 +500,44 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     window.scrollTo({ top: t.offsetTop - 66, behavior: 'smooth' });
   });
 });
+
+// ── Page loader ──
+(function(){
+  const loader = document.getElementById('site-loader');
+  if (!loader) return;
+  if (sessionStorage.getItem('ub_v')) { loader.style.display = 'none'; return; }
+  const hide = () => {
+    loader.classList.add('loaded');
+    setTimeout(() => { loader.style.display = 'none'; }, 540);
+    sessionStorage.setItem('ub_v', '1');
+  };
+  if (document.readyState === 'complete') { setTimeout(hide, 360); }
+  else { window.addEventListener('load', () => setTimeout(hide, 360)); }
+})();
+
+// ── Custom cursor (pointer devices only) ──
+(function(){
+  if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  const dot  = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  if (!dot || !ring) return;
+  let mx = -200, my = -200, rx = -200, ry = -200;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  });
+  (function animRing(){
+    rx += (mx - rx) * 0.11;
+    ry += (my - ry) * 0.11;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animRing);
+  })();
+  const over = () => document.body.classList.add('cursor-hover');
+  const out  = () => document.body.classList.remove('cursor-hover');
+  document.querySelectorAll('a,button,[role="button"]').forEach(el => {
+    el.addEventListener('mouseenter', over);
+    el.addEventListener('mouseleave', out);
+  });
+})();
