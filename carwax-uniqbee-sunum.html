@@ -207,6 +207,7 @@ body{
 
 /* ── MOBILE ── */
 @media(max-width:768px){
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
   #topbar{padding:10px 16px}
   .tb-links{display:none}
   .inner{padding:48px 16px 60px}
@@ -852,8 +853,10 @@ window.addEventListener('scroll',()=>{
 // Reveal on scroll
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:0.12});
+},{threshold:0.05});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+// Fallback: mobilde observer gecikirse zorla göster
+setTimeout(()=>{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));},600);
 
 // Number counter animation
 const numObs=new IntersectionObserver(entries=>{
