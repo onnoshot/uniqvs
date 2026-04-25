@@ -52,11 +52,7 @@ body{
 .sec{width:100%;position:relative;border-bottom:1px solid rgba(201,146,42,.07)}
 .inner{position:relative;z-index:1;width:100%;max-width:1160px;margin:0 auto;padding:80px 80px 88px}
 
-/* ── FADE IN — sadece desktop JS tarafından aktif edilir ── */
-.reveal{transition:opacity .6s ease,transform .6s ease}
-.reveal.will-animate{opacity:0;transform:translateY(24px)}
-.reveal.visible{opacity:1!important;transform:translateY(0)!important}
-.r2{transition-delay:.1s}.r3{transition-delay:.2s}.r4{transition-delay:.3s}.r5{transition-delay:.4s}
+/* animasyon yok — tüm içerik her zaman görünür */
 
 /* ── EYEBROW ── */
 .eyebrow{font-family:var(--rb);font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--goldl);display:flex;align-items:center;gap:14px;margin-bottom:18px}
@@ -857,42 +853,10 @@ window.addEventListener('scroll',()=>{
   bar.style.width=Math.min(pct,100)+'%';
 },{passive:true});
 
-// Reveal animasyonu sadece desktop'ta çalışır — mobilde içerik her zaman görünür
-if(window.innerWidth>768){
-  const revEls=document.querySelectorAll('.reveal');
-  revEls.forEach(el=>el.classList.add('will-animate'));
-  const observer=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-  },{threshold:0.05});
-  revEls.forEach(el=>observer.observe(el));
-  setTimeout(()=>{revEls.forEach(el=>el.classList.add('visible'));},1200);
-}
-
-// Number counter animation
-function runCounter(el){
-  if(el.dataset.counted)return;
-  el.dataset.counted=1;
-  const t=+el.dataset.target,s=Date.now(),dur=1200;
-  const tick=()=>{
-    const p=Math.min((Date.now()-s)/dur,1);
-    el.textContent=Math.round((1-Math.pow(1-p,3))*t);
-    if(p<1)requestAnimationFrame(tick);
-  };tick();
-}
-const numObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    e.target.querySelectorAll('[data-target]').forEach(runCounter);
-  });
-},{threshold:0.05,rootMargin:'0px 0px -10% 0px'});
-document.querySelectorAll('.sec').forEach(s=>numObs.observe(s));
-// Sayfa yüklendiğinde görünür bölümleri hemen çalıştır
-setTimeout(()=>{
-  document.querySelectorAll('[data-target]').forEach(el=>{
-    const r=el.getBoundingClientRect();
-    if(r.top<window.innerHeight)runCounter(el);
-  });
-},300);
+// Sayaçları direkt say — animasyon yok, hedef değeri göster
+document.querySelectorAll('[data-target]').forEach(el=>{
+  el.textContent=el.dataset.target;
+});
 
 // Section counter in topbar
 const sections=document.querySelectorAll('.sec');
@@ -905,7 +869,7 @@ const secObs=new IntersectionObserver(entries=>{
       if(i>=0)secCtr.innerHTML=secNames[i]+' <strong>'+(i+1)+'/'+sections.length+'</strong>';
     }
   });
-},{threshold:0.4});
+},{threshold:0.2});
 sections.forEach(s=>secObs.observe(s));
 </script>
 </body>
