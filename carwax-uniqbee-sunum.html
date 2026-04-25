@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Carwax Türkiye × UniqBee — 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Outfit:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060810;
+  --layer1:rgba(255,255,255,.025);
+  --layer2:rgba(255,255,255,.05);
+  --gold:#C9922A;
+  --goldl:#E5B140;
+  --goldhl:#F5CC68;
+  --golddim:rgba(201,146,42,.12);
+  --goldbdr:rgba(201,146,42,.22);
+  --red:#C72828;
+  --reddim:rgba(199,40,40,.14);
+  --blue:#1567CC;
+  --bluedim:rgba(21,103,204,.14);
+  --cream:#EDE3CA;
+  --muted:#5E5E78;
+  --muted2:#3A3A52;
+  --rj:'Rajdhani',sans-serif;
+  --ro:'Outfit',sans-serif;
+  --rb:'Barlow Condensed',sans-serif;
+}
+
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--cream)}
+body{font-family:var(--ro)}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::after{
+  content:'';position:fixed;inset:0;z-index:999;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.5;
+}
+
+/* ── PROGRESS ── */
+#progress{position:fixed;top:0;left:0;height:2px;width:0%;z-index:600;background:linear-gradient(90deg,var(--gold),var(--goldhl));transition:width .5s ease}
+
+/* ── SLIDE COUNTER ── */
+#counter{
+  position:fixed;bottom:max(28px,env(safe-area-inset-bottom,28px));right:20px;z-index:600;
+  font-family:var(--rb);font-size:11px;letter-spacing:.25em;color:var(--muted);
+}
+#counter span{color:var(--goldl);font-size:14px;font-weight:900}
+
+/* ── DOTS ── */
+#dots{
+  position:fixed;left:28px;top:50%;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:10px;z-index:500;
+}
+.dot{width:2px;height:18px;background:var(--muted2);border:none;cursor:pointer;transition:all .3s;border-radius:1px;padding:0}
+.dot.on{background:var(--gold);height:32px}
+
+/* ── NAV ── */
+.nav{
+  position:fixed;bottom:max(20px,env(safe-area-inset-bottom,20px));
+  left:50%;transform:translateX(-50%);
+  display:flex;gap:10px;z-index:600;
+}
+.nav-btn{
+  width:52px;height:52px;border-radius:50%;border:1px solid var(--goldbdr);
+  background:rgba(6,8,16,.85);color:var(--goldl);font-size:20px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .25s;-webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;user-select:none;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.nav-btn:hover,.nav-btn:active{background:var(--golddim);border-color:var(--gold)}
+
+/* ── DECK ── */
+.deck{position:relative;width:100vw;height:100vh;overflow:hidden}
+
+/* ── SLIDES ── */
+.slide{
+  position:absolute;inset:0;
+  opacity:0;pointer-events:none;
+  transition:opacity .6s ease,transform .6s ease;
+  transform:translateX(80px);
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  touch-action:pan-y;
+}
+.slide.active{opacity:1;pointer-events:all;transform:translateX(0)}
+.slide.out{opacity:0;transform:translateX(-80px)}
+
+/* ── GRID BG (subtle) ── */
+.slide::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(201,146,42,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,146,42,.03) 1px,transparent 1px);
+  background-size:80px 80px;
+}
+
+/* ── LAYOUT HELPERS ── */
+.inner{
+  position:relative;z-index:1;
+  width:100%;max-width:1160px;margin:0 auto;
+  padding:72px 80px 80px;
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+}
+
+/* ── EYEBROW ── */
+.eyebrow{
+  font-family:var(--rb);font-size:11px;letter-spacing:.35em;
+  text-transform:uppercase;color:var(--goldl);
+  display:flex;align-items:center;gap:14px;margin-bottom:18px;
+}
+.eyebrow::before{content:'';display:block;width:32px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.eyebrow::after{content:'';display:block;flex:1;height:1px;background:linear-gradient(90deg,rgba(201,146,42,.15),transparent)}
+
+/* ── HEADLINES ── */
+.h-display{font-family:var(--rj);font-weight:700;font-size:clamp(48px,6.5vw,96px);line-height:.95;letter-spacing:-.01em;color:var(--cream)}
+.h-title{font-family:var(--rj);font-weight:700;font-size:clamp(32px,4vw,62px);line-height:1.05;color:var(--cream)}
+.h-sub{font-family:var(--rj);font-weight:600;font-size:clamp(18px,2vw,28px);color:var(--cream);line-height:1.2}
+.h-card{font-family:var(--rj);font-weight:700;font-size:clamp(15px,1.4vw,20px);color:var(--cream);line-height:1.2}
+.gold{color:var(--goldl)}
+.red{color:var(--red)}
+
+/* ── BODY TEXT ── */
+.body{font-size:clamp(13px,1vw,15px);line-height:1.8;color:rgba(237,227,202,.65);font-weight:400}
+.small{font-size:12px;line-height:1.6;color:var(--muted)}
+
+/* ── DECORATIVE NUMBER (bg element) ── */
+.deco-num{
+  position:absolute;right:-20px;bottom:-40px;z-index:0;
+  font-family:var(--rb);font-weight:900;
+  font-size:clamp(180px,22vw,320px);
+  line-height:1;color:transparent;
+  -webkit-text-stroke:1px rgba(201,146,42,.07);
+  pointer-events:none;user-select:none;
+}
+
+/* ── GOLD RULE ── */
+.rule{
+  display:flex;align-items:center;gap:16px;margin:22px 0;
+}
+.rule::before,.rule::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--goldbdr),transparent)}
+.rule-diamond{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);flex-shrink:0}
+
+/* ── CARDS ── */
+.card{
+  background:var(--layer1);
+  border:1px solid rgba(201,146,42,.16);
+  border-radius:2px;
+  padding:28px;
+  position:relative;
+  transition:all .3s;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+.card::before,.card::after{content:'';position:absolute;width:14px;height:14px;border-color:var(--gold);border-style:solid;opacity:.5}
+.card::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
+.card::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+.card:hover{background:rgba(201,146,42,.06);border-color:rgba(201,146,42,.35)}
+.card:hover::before,.card:hover::after{opacity:1}
+
+.card-red{background:var(--reddim);border-color:rgba(199,40,40,.25)}
+.card-gold{background:var(--golddim);border-color:rgba(201,146,42,.32)}
+.card-blue{background:var(--bluedim);border-color:rgba(21,103,204,.25)}
+
+/* ── ACCENT STRIP (left border) ── */
+.strip-gold{border-left:3px solid var(--gold)!important;padding-left:22px!important;border-radius:0!important}
+.strip-red{border-left:3px solid var(--red)!important;padding-left:22px!important;border-radius:0!important}
+.strip-blue{border-left:3px solid var(--blue)!important;padding-left:22px!important;border-radius:0!important}
+
+/* ── STAT HERO ── */
+.stat-hero{
+  display:flex;flex-direction:column;gap:2px;
+  padding:24px 28px;background:var(--layer1);
+  border-radius:2px;border:1px solid var(--goldbdr);
+  position:relative;overflow:hidden;
+}
+.stat-hero::before,.stat-hero::after{content:'';position:absolute;width:12px;height:12px;border-color:var(--gold);border-style:solid;opacity:.6}
+.stat-hero::before{top:0;left:0;border-width:1px 0 0 1px}
+.stat-hero::after{bottom:0;right:0;border-width:0 1px 1px 0}
+.stat-hero .big{font-family:var(--rb);font-weight:900;font-size:clamp(52px,7vw,96px);line-height:1;color:var(--goldl)}
+.stat-hero .unit{font-family:var(--rb);font-size:clamp(24px,3vw,40px);font-weight:700;color:var(--gold)}
+.stat-hero .lbl{font-family:var(--rb);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+/* ── TAGS ── */
+.tag{font-family:var(--rb);font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:4px 12px;border-radius:1px;border:1px solid;display:inline-block}
+.tg{border-color:var(--goldbdr);color:var(--goldl);background:var(--golddim)}
+.tr{border-color:rgba(199,40,40,.35);color:var(--red);background:var(--reddim)}
+.tb{border-color:rgba(21,103,204,.35);color:var(--blue);background:var(--bluedim)}
+.tm{border-color:var(--muted2);color:var(--muted);background:transparent}
+
+/* ── GRIDS ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+
+/* ── PILLAR ── */
+.pillar{
+  padding:32px 28px;border:1px solid;border-radius:2px;
+  display:flex;flex-direction:column;gap:14px;height:100%;
+  position:relative;
+}
+.pillar::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.p1{border-color:rgba(21,103,204,.3);background:rgba(21,103,204,.06)}
+.p1::before{background:linear-gradient(90deg,var(--blue),transparent)}
+.p2{border-color:rgba(201,146,42,.3);background:rgba(201,146,42,.06)}
+.p2::before{background:linear-gradient(90deg,var(--gold),transparent)}
+.p3{border-color:rgba(199,40,40,.3);background:rgba(199,40,40,.06)}
+.p3::before{background:linear-gradient(90deg,var(--red),transparent)}
+.pillar .pnum{font-family:var(--rb);font-weight:900;font-size:64px;line-height:1;opacity:.1;position:absolute;top:8px;right:16px}
+
+/* ── BULLET LIST ── */
+.blist{display:flex;flex-direction:column;gap:6px}
+.blist li{list-style:none;font-size:13px;color:rgba(237,227,202,.65);padding-left:16px;position:relative;line-height:1.6}
+.blist li::before{content:'›';position:absolute;left:0;color:var(--goldl);font-weight:700}
+
+/* ── CONTENT ITEM (reels/carousel) ── */
+.ci{
+  border:1px solid;border-radius:2px;padding:20px 16px;
+  display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;
+}
+.ci-red{border-color:rgba(199,40,40,.22);background:var(--reddim)}
+.ci-gold{border-color:rgba(201,146,42,.22);background:var(--golddim)}
+.ci-num{font-family:var(--rb);font-weight:900;font-size:52px;color:rgba(255,255,255,.05);line-height:1;position:absolute;bottom:-8px;right:8px}
+.ci-title{font-family:var(--rj);font-weight:700;font-size:13px;line-height:1.35;color:var(--cream)}
+.ci-desc{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* ── YT VIDEO CARD ── */
+.yt-block{
+  border:1px solid rgba(21,103,204,.3);border-radius:2px;
+  background:rgba(21,103,204,.07);padding:32px;
+  display:grid;grid-template-columns:80px 1fr;gap:24px;align-items:start;
+  position:relative;
+}
+.yt-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),transparent)}
+.yt-n{font-family:var(--rb);font-weight:900;font-size:80px;line-height:1;color:rgba(21,103,204,.2)}
+
+/* ── FUNNEL STEPS ── */
+.fstep{
+  display:flex;gap:20px;align-items:flex-start;
+  padding:18px 20px;border-left:2px solid var(--goldbdr);
+  position:relative;margin-left:6px;
+  background:linear-gradient(90deg,rgba(201,146,42,.04),transparent);
+  transition:all .3s;
+}
+.fstep::before{
+  content:'';position:absolute;left:-8px;top:50%;transform:translateY(-50%);
+  width:12px;height:12px;border-radius:50%;background:var(--gold);
+  box-shadow:0 0 16px var(--gold);
+}
+.fstep:hover{border-left-color:var(--gold);background:rgba(201,146,42,.08)}
+.fstep-n{font-family:var(--rb);font-weight:900;font-size:42px;color:rgba(201,146,42,.2);line-height:1;flex-shrink:0;min-width:52px}
+
+/* ── CONTRIB ROW ── */
+.crow{
+  display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:center;
+  padding:16px 20px;border:1px solid rgba(201,146,42,.12);
+  border-radius:2px;background:var(--layer1);
+  transition:all .25s;
+}
+.crow:hover{background:rgba(201,146,42,.07);border-color:var(--goldbdr)}
+.crow-icon{font-size:28px;text-align:center}
+
+/* ── WHY CARDS ── */
+.why{
+  padding:28px 24px;border:1px solid rgba(201,146,42,.14);border-radius:2px;
+  background:var(--layer1);text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  position:relative;transition:all .3s;
+}
+.why::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--gold);transition:width .4s}
+.why:hover::after{width:100%}
+.why:hover{background:rgba(201,146,42,.07)}
+.why-icon{font-size:38px}
+
+/* ── BUDGET ── */
+.brow{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.04)}
+.brow:hover{background:rgba(201,146,42,.04)}
+.brow-amt{font-family:var(--rb);font-weight:700;font-size:17px;color:var(--cream);white-space:nowrap}
+
+/* ── CALENDAR ── */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.cday-h{font-family:var(--rb);font-size:9px;letter-spacing:.1em;color:var(--muted);text-align:center;padding:3px 0;text-transform:uppercase}
+.cday{aspect-ratio:1;border-radius:2px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;font-weight:600;background:rgba(255,255,255,.025);color:var(--muted);position:relative;font-family:var(--rb)}
+.cday.e{background:transparent}
+.cday.rd{background:rgba(199,40,40,.18);color:var(--cream);border:1px solid rgba(199,40,40,.4)}
+.cday.gd{background:rgba(201,146,42,.18);color:var(--cream);border:1px solid rgba(201,146,42,.4)}
+.cday.bd{background:rgba(21,103,204,.18);color:var(--cream);border:1px solid rgba(21,103,204,.4)}
+.cday.sh{background:rgba(201,146,42,.3);color:var(--goldl);border:1px solid var(--gold);font-weight:900}
+
+/* ── PERSONA CARD ── */
+.persona{border:1px solid;border-radius:2px;padding:28px;height:100%;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.persona::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.pblue{border-color:rgba(21,103,204,.3);background:rgba(21,103,204,.07)}
+.pblue::before{background:linear-gradient(90deg,var(--blue),transparent)}
+.pgold{border-color:rgba(201,146,42,.3);background:rgba(201,146,42,.07)}
+.pgold::before{background:linear-gradient(90deg,var(--gold),transparent)}
+.pred{border-color:rgba(199,40,40,.3);background:rgba(199,40,40,.07)}
+.pred::before{background:linear-gradient(90deg,var(--red),transparent)}
+.p-icon{font-size:36px;margin-bottom:4px}
+.p-age{font-family:var(--rb);font-size:11px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase}
+
+/* ── SERVICE GRID ── */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.svc-i{
+  display:flex;align-items:center;gap:10px;padding:11px 14px;
+  border:1px solid rgba(201,146,42,.12);border-radius:2px;
+  background:var(--layer1);font-family:var(--rj);font-weight:600;font-size:13px;
+  transition:all .25s;
+}
+.svc-i:hover{border-color:var(--goldbdr);background:var(--golddim)}
+.svc-i .ico{font-size:18px;flex-shrink:0}
+
+/* ── ANIMATION ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.slide.active .au{animation:fadeUp .55s ease both}
+.a1{animation-delay:.05s}.a2{animation-delay:.15s}.a3{animation-delay:.25s}
+.a4{animation-delay:.35s}.a5{animation-delay:.45s}.a6{animation-delay:.55s}
+
+/* ══════════════════════════
+   MOBILE
+══════════════════════════ */
+@media(max-width:768px){
+  /* ── MOBILE: native scroll-snap navigation ── */
+  .deck{
+    display:flex!important;
+    overflow-x:scroll!important;overflow-y:hidden!important;
+    scroll-snap-type:x mandatory!important;
+    -webkit-overflow-scrolling:touch!important;
+    scrollbar-width:none;
+  }
+  .deck::-webkit-scrollbar{display:none}
+  .slide{
+    position:relative!important;flex:0 0 100vw!important;
+    width:100vw!important;min-height:100vh;
+    scroll-snap-align:start!important;
+    opacity:1!important;pointer-events:all!important;
+    transform:none!important;transition:none!important;
+    overflow-y:auto;overflow-x:hidden;
+  }
+  /* Layout */
+  .inner{padding:52px 18px 88px;min-height:auto;justify-content:flex-start}
+  .deco-num{display:none}
+  /* Grid overrides — !important needed to beat inline style="" attributes */
+  .g2,.g3,.g4{grid-template-columns:1fr!important}
+  .gc-s2,.gc-s5,.gc-s9,.gc-s10,.gc-s12,.gc-s13{grid-template-columns:1fr!important}
+  .gc-s5-row{display:flex!important;flex-wrap:wrap;align-items:center;gap:10px!important}
+  .gc-s5-row > *{flex-shrink:0}
+  .gc-s5-desc{flex:1;min-width:0;border-left:none!important;padding-left:0!important}
+  .ci-grid-r,.ci-grid-c{grid-template-columns:1fr 1fr!important}
+  .svc{grid-template-columns:1fr 1fr!important}
+  /* Components */
+  .dots-wrap{display:none}
+  .yt-block{grid-template-columns:1fr!important}
+  .yt-n{font-size:44px}
+  /* Calendar */
+  .cal-wrap{overflow-x:auto}
+  .cal-content{min-width:0!important;grid-template-columns:1fr!important}
+  .cal-divider{display:none!important}
+  .cal-stats{flex-direction:row!important;flex-wrap:wrap;gap:10px!important}
+  .cal-stats .stat-hero{flex:1;min-width:100px}
+  /* Cover */
+  .cover-rings{display:none}
+  .cover-bottom{flex-direction:column;gap:12px;align-items:flex-start}
+  .cover-sep{display:none}
+  /* Budget */
+  .brow{grid-template-columns:1fr auto!important;align-items:start}
+  /* Nav */
+  .fstep{padding:12px 14px}
+}
+@media(max-width:480px){
+  .inner{padding:48px 14px 88px}
+  .ci-grid-r,.ci-grid-c{grid-template-columns:1fr!important}
+  .g4{grid-template-columns:1fr 1fr!important}
+  .why-grid{grid-template-columns:1fr!important}
+  .h-display{font-size:clamp(34px,10vw,54px)!important}
+  .svc{grid-template-columns:1fr!important}
+  .h-title{font-size:clamp(26px,6vw,42px)!important}
+}
+
+/* ── COVER SPECIFIC ── */
+#s1{
+  background:
+    radial-gradient(ellipse 60% 80% at 20% 50%,rgba(201,146,42,.09) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 60% at 85% 80%,rgba(199,40,40,.06) 0%,transparent 50%),
+    var(--bg);
+}
+#s1 .inner{justify-content:center;text-align:left;gap:0}
+.cover-tag{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.cover-tag-line{width:48px;height:1px;background:var(--gold)}
+.cover-tag-text{font-family:var(--rb);font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--goldl)}
+.cover-title{font-family:var(--rj);font-weight:700;font-size:clamp(56px,9vw,130px);line-height:.92;letter-spacing:-.02em;color:var(--cream);margin-bottom:6px}
+.cover-partner{font-family:var(--rb);font-size:clamp(14px,1.8vw,22px);letter-spacing:.3em;text-transform:uppercase;color:rgba(237,227,202,.35);margin-bottom:40px}
+.cover-bottom{
+  display:flex;align-items:center;gap:0;
+  border-top:1px solid rgba(201,146,42,.2);padding-top:28px;margin-top:12px;
+}
+.cover-pill{
+  font-family:var(--rb);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--goldl);padding:8px 24px;border:1px solid var(--goldbdr);border-radius:1px;
+  white-space:nowrap;
+}
+.cover-sep{width:1px;height:40px;background:var(--goldbdr);margin:0 28px}
+.cover-meta{font-size:13px;color:var(--muted)}
+.cover-rings{position:absolute;right:-100px;top:50%;transform:translateY(-50%);pointer-events:none}
+.cover-ring{border-radius:50%;border:1px solid rgba(201,146,42,.07);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.cr1{width:700px;height:700px;animation:spin 50s linear infinite}
+.cr2{width:500px;height:500px;border-color:rgba(201,146,42,.1);animation:spin 36s linear infinite reverse}
+.cr3{width:300px;height:300px;border-color:rgba(201,146,42,.14);animation:spin 24s linear infinite}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+/* closing */
+#s15{
+  background:
+    radial-gradient(ellipse 70% 70% at 80% 50%,rgba(201,146,42,.11) 0%,transparent 55%),
+    var(--bg);
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="dots" class="dots-wrap"></div>
+<div id="counter"><span>1</span> / 15</div>
+<div class="nav">
+  <button class="nav-btn" data-dir="prev" onclick="go(-1)">&#8592;</button>
+  <button class="nav-btn" data-dir="next" onclick="go(1)">&#8594;</button>
+</div>
+
+<div class="deck">
+
+<!-- ═══════════════════════════════════════
+  S1 ▸ KAPAK
+═══════════════════════════════════════ -->
+<div class="slide active" id="s1">
+<div class="cover-rings">
+  <div class="cover-ring cr1"></div>
+  <div class="cover-ring cr2"></div>
+  <div class="cover-ring cr3"></div>
+</div>
+<div class="inner" style="max-width:1160px">
+  <div class="cover-tag au a1"><div class="cover-tag-line"></div><div class="cover-tag-text">Sosyal Medya Strateji Sunumu — 2026</div></div>
+  <div class="cover-title au a2">CARWAX<br><span style="color:var(--goldl)">TÜRKİYE</span></div>
+  <div class="cover-partner au a3">× UniqBee Digital Agency</div>
+  <div class="cover-bottom au a4">
+    <div class="cover-pill">10 Mayıs — 10 Haziran 2026</div>
+    <div class="cover-sep"></div>
+    <div class="cover-meta">
+      <div style="font-family:var(--rb);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Hazırlayan</div>
+      <div style="font-family:var(--rj);font-weight:600;font-size:16px;color:var(--cream)">UniqBee Digital Agency</div>
+    </div>
+    <div class="cover-sep"></div>
+    <div class="cover-meta">
+      <div style="font-family:var(--rb);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">İletişim</div>
+      <div style="font-family:var(--rj);font-weight:600;font-size:16px;color:var(--goldl)">uniqbeedigital@gmail.com</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S2 ▸ CARWAX KİM?
+═══════════════════════════════════════ -->
+<div class="slide" id="s2">
+<div class="inner">
+  <div class="deco-num">22</div>
+  <div class="eyebrow au a1">Marka Kimliği</div>
+  <div class="h-title au a2">Türkiye'nin Lider<br>Araç Bakım Markası — <span class="gold">2002'den Beri</span></div>
+  <div class="rule au a2"><div class="rule-diamond"></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:32px;align-items:start" class="au a3 gc-s2">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="stat-hero">
+        <div><span class="big" data-target="22">0</span><span class="unit">+</span></div>
+        <div class="lbl">Yıl Deneyim</div>
+      </div>
+      <div class="stat-hero">
+        <div><span class="big" data-target="122">0</span><span class="unit">+</span></div>
+        <div class="lbl">Aktif İstasyon</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="stat-hero" style="padding:18px 20px">
+          <div><span class="big" style="font-size:clamp(36px,4vw,52px)" data-target="6">0</span></div>
+          <div class="lbl">Ülke</div>
+        </div>
+        <div class="stat-hero" style="padding:18px 20px">
+          <div><span class="big" style="font-size:clamp(36px,4vw,52px)" data-target="190">0</span></div>
+          <div class="lbl">2030 Hedef</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <p class="body" style="font-size:14px;max-width:500px">Amerikalı ve Türk mühendislerin ortak formülasyonuyla üretilen Carwax; seramik kaplama, PPF, nano boya koruma ve detailing alanlarında 22 yılda inşa edilmiş bir güven markasıdır.</p>
+      <div class="svc">
+        <div class="svc-i"><span class="ico">🛡️</span>Nano Boya Koruma</div>
+        <div class="svc-i"><span class="ico">💎</span>Seramik Kaplama</div>
+        <div class="svc-i"><span class="ico">🎞️</span>PPF Kaplama</div>
+        <div class="svc-i"><span class="ico">🪟</span>Cam Filmi</div>
+        <div class="svc-i"><span class="ico">✨</span>Detaylı Temizlik</div>
+        <div class="svc-i"><span class="ico">🎨</span>Renk Değişimi</div>
+        <div class="svc-i"><span class="ico">🔧</span>Küçük Alan Boya</div>
+        <div class="svc-i"><span class="ico">🌿</span>Eko Formüller</div>
+        <div class="svc-i"><span class="ico">🏪</span>3 İstasyon Tipi</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S3 ▸ HEDEF KİTLE
+═══════════════════════════════════════ -->
+<div class="slide" id="s3">
+<div class="inner">
+  <div class="eyebrow au a1">Hedef Kitle Analizi</div>
+  <div class="h-title au a2">3 Ana Müşteri Segmenti</div>
+  <div class="rule au a2"><div class="rule-diamond"></div></div>
+  <div class="g3 au a3" style="margin-top:4px">
+    <div class="persona pblue">
+      <div class="p-icon">🚗</div>
+      <div class="h-card" style="color:rgba(21,103,204,.9)">Araç Sahibi</div>
+      <div class="p-age">25–50 Yaş · Orta-Üst Gelir</div>
+      <ul class="blist">
+        <li>Aracına değer veren, kalite arayan</li>
+        <li>Araç yatırımını korumak isteyen</li>
+        <li>Profesyonel sonuç peşinde</li>
+        <li>Instagram & YouTube aktif kullanıcı</li>
+        <li>Before/after içeriklere duyarlı</li>
+      </ul>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px">
+        <span class="tag tb">Seramik</span><span class="tag tb">PPF</span><span class="tag tb">Detailing</span>
+      </div>
+    </div>
+    <div class="persona pgold">
+      <div class="p-icon">🏢</div>
+      <div class="h-card" style="color:var(--goldl)">Kurumsal Filo</div>
+      <div class="p-age">İşletme Sahipleri · B2B</div>
+      <ul class="blist">
+        <li>Filolarını düzenli bakıma tabi tutan</li>
+        <li>Maliyet-fayda odaklı kararlar veren</li>
+        <li>Sözleşmeli hizmet arayan</li>
+        <li>Güven ve istikrar önceliği</li>
+        <li>LinkedIn & yönetim odaklı içerik</li>
+      </ul>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px">
+        <span class="tag tg">Toplu Bakım</span><span class="tag tg">Rutin Servis</span>
+      </div>
+    </div>
+    <div class="persona pred">
+      <div class="p-icon">💼</div>
+      <div class="h-card" style="color:rgba(199,40,40,.9)">Franchise Yatırımcısı</div>
+      <div class="p-age">30–55 Yaş · Girişimci Ruh</div>
+      <ul class="blist">
+        <li>Kanıtlanmış iş modeli arayan</li>
+        <li>Düşük riskli yatırım peşinde</li>
+        <li>Sektör değiştirmek isteyen</li>
+        <li>Marka güvencesi önceliği</li>
+        <li>Başarı hikayelerine odaklı</li>
+      </ul>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px">
+        <span class="tag tr">Franchise</span><span class="tag tr">Bayilik</span><span class="tag tr">Yatırım</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S4 ▸ İÇERİK STRATEJİSİ
+═══════════════════════════════════════ -->
+<div class="slide" id="s4">
+<div class="inner">
+  <div class="eyebrow au a1">İçerik Stratejisi</div>
+  <div class="h-title au a2">3 Sütunlu İçerik Çerçevesi</div>
+  <div class="rule au a2"><div class="rule-diamond"></div></div>
+  <p class="body au a2" style="max-width:640px;margin-bottom:24px">Her içerik parçası bu üç sütundan birine hizmet eder. Algoritma dostu, insan odaklı ve dönüşüm bazlı bir içerik ekosistemine böylece ulaşılır.</p>
+  <div class="g3 au a3">
+    <div class="pillar p1">
+      <div class="pnum">01</div>
+      <div class="tag tb" style="width:fit-content">Sütun 01</div>
+      <div class="h-sub" style="color:rgba(100,160,255,.9)">🎓 EĞİT</div>
+      <p class="body" style="font-size:13px">Bilinç oluştur. İzleyiciyi daha akıllı hale getiren, kaydedilen ve paylaşılan içerikler.</p>
+      <ul class="blist" style="margin-top:4px">
+        <li>Seramik kaplama rehberi</li>
+        <li>Araç bakım ipuçları</li>
+        <li>Hizmet karşılaştırmaları</li>
+        <li>SSS formatı carousels</li>
+      </ul>
+      <div class="tag tb" style="margin-top:auto;width:fit-content">%40 İçerik Payı</div>
+    </div>
+    <div class="pillar p2">
+      <div class="pnum">02</div>
+      <div class="tag tg" style="width:fit-content">Sütun 02</div>
+      <div class="h-sub" style="color:var(--goldl)">✨ İLHAM VER</div>
+      <p class="body" style="font-size:13px">Arzu yarat. Aracın dönüşümünü dramatize eden, wow faktörü yüksek içerikler.</p>
+      <ul class="blist" style="margin-top:4px">
+        <li>Before & after reels</li>
+        <li>Çekim günü B-roll</li>
+        <li>Müşteri hikayeleri</li>
+        <li>Lifestyle & araç estetiği</li>
+      </ul>
+      <div class="tag tg" style="margin-top:auto;width:fit-content">%35 İçerik Payı</div>
+    </div>
+    <div class="pillar p3">
+      <div class="pnum">03</div>
+      <div class="tag tr" style="width:fit-content">Sütun 03</div>
+      <div class="h-sub" style="color:rgba(220,80,80,.9)">🚀 DÖNÜŞTÜR</div>
+      <p class="body" style="font-size:13px">Harekete geçir. Rezervasyon, franchise başvurusu ve satış odaklı içerikler.</p>
+      <ul class="blist" style="margin-top:4px">
+        <li>Franchise fırsat içerikleri</li>
+        <li>Kampanya duyuruları</li>
+        <li>Müşteri yorumları</li>
+        <li>CTA'lı highlight stories</li>
+      </ul>
+      <div class="tag tr" style="margin-top:auto;width:fit-content">%25 İçerik Payı</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S5 ▸ AYLIK PAKET
+═══════════════════════════════════════ -->
+<div class="slide" id="s5">
+<div class="inner">
+  <div class="deco-num">18</div>
+  <div class="eyebrow au a1">Aylık İçerik Paketi</div>
+  <div class="h-title au a2">1 Çekim Günü<br><span class="gold">18 Yayın</span> — 3 Platform</div>
+  <div class="rule au a2"><div class="rule-diamond"></div></div>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start" class="au a3 gc-s5">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card gc-s5-row" style="display:grid;grid-template-columns:56px auto 1fr auto;align-items:center;gap:16px;padding:20px 24px">
+        <div style="font-size:36px">🎬</div>
+        <div>
+          <div style="font-family:var(--rb);font-weight:900;font-size:52px;color:var(--goldl);line-height:1">08</div>
+          <div style="font-family:var(--rb);font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase">Reels Videosu</div>
+        </div>
+        <div class="gc-s5-desc" style="font-size:12px;color:var(--muted);line-height:1.6;padding-left:12px;border-left:1px solid var(--muted2)">15–60 saniye · Trend formatlar<br>Profesyonel kurgu · Müzik lisansı</div>
+        <div class="tag tr">Reels</div>
+      </div>
+      <div class="card gc-s5-row" style="display:grid;grid-template-columns:56px auto 1fr auto;align-items:center;gap:16px;padding:20px 24px">
+        <div style="font-size:36px">🖼️</div>
+        <div>
+          <div style="font-family:var(--rb);font-weight:900;font-size:52px;color:var(--goldl);line-height:1">08</div>
+          <div style="font-family:var(--rb);font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase">Carousel Post</div>
+        </div>
+        <div class="gc-s5-desc" style="font-size:12px;color:var(--muted);line-height:1.6;padding-left:12px;border-left:1px solid var(--muted2)">5–10 kart · Eğitici & dönüştürücü<br>Marka şablonları · Güçlü metin</div>
+        <div class="tag tg">Carousel</div>
+      </div>
+      <div class="card gc-s5-row" style="display:grid;grid-template-columns:56px auto 1fr auto;align-items:center;gap:16px;padding:20px 24px">
+        <div style="font-size:36px">▶️</div>
+        <div>
+          <div style="font-family:var(--rb);font-weight:900;font-size:52px;color:var(--goldl);line-height:1">02</div>
+          <div style="font-family:var(--rb);font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase">YouTube Video</div>
+        </div>
+        <div class="gc-s5-desc" style="font-size:12px;color:var(--muted);line-height:1.6;padding-left:12px;border-left:1px solid var(--muted2)">15–25 dakika · SEO optimize<br>Thumbnail tasarımı · Alt yazı</div>
+        <div class="tag tb">YouTube</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card card-gold" style="text-align:center;padding:32px">
+        <div style="font-family:var(--rb);font-weight:900;font-size:96px;color:var(--goldl);line-height:1">18</div>
+        <div style="font-family:var(--rb);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-top:8px">Toplam Aylık Yayın</div>
+        <div style="width:40px;height:1px;background:var(--gold);margin:16px auto"></div>
+        <div style="font-family:var(--rb);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Instagram · YouTube · TikTok</div>
+      </div>
+      <div class="card" style="padding:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <span class="h-card">Çekim Verimliliği</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="font-family:var(--rb);font-size:11px;letter-spacing:.1em;color:var(--muted);min-width:90px">1 ÇEKİM GÜNÜ</div>
+            <div style="flex:1;height:4px;background:var(--muted2);border-radius:2px;overflow:hidden"><div style="width:100%;height:100%;background:linear-gradient(90deg,var(--gold),var(--goldhl))"></div></div>
+            <div style="font-family:var(--rb);font-weight:900;color:var(--goldl);font-size:14px">18 içerik</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="font-family:var(--rb);font-size:11px;letter-spacing:.1em;color:var(--muted);min-width:90px">3 PLATFORM</div>
+            <div style="flex:1;height:4px;background:var(--muted2);border-radius:2px;overflow:hidden"><div style="width:75%;height:100%;background:linear-gradient(90deg,var(--blue),transparent)"></div></div>
+            <div style="font-family:var(--rb);font-weight:900;color:var(--goldl);font-size:14px">~6 içerik</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S6 ▸ 8 REELS
+═══════════════════════════════════════ -->
+<div class="slide" id="s6">
+<div class="inner">
+  <div class="eyebrow au a1">Reels İçerik Planı</div>
+  <div class="h-title au a2">8 Reels Konsepti <span class="red">— Mayıs–Haziran 2026</span></div>
+  <div class="rule au a2"><div class="rule-diamond"></div></div>
+  <div class="ci-grid-r au a3" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+    <div class="ci ci-red"><div class="ci-num">01</div><span class="tag tr" style="width:fit-content;font-size:9px">EĞİT</span><div class="ci-title">🏆 Türkiye'nin En Köklü Araç Bakım Markası</div><div class="ci-desc">Lansman içeriği. 22 yıllık güven. Hook: "Arabanız bunu hak ediyor."</div></div>
+    <div class="ci ci-red"><div class="ci-num">02</div><span class="tag tr" style="width:fit-content;font-size:9px">İLHAM</span><div class="ci-title">✨ Seramik Kaplama Before & After</div><div class="ci-desc">Dramatik reveal anı. Müzikli dönüşüm. Yüksek paylaşım potansiyeli.</div></div>
+    <div class="ci ci-red"><div class="ci-num">03</div><span class="tag tr" style="width:fit-content;font-size:9px">EĞİT</span><div class="ci-title">⚡ PPF Uygulama — Time-lapse</div><div class="ci-desc">Uygulamadan bitişe hızlı kesimli montaj. Teknik uzmanlık görseli.</div></div>
+    <div class="ci ci-red"><div class="ci-num">04</div><span class="tag tr" style="width:fit-content;font-size:9px">DÖNÜŞTÜR</span><div class="ci-title">🎥 Müşteri Deneyimi Vlog</div><div class="ci-desc">Gerçek müşteri hikayesi. Kapıdan alış → teslim. Güven inşası.</div></div>
+    <div class="ci ci-red"><div class="ci-num">05</div><span class="tag tr" style="width:fit-content;font-size:9px">İLHAM</span><div class="ci-title">🔍 İstasyon Turu — BTS</div><div class="ci-desc">Behind the scenes. Profesyonel ortam ve ekip. Kalite algısı.</div></div>
+    <div class="ci ci-red"><div class="ci-num">06</div><span class="tag tr" style="width:fit-content;font-size:9px">DÖNÜŞTÜR</span><div class="ci-title">💰 Franchise Başarı Hikayesi</div><div class="ci-desc">"Carwax ile işimi kurdum." Franchise adaylarına doğrudan konuşur.</div></div>
+    <div class="ci ci-red"><div class="ci-num">07</div><span class="tag tr" style="width:fit-content;font-size:9px">EĞİT</span><div class="ci-title">🚘 Arabanızın Değerini Koruyun</div><div class="ci-desc">Lifestyle & duygusal bağ. Araç = yatırım. Seramik = sigorta.</div></div>
+    <div class="ci ci-red"><div class="ci-num">08</div><span class="tag tr" style="width:fit-content;font-size:9px">EĞİT</span><div class="ci-title">🧹 Aylık Temizlik Rutini Pro</div><div class="ci-desc">Uzman kamera karşısında adım adım. Trend format. Kaydedilen içerik.</div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S7 ▸ 8 CAROUSEL
+═══════════════════════════════════════ -->
+<div class="slide" id="s7">
+<div class="inner">
+  <div class="eyebrow au a1">Carousel İçerik Planı</div>
+  <div class="h-title au a2">8 Carousel Konsepti <span class="gold">— Kaydır & Öğren</span></div>
+  <div class="rule au a2"><div class="rule-diamond"></div></div>
+  <div class="ci-grid-c au a3" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+    <div class="ci ci-gold"><div class="ci-num">01</div><span class="tag tg" style="width:fit-content;font-size:9px">EĞİT</span><div class="ci-title">📖 Carwax Nedir? 22 Yıllık Güven</div><div class="ci-desc">Marka tanıtım serisi. Kuruluştan bugüne sayılarla anlatım.</div></div>
+    <div class="ci ci-gold"><div class="ci-num">02</div><span class="tag tg" style="width:fit-content;font-size:9px">EĞİT</span><div class="ci-title">⚠️ Araç Bakımında 5 Büyük Hata</div><div class="ci-desc">Kaydırma tetikleyici. Her kartta hata + doğru çözüm. Yüksek kaydetme.</div></div>
+    <div class="ci ci-gold"><div class="ci-num">03</div><span class="tag tg" style="width:fit-content;font-size:9px">EĞİT</span><div class="ci-title">⚖️ Nano Boya vs Normal Yıkama</div><div class="ci-desc">Karşılaştırma formatı. Yan yana görsel + fiyat/değer tablosu.</div></div>
+    <div class="ci ci-gold"><div class="ci-num">04</div><span class="tag tg" style="width:fit-content;font-size:9px">DÖNÜŞTÜR</span><div class="ci-title">🗂️ Carwax Hizmetleri: Hangisi Size Göre?</div><div class="ci-desc">Hizmet kataloğu. Her kart bir hizmet = karar vermeyi kolaylaştırır.</div></div>
+    <div class="ci ci-gold"><div class="ci-num">05</div><span class="tag tg" style="width:fit-content;font-size:9px">EĞİT</span><div class="ci-title">📈 Araç Değerinizi Koruyun</div><div class="ci-desc">2. el değer kaybı verileriyle. Finans perspektifi ile konuşur.</div></div>
+    <div class="ci ci-gold"><div class="ci-num">06</div><span class="tag tg" style="width:fit-content;font-size:9px">DÖNÜŞTÜR</span><div class="ci-title">🏪 Franchise: Kendi İşinin Patronu</div><div class="ci-desc">3 istasyon tipi, yatırım avantajları ve başvuru adımları.</div></div>
+    <div class="ci ci-gold"><div class="ci-num">07</div><span class="tag tg" style="width:fit-content;font-size:9px">DÖNÜŞTÜR</span><div class="ci-title">⭐ Müşteri Yorumları & Dönüşümler</div><div class="ci-desc">Sosyal kanıt formatı. Gerçek yorumlar + before/after görseller.</div></div>
+    <div class="ci ci-gold"><div class="ci-num">08</div><span class="tag tg" style="width:fit-content;font-size:9px">DÖNÜŞTÜR</span><div class="ci-title">🎁 Haziran Bakım Sezonu Paketi</div><div class="ci-desc">Kampanya duyurusu. Sezon motivasyonu. CTA son kartta.</div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S8 ▸ YOUTUBE
+═══════════════════════════════════════ -->
+<div class="slide" id="s8">
+<div class="inner">
+  <div class="eyebrow au a1">YouTube Strateji</div>
+  <div class="h-title au a2">2 Long-Form Video<br><span style="color:rgba(100,160,255,.85)">Otorite & Organik Büyüme</span></div>
+  <div class="rule au a2"><div class="rule-diamond"></div></div>
+  <p class="body au a2" style="max-width:640px;margin-bottom:24px">YouTube, kısa formatlara kıyasla marka otoritesi ve uzun vadeli organik erişim için vazgeçilmezdir. Bu iki video Carwax'ı sektörün bilgi merkezine dönüştürür.</p>
+  <div style="display:flex;flex-direction:column;gap:16px" class="au a3">
+    <div class="yt-block">
+      <div class="yt-n">01</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+          <span class="tag tb">▶ Video 1</span>
+          <span class="tag tm">15–20 Dakika</span>
+          <span class="tag tm">📅 22 Mayıs 2026</span>
+        </div>
+        <div class="h-sub" style="margin-bottom:10px">🛡️ Seramik Kaplama Tam Rehberi: Bilmeniz Gereken Her Şey</div>
+        <p class="body" style="font-size:13px">Seramik kaplamanın ne olduğundan fiyatına, uygulama sürecinden bakımına kadar her şeyi anlatan kapsamlı rehber video. "Seramik kaplama" aramalarda organik görünürlük. Sonunda Carwax istasyonlarına yönlendirme CTA'sı eklenir.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px">
+          <span class="tag tb">🔍 SEO Optimize</span><span class="tag tb">🖼️ Thumbnail</span><span class="tag tb">📑 Chapters</span><span class="tag tb">💬 Alt Yazı</span><span class="tag tb">📌 Pinned CTA</span>
+        </div>
+      </div>
+    </div>
+    <div class="yt-block">
+      <div class="yt-n">02</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+          <span class="tag tb">▶ Video 2</span>
+          <span class="tag tm">20–25 Dakika</span>
+          <span class="tag tm">📅 5 Haziran 2026</span>
+        </div>
+        <div class="h-sub" style="margin-bottom:10px">💼 Carwax Franchise: Kendi İşinin Patronu Ol — Başarı & Yatırım Rehberi</div>
+        <p class="body" style="font-size:13px">Gerçek bir Carwax bayisi ile röportaj + franchise sürecinin adım adım anlatımı. Yatırım getirisini somutlaştırır, franchise adaylarını ikna eder. "Araç bakım franchise" aramalarda görünürlük sağlar.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px">
+          <span class="tag tb">💰 Franchise Odaklı</span><span class="tag tb">🎙️ Röportaj</span><span class="tag tb">📊 İnfografik</span><span class="tag tb">🎯 End Screen CTA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S9 ▸ FRANCHİSE HUNISI
+═══════════════════════════════════════ -->
+<div class="slide" id="s9">
+<div class="inner">
+  <div class="deco-num" style="font-size:clamp(120px,18vw,260px);bottom:-20px">190</div>
+  <div class="eyebrow au a1">Franchise Teşvik Stratejisi</div>
+  <div class="h-title au a2">Sosyal Medyadan<br><span class="gold">Franchise Adayına</span> Dönüşüm Hunisi</div>
+  <div class="rule au a2"><div class="rule-diamond"></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start" class="au a3 gc-s9">
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div class="fstep">
+        <div class="fstep-n">01</div>
+        <div><div class="h-card" style="color:var(--goldl);margin-bottom:4px">🔔 Farkındalık İçerikleri</div><p class="body" style="font-size:13px">"Araç bakım sektörü büyüyor" · "122 istasyon, 6 ülke" · Sektör verileriyle merak yaratılır.</p></div>
+      </div>
+      <div class="fstep">
+        <div class="fstep-n">02</div>
+        <div><div class="h-card" style="color:var(--goldl);margin-bottom:4px">💡 İlgi Oluşturma</div><p class="body" style="font-size:13px">Başarılı bayi hikayeleri · İstasyon turu reels · "Kendi işinin patronu ol" carousel serisi.</p></div>
+      </div>
+      <div class="fstep">
+        <div class="fstep-n">03</div>
+        <div><div class="h-card" style="color:var(--goldl);margin-bottom:4px">🔎 Değerlendirme</div><p class="body" style="font-size:13px">Franchise avantajları karşılaştırması · Yatırım getirisi infografiği · YouTube rehber videosu.</p></div>
+      </div>
+      <div class="fstep">
+        <div class="fstep-n">04</div>
+        <div><div class="h-card" style="color:var(--goldl);margin-bottom:4px">✅ Karar & Başvuru</div><p class="body" style="font-size:13px">Bio linki ile direkt form · Stories CTA · DM yönlendirmesi · WhatsApp butonlu bağlantı.</p></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card card-gold" style="padding:24px">
+        <div class="h-card" style="color:var(--goldl);margin-bottom:12px">💡 Franchise İçerik Fikirleri</div>
+        <ul class="blist">
+          <li>"3 İstasyon Tipi: Senin İçin Hangisi?" carousel</li>
+          <li>Bayi röportaj serisi (Reels)</li>
+          <li>"İstasyon Açmadan Önce Bilmen Gereken 5 Şey"</li>
+          <li>Aylık franchise Q&A Stories</li>
+          <li>Yeni bayi açılışı kutlama içerikleri</li>
+        </ul>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="card card-red" style="text-align:center;padding:20px">
+          <div style="font-family:var(--rb);font-weight:900;font-size:36px;color:var(--red)">%3–5</div>
+          <div class="small" style="margin-top:4px">Story → Link Tıklama</div>
+        </div>
+        <div class="card card-red" style="text-align:center;padding:20px">
+          <div style="font-family:var(--rb);font-weight:900;font-size:36px;color:var(--red)">5–10</div>
+          <div class="small" style="margin-top:4px">Aylık Franchise Başvurusu</div>
+        </div>
+      </div>
+      <div class="card" style="padding:18px;text-align:center">
+        <div class="small" style="margin-bottom:4px;text-transform:uppercase;letter-spacing:.15em">2030 Hedefi</div>
+        <div style="font-family:var(--rb);font-weight:900;font-size:48px;color:var(--goldl);line-height:1">190</div>
+        <div class="small">İstasyon — Sosyal medya bu hedefe destek olur</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S10 ▸ ÇEKİM GÜNÜ
+═══════════════════════════════════════ -->
+<div class="slide" id="s10">
+<div class="inner">
+  <div class="eyebrow au a1">Prodüksiyon Planı</div>
+  <div class="h-title au a2">1 Çekim Günü —<br><span class="gold">~13 Mayıs 2026</span></div>
+  <div class="rule au a2"><div class="rule-diamond"></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start" class="au a3 gc-s10">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card card-gold" style="padding:22px">
+        <div class="h-card" style="color:var(--goldl);margin-bottom:10px">📍 Çekim Detayları</div>
+        <ul class="blist">
+          <li>Lokasyon: Carwax istasyonu (servis alanı + dış mekan)</li>
+          <li>Çekim süresi: 08:00 – 18:00 (10 saat)</li>
+          <li>Ekip: Kameraman, asistan, ışık uzmanı, yönetmen</li>
+          <li>Araç: Müşteri veya kiralık gösterilik araç</li>
+        </ul>
+      </div>
+      <div class="card" style="padding:22px">
+        <div class="h-card" style="margin-bottom:14px">🎥 Ekipman</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div class="card" style="padding:12px;text-align:center;border-radius:2px">📷<div style="font-size:11px;color:var(--muted);margin-top:4px">Sony FX3 / Canon R5</div></div>
+          <div class="card" style="padding:12px;text-align:center;border-radius:2px">🎯<div style="font-size:11px;color:var(--muted);margin-top:4px">DJI Ronin Gimbal</div></div>
+          <div class="card" style="padding:12px;text-align:center;border-radius:2px">🚁<div style="font-size:11px;color:var(--muted);margin-top:4px">Drone Çekim</div></div>
+          <div class="card" style="padding:12px;text-align:center;border-radius:2px">💡<div style="font-size:11px;color:var(--muted);margin-top:4px">LED Panel Işık</div></div>
+          <div class="card" style="padding:12px;text-align:center;border-radius:2px">🎙️<div style="font-size:11px;color:var(--muted);margin-top:4px">Lavalye + Boom</div></div>
+          <div class="card" style="padding:12px;text-align:center;border-radius:2px">🎨<div style="font-size:11px;color:var(--muted);margin-top:4px">Colour Checker</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="h-card" style="color:var(--goldl);margin-bottom:4px">⏱️ Günlük Zaman Çizelgesi</div>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="display:flex;gap:0;align-items:stretch">
+          <div style="display:flex;flex-direction:column;align-items:center;margin-right:16px">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:4px"></div>
+            <div style="flex:1;width:1px;background:var(--goldbdr)"></div>
+          </div>
+          <div style="padding-bottom:16px;flex:1">
+            <div style="font-family:var(--rb);font-weight:700;font-size:13px;color:var(--goldl)">08:00 – 10:00</div>
+            <div style="font-size:13px;color:rgba(237,227,202,.65)">Kurulum, ışık kontrolü, araç hazırlığı</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:0;align-items:stretch">
+          <div style="display:flex;flex-direction:column;align-items:center;margin-right:16px">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:4px"></div>
+            <div style="flex:1;width:1px;background:var(--goldbdr)"></div>
+          </div>
+          <div style="padding-bottom:16px;flex:1">
+            <div style="font-family:var(--rb);font-weight:700;font-size:13px;color:var(--goldl)">10:00 – 13:00</div>
+            <div style="font-size:13px;color:rgba(237,227,202,.65)">Hizmet uygulamaları: seramik, PPF, detailing çekimleri</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:0;align-items:stretch">
+          <div style="display:flex;flex-direction:column;align-items:center;margin-right:16px">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:4px"></div>
+            <div style="flex:1;width:1px;background:var(--goldbdr)"></div>
+          </div>
+          <div style="padding-bottom:16px;flex:1">
+            <div style="font-family:var(--rb);font-weight:700;font-size:13px;color:var(--goldl)">14:00 – 16:30</div>
+            <div style="font-size:13px;color:rgba(237,227,202,.65)">Müşteri/bayi röportajı, B-roll, istasyon turu</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:0;align-items:stretch">
+          <div style="display:flex;flex-direction:column;align-items:center;margin-right:16px">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--goldl);flex-shrink:0;margin-top:4px;box-shadow:0 0 8px var(--gold)"></div>
+          </div>
+          <div style="flex:1">
+            <div style="font-family:var(--rb);font-weight:700;font-size:13px;color:var(--goldl)">16:30 – 18:00</div>
+            <div style="font-size:13px;color:rgba(237,227,202,.65)">Before/after sahnesi + gün kapanış çekimleri</div>
+          </div>
+        </div>
+      </div>
+      <div class="card card-red" style="padding:18px;margin-top:4px">
+        <div class="h-card" style="color:var(--red);margin-bottom:10px">📦 Çekim Çıktıları</div>
+        <ul class="blist">
+          <li>8 Reels için ham footage</li>
+          <li>2 YouTube videosu için uzun ham çekim</li>
+          <li>Carousel için fotoğraf seti (50+ kare)</li>
+          <li>Stories, highlight & thumbnail materyali</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S11 ▸ TAKVİM
+═══════════════════════════════════════ -->
+<div class="slide" id="s11">
+<div class="inner">
+  <div class="eyebrow au a1">Yayın Takvimi</div>
+  <div class="h-title au a2"><span class="gold">10 Mayıs — 10 Haziran 2026</span></div>
+  <div class="rule au a2"><div class="rule-diamond"></div></div>
+  <div class="cal-wrap au a3">
+    <div class="cal-content" style="display:grid;grid-template-columns:1fr auto 1fr auto;gap:24px;align-items:start">
+      <div>
+        <div style="font-family:var(--rb);font-size:14px;letter-spacing:.15em;color:var(--goldl);margin-bottom:12px;text-transform:uppercase">Mayıs 2026</div>
+        <div class="cal-grid">
+          <div class="cday-h">Pzt</div><div class="cday-h">Sal</div><div class="cday-h">Çar</div><div class="cday-h">Per</div><div class="cday-h">Cum</div><div class="cday-h">Cmt</div><div class="cday-h">Paz</div>
+          <div class="cday e"></div><div class="cday e"></div><div class="cday e"></div><div class="cday e"></div><div class="cday">1</div><div class="cday">2</div><div class="cday">3</div>
+          <div class="cday">4</div><div class="cday">5</div><div class="cday">6</div><div class="cday">7</div><div class="cday">8</div><div class="cday">9</div><div class="cday rd">10</div>
+          <div class="cday">11</div><div class="cday gd">12</div><div class="cday sh">13✦</div><div class="cday rd">14</div><div class="cday">15</div><div class="cday gd">16</div><div class="cday">17</div>
+          <div class="cday rd">18</div><div class="cday">19</div><div class="cday gd">20</div><div class="cday">21</div><div class="cday rd">22</div><div class="cday bd">23</div><div class="cday">24</div>
+          <div class="cday gd">25</div><div class="cday">26</div><div class="cday rd">27</div><div class="cday gd">28</div><div class="cday">29</div><div class="cday">30</div><div class="cday">31</div>
+        </div>
+      </div>
+      <div class="cal-divider" style="width:1px;background:var(--goldbdr);align-self:stretch;margin-top:30px"></div>
+      <div>
+        <div style="font-family:var(--rb);font-size:14px;letter-spacing:.15em;color:var(--goldl);margin-bottom:12px;text-transform:uppercase">Haziran 2026</div>
+        <div class="cal-grid">
+          <div class="cday-h">Pzt</div><div class="cday-h">Sal</div><div class="cday-h">Çar</div><div class="cday-h">Per</div><div class="cday-h">Cum</div><div class="cday-h">Cmt</div><div class="cday-h">Paz</div>
+          <div class="cday rd">1</div><div class="cday">2</div><div class="cday rd">3</div><div class="cday gd">4</div><div class="cday bd">5</div><div class="cday">6</div><div class="cday rd">7</div>
+          <div class="cday">8</div><div class="cday gd">9</div><div class="cday gd" style="border-color:var(--goldhl)">10</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:20px">
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;border-radius:1px;background:rgba(199,40,40,.4);flex-shrink:0"></div><span class="small">Reels Yayın Günü (8)</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;border-radius:1px;background:rgba(201,146,42,.4);flex-shrink:0"></div><span class="small">Carousel Yayın Günü (8)</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;border-radius:1px;background:rgba(21,103,204,.4);flex-shrink:0"></div><span class="small">YouTube Yayın Günü (2)</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;border-radius:1px;background:rgba(201,146,42,.5);border:1px solid var(--gold);flex-shrink:0"></div><span class="small">Çekim Günü</span></div>
+        </div>
+      </div>
+      <div class="cal-stats" style="display:flex;flex-direction:column;gap:14px;min-width:160px">
+        <div class="stat-hero" style="padding:20px;text-align:center">
+          <div style="text-align:center"><span class="big" style="font-size:56px">18</span></div>
+          <div class="lbl">Toplam Yayın</div>
+        </div>
+        <div class="card" style="padding:16px;text-align:center">
+          <div style="font-family:var(--rb);font-size:13px;color:var(--red);font-weight:700;margin-bottom:2px">8 × Reels</div>
+          <div style="font-family:var(--rb);font-size:13px;color:var(--goldl);font-weight:700;margin-bottom:2px">8 × Carousel</div>
+          <div style="font-family:var(--rb);font-size:13px;color:var(--blue);font-weight:700">2 × YouTube</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S12 ▸ UNİQBEE KATKI
+═══════════════════════════════════════ -->
+<div class="slide" id="s12">
+<div class="inner">
+  <div class="eyebrow au a1">UniqBee'nin Katkısı</div>
+  <div class="h-title au a2">Biz Sadece İçerik<br><span class="gold">Üretmiyoruz</span></div>
+  <div class="rule au a2"><div class="rule-diamond"></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px" class="au a3 gc-s12">
+    <div class="crow"><div class="crow-icon">🎯</div><div><div class="h-card" style="margin-bottom:3px">Strateji & Planlama</div><p class="small">Marka sesi, içerik pillarları ve yayın takvimi baştan sona tasarlanır. Her içerik bir hedefe hizmet eder.</p></div></div>
+    <div class="crow"><div class="crow-icon">🎬</div><div><div class="h-card" style="margin-bottom:3px">Profesyonel Prodüksiyon</div><p class="small">Sinema kalitesi çekim, kurgu, renk düzeltme ve ses miksajı. Markanıza yakışır görsel dil.</p></div></div>
+    <div class="crow"><div class="crow-icon">✍️</div><div><div class="h-card" style="margin-bottom:3px">Copywriting & Caption</div><p class="small">Algoritmayı besleyen, kullanıcıyı durduran güçlü metinler ve akıllı hashtag stratejisi.</p></div></div>
+    <div class="crow"><div class="crow-icon">🎨</div><div><div class="h-card" style="margin-bottom:3px">Marka Şablonları & Tasarım</div><p class="small">Carwax görsel kimliğine uygun carousel şablonları, story frame'leri ve thumbnail standartları.</p></div></div>
+    <div class="crow"><div class="crow-icon">📲</div><div><div class="h-card" style="margin-bottom:3px">Sosyal Medya Yönetimi</div><p class="small">Zamanlanmış yayın, community management, yorum yönetimi ve DM takibi. Haftanın 7 günü.</p></div></div>
+    <div class="crow"><div class="crow-icon">📊</div><div><div class="h-card" style="margin-bottom:3px">Performans Analizi</div><p class="small">Aylık raporlama: reach, engagement, story görüntülenme, franchise başvuru tracing ve öneriler.</p></div></div>
+    <div class="crow"><div class="crow-icon">🚀</div><div><div class="h-card" style="margin-bottom:3px">YouTube SEO & Optimizasyon</div><p class="small">Anahtar kelime araştırması, başlık/açıklama/tag optimizasyonu ve thumbnail A/B testi.</p></div></div>
+    <div class="crow"><div class="crow-icon">🤝</div><div><div class="h-card" style="margin-bottom:3px">Haftalık Check-in & Revizyon</div><p class="small">Her yayın öncesi onay süreci. İstenen revizyonlar 24 saatte tamamlanır. Şeffaf iletişim.</p></div></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S13 ▸ BÜTÇE
+═══════════════════════════════════════ -->
+<div class="slide" id="s13">
+<div class="inner">
+  <div class="deco-num" style="font-size:clamp(140px,18vw,280px)">150K</div>
+  <div class="eyebrow au a1">Bütçe Dökümü</div>
+  <div class="h-title au a2">Aylık Hizmet Bedeli —<br><span class="gold">Şeffaf Fiyatlandırma</span></div>
+  <div class="rule au a2"><div class="rule-diamond"></div></div>
+  <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start" class="au a3 gc-s13">
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div style="display:grid;grid-template-columns:1fr auto;padding:10px 16px;border-bottom:1px solid var(--muted2)">
+        <span style="font-family:var(--rb);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">Hizmet Kalemi</span>
+        <span style="font-family:var(--rb);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">Tutar (TL)</span>
+      </div>
+      <div class="brow"><div><div style="font-family:var(--rj);font-weight:700;font-size:14px">🎯 Strateji, Planlama & Raporlama</div><div class="small">İçerik stratejisi, yayın takvimi, aylık analiz</div></div><div class="brow-amt">12.000</div></div>
+      <div class="brow"><div><div style="font-family:var(--rj);font-weight:700;font-size:14px">🎬 Çekim Günü — Prodüksiyon Ekibi</div><div class="small">Kameraman, asistan, ışık, ulaşım & ekipman</div></div><div class="brow-amt">28.000</div></div>
+      <div class="brow"><div><div style="font-family:var(--rj);font-weight:700;font-size:14px">📱 8 Reels Kurgu & Post-Prodüksiyon</div><div class="small">Kurgu, renk, müzik lisansı, alt yazı, export</div></div><div class="brow-amt">35.000</div></div>
+      <div class="brow"><div><div style="font-family:var(--rj);font-weight:700;font-size:14px">🖼️ 8 Carousel Tasarım & Metin</div><div class="small">Grafik tasarım, copywriting, marka uyumu</div></div><div class="brow-amt">20.000</div></div>
+      <div class="brow"><div><div style="font-family:var(--rj);font-weight:700;font-size:14px">▶️ 2 YouTube Video Prodüksiyon</div><div class="small">Kurgu, grafik, thumbnail, SEO, chapters</div></div><div class="brow-amt">30.000</div></div>
+      <div class="brow"><div><div style="font-family:var(--rj);font-weight:700;font-size:14px">📲 Sosyal Medya Yönetimi & Community</div><div class="small">Zamanlama, yorumlar, DM, stories</div></div><div class="brow-amt">15.000</div></div>
+      <div style="display:grid;grid-template-columns:1fr auto;padding:14px 16px;border-top:1px solid var(--goldbdr);margin-top:4px">
+        <span style="font-family:var(--rj);font-weight:700;font-size:16px">Toplam Hizmet Bedeli</span>
+        <span style="font-family:var(--rb);font-weight:900;font-size:20px;color:var(--goldl)">150.000</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr auto;padding:8px 16px">
+        <span style="color:var(--muted);font-size:13px">KDV (%20)</span>
+        <span style="font-family:var(--rb);color:var(--muted);font-size:14px">30.000</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card card-gold" style="text-align:center;padding:32px">
+        <div style="font-family:var(--rb);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Genel Toplam</div>
+        <div style="font-family:var(--rb);font-weight:900;font-size:clamp(48px,6vw,80px);color:var(--goldl);line-height:1">180K</div>
+        <div style="font-family:var(--rb);font-size:13px;letter-spacing:.12em;color:var(--muted);margin-top:4px">TL — KDV Dahil</div>
+        <div style="width:40px;height:1px;background:var(--gold);margin:18px auto"></div>
+        <div style="font-size:13px;color:var(--muted)">%50 Peşin</div>
+        <div style="font-size:13px;color:var(--muted)">%50 Yayım Sonrası</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div class="card" style="padding:14px;display:flex;justify-content:space-between;align-items:center">
+          <span class="small">8 Reels / içerik</span>
+          <span style="font-family:var(--rb);font-weight:700;color:var(--goldl)">~8.125 ₺</span>
+        </div>
+        <div class="card" style="padding:14px;display:flex;justify-content:space-between;align-items:center">
+          <span class="small">8 Carousel / içerik</span>
+          <span style="font-family:var(--rb);font-weight:700;color:var(--goldl)">~5.875 ₺</span>
+        </div>
+        <div class="card" style="padding:14px;display:flex;justify-content:space-between;align-items:center">
+          <span class="small">2 YouTube / video</span>
+          <span style="font-family:var(--rb);font-weight:700;color:var(--goldl)">~19.000 ₺</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S14 ▸ NEDEN UNİQBEE?
+═══════════════════════════════════════ -->
+<div class="slide" id="s14">
+<div class="inner">
+  <div class="eyebrow au a1">Neden UniqBee?</div>
+  <div class="h-title au a2">Sizi Öne Çıkaran <span class="gold">6 Fark</span></div>
+  <div class="rule au a2"><div class="rule-diamond"></div></div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px" class="au a3 why-grid">
+    <div class="why"><div class="why-icon">🏆</div><div class="h-card">Sektör Odaklı Deneyim</div><p class="small" style="line-height:1.6">Otomotiv ve franchise markalarıyla çalışma deneyimimiz sayesinde Carwax'ın ihtiyacını hızlıca kavrarız. Öğrenme eğrisi yoktur.</p></div>
+    <div class="why"><div class="why-icon">🎬</div><div class="h-card">End-to-End Prodüksiyon</div><p class="small" style="line-height:1.6">Stratejiden çekime, kurgudan yayına kadar tek çatı altında. Tek muhatap, sıfır koordinasyon kaybı.</p></div>
+    <div class="why"><div class="why-icon">📈</div><div class="h-card">Veri Odaklı Strateji</div><p class="small" style="line-height:1.6">Her kararın arkasında ölçüm vardır. Hangi içerik daha çok franchise başvurusu getirdi? Raporlarla takip edilir.</p></div>
+    <div class="why"><div class="why-icon">⚡</div><div class="h-card">Hızlı Teslimat</div><p class="small" style="line-height:1.6">Çekim sonrası 7 iş günü içinde tüm içerikler onaya hazır. Yayın takviminize sadık, revizyonda esnek.</p></div>
+    <div class="why"><div class="why-icon">🔐</div><div class="h-card">Şeffaf Süreç</div><p class="small" style="line-height:1.6">Haftalık check-in, aylık rapor, anlık WhatsApp iletişimi. Paranın nereye gittiğini her zaman görürsünüz.</p></div>
+    <div class="why"><div class="why-icon">🌱</div><div class="h-card">Büyümeye Hazır Yapı</div><p class="small" style="line-height:1.6">Carwax büyüdükçe paket büyür. İçerik hacmi, platform sayısı ve yatırım esnek biçimde ölçeklenir.</p></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+  S15 ▸ KAPANIŞ
+═══════════════════════════════════════ -->
+<div class="slide" id="s15">
+<div class="inner" style="justify-content:center;text-align:center;align-items:center">
+  <div style="font-family:var(--rb);font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--goldl);margin-bottom:24px" class="au a1">Hazır olduğunuzda biz hazırız</div>
+  <div class="h-display au a2" style="font-size:clamp(52px,8vw,112px)">Birlikte<br><span class="gold">Büyüyelim.</span></div>
+  <div style="display:flex;align-items:center;gap:16px;margin:28px 0" class="au a3">
+    <div style="flex:1;max-width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))"></div>
+    <div style="width:6px;height:6px;background:var(--gold);transform:rotate(45deg)"></div>
+    <div style="flex:1;max-width:120px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)"></div>
+  </div>
+  <p class="body au a3" style="max-width:520px;text-align:center;font-size:15px;margin-bottom:36px">Carwax Türkiye'nin sosyal medyada hak ettiği yeri alması, franchise ağını büyütmesi ve marka değerini güçlendirmesi için UniqBee olarak tam anlamıyla hazırız.</p>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center" class="au a4">
+    <a href="mailto:uniqbeedigital@gmail.com" style="text-decoration:none">
+      <div class="card card-gold" style="padding:20px 28px;text-align:center;min-width:190px">
+        <div style="font-size:28px;margin-bottom:8px">✉️</div>
+        <div style="font-family:var(--rb);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">E-posta</div>
+        <div style="font-family:var(--rj);font-weight:600;font-size:14px;color:var(--goldl)">uniqbeedigital@gmail.com</div>
+      </div>
+    </a>
+    <a href="https://www.uniqbee.com" target="_blank" rel="noopener" style="text-decoration:none">
+      <div class="card card-gold" style="padding:20px 28px;text-align:center;min-width:190px">
+        <div style="font-size:28px;margin-bottom:8px">🌐</div>
+        <div style="font-family:var(--rb);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Web Site</div>
+        <div style="font-family:var(--rj);font-weight:600;font-size:14px;color:var(--goldl)">www.uniqbee.com</div>
+      </div>
+    </a>
+    <a href="https://www.instagram.com/uniqbeedigital" target="_blank" rel="noopener" style="text-decoration:none">
+      <div class="card card-gold" style="padding:20px 28px;text-align:center;min-width:190px">
+        <div style="font-size:28px;margin-bottom:8px">📸</div>
+        <div style="font-family:var(--rb);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Instagram</div>
+        <div style="font-family:var(--rj);font-weight:600;font-size:14px;color:var(--goldl)">@uniqbeedigital</div>
+      </div>
+    </a>
+    <div class="card card-gold" style="padding:20px 28px;text-align:center;min-width:190px">
+      <div style="font-size:28px;margin-bottom:8px">📅</div>
+      <div style="font-family:var(--rb);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:5px">Başlangıç</div>
+      <div style="font-family:var(--rj);font-weight:600;font-size:14px;color:var(--goldl)">10 Mayıs 2026</div>
+    </div>
+  </div>
+  <div style="font-family:var(--rb);font-size:10px;letter-spacing:.25em;color:var(--muted);margin-top:28px" class="au a5">CARWAX TÜRKİYE × UNİQBEE DIGITAL AGENCY — 2026</div>
+</div>
+</div>
+
+</div><!-- /deck -->
+
+<script>
+const slides=document.querySelectorAll('.slide');
+const dotsEl=document.getElementById('dots');
+const ctr=document.getElementById('counter');
+const bar=document.getElementById('progress');
+const deckEl=document.querySelector('.deck');
+let cur=0,N=slides.length;
+const isMob=()=>window.innerWidth<=768;
+
+slides.forEach((_,i)=>{
+  const d=document.createElement('button');
+  d.className='dot'+(i===0?' on':'');
+  d.onclick=()=>goto(i);
+  dotsEl.appendChild(d);
+});
+
+function syncUI(n){
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===n));
+  ctr.innerHTML='<span>'+(n+1)+'</span> / '+N;
+  bar.style.width=((n+1)/N*100)+'%';
+  setTimeout(animNums,150);
+}
+
+function goto(n){
+  const t=(n%N+N)%N;
+  if(isMob()){
+    deckEl.scrollTo({left:t*deckEl.clientWidth,behavior:'smooth'});
+    cur=t;syncUI(t);
+  } else {
+    slides[cur].classList.remove('active');
+    slides[cur].classList.add('out');
+    const prev=cur;
+    setTimeout(()=>slides[prev].classList.remove('out'),650);
+    cur=t;
+    slides[cur].classList.add('active');
+    slides[cur].scrollTop=0;
+    syncUI(t);
+  }
+}
+
+function go(d){goto(cur+d)}
+
+// Init desktop
+slides[0].classList.add('active');
+syncUI(0);
+
+// Keyboard
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')go(1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
+  if(e.key==='Home')goto(0);
+  if(e.key==='End')goto(N-1);
+});
+
+// Mobile: sync cur when user swipes natively
+deckEl.addEventListener('scroll',()=>{
+  if(!isMob())return;
+  const idx=Math.round(deckEl.scrollLeft/deckEl.clientWidth);
+  if(idx!==cur&&idx>=0&&idx<N){cur=idx;syncUI(idx);}
+},{passive:true});
+
+function animNums(){
+  const target=isMob()?Math.round(deckEl.scrollLeft/deckEl.clientWidth):cur;
+  slides[target].querySelectorAll('[data-target]').forEach(el=>{
+    const t=+el.dataset.target,s=Date.now(),dur=1100;
+    const tick=()=>{
+      const p=Math.min((Date.now()-s)/dur,1);
+      el.textContent=Math.round((1-Math.pow(1-p,3))*t);
+      if(p<1)requestAnimationFrame(tick);
+    };tick();
+  });
+}
+animNums();
+</script>
+</body>
+</html>
