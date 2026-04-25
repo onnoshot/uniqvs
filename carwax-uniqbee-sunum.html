@@ -24,6 +24,7 @@ body{
   background:var(--bg);color:var(--cream);font-family:var(--ro);
   background-image:linear-gradient(rgba(201,146,42,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,146,42,.025) 1px,transparent 1px);
   background-size:80px 80px;background-attachment:fixed;
+  overflow-x:hidden;
 }
 
 /* ── PROGRESS ── */
@@ -228,6 +229,12 @@ body{
   .cal-stats .stat-hero{flex:1;min-width:120px}
   .brow{grid-template-columns:1fr auto!important;align-items:start}
   .h-title{font-size:clamp(24px,6vw,40px)!important}
+  /* Inline grid overrides */
+  .gc-mini2{grid-template-columns:1fr!important}
+  .gc-s5-row{display:flex!important;flex-wrap:wrap;gap:10px!important}
+  .gc-s5-row .gc-s5-desc{border-left:none!important;padding-left:0!important;flex:1;min-width:140px}
+  /* Genel overflow koruması */
+  .sec,.inner,.card,.pillar,.persona{max-width:100%!important;overflow-x:hidden}
 }
 @media(max-width:480px){
   .ci-grid-r,.ci-grid-c,.why-grid{grid-template-columns:1fr!important}
@@ -299,7 +306,7 @@ body{
         <div><span class="big" data-target="122">0</span><span class="unit">+</span></div>
         <div class="lbl">Aktif İstasyon</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="gc-mini2" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
         <div class="stat-hero" style="padding:18px 20px">
           <div><span class="big" style="font-size:clamp(32px,4vw,48px)" data-target="6">0</span></div>
           <div class="lbl">Ülke</div>
@@ -449,19 +456,19 @@ body{
   <div class="rule reveal r2"><div class="rule-diamond"></div></div>
   <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start" class="reveal r3 gc-s5">
     <div style="display:flex;flex-direction:column;gap:12px">
-      <div class="card gc-s5-row" style="display:grid;grid-template-columns:56px auto 1fr auto;align-items:center;gap:16px;padding:20px 24px">
+      <div class="card gc-s5-row" style="display:grid;grid-template-columns:56px auto 1fr auto;align-items:center;gap:12px;padding:20px 24px">
         <div style="font-size:34px">🎬</div>
         <div><div style="font-family:var(--rb);font-weight:900;font-size:48px;color:var(--goldl);line-height:1">08</div><div style="font-family:var(--rb);font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase">Reels Videosu</div></div>
         <div class="gc-s5-desc" style="font-size:12px;color:var(--muted);line-height:1.6;padding-left:12px;border-left:1px solid var(--muted2)">15–60 saniye · Trend formatlar<br>Profesyonel kurgu · Müzik lisansı</div>
         <div class="tag tr">Reels</div>
       </div>
-      <div class="card gc-s5-row" style="display:grid;grid-template-columns:56px auto 1fr auto;align-items:center;gap:16px;padding:20px 24px">
+      <div class="card gc-s5-row" style="display:grid;grid-template-columns:56px auto 1fr auto;align-items:center;gap:12px;padding:20px 24px">
         <div style="font-size:34px">🖼️</div>
         <div><div style="font-family:var(--rb);font-weight:900;font-size:48px;color:var(--goldl);line-height:1">08</div><div style="font-family:var(--rb);font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase">Carousel Post</div></div>
         <div class="gc-s5-desc" style="font-size:12px;color:var(--muted);line-height:1.6;padding-left:12px;border-left:1px solid var(--muted2)">5–10 kart · Eğitici & dönüştürücü<br>Marka şablonları · Güçlü metin</div>
         <div class="tag tg">Carousel</div>
       </div>
-      <div class="card gc-s5-row" style="display:grid;grid-template-columns:56px auto 1fr auto;align-items:center;gap:16px;padding:20px 24px">
+      <div class="card gc-s5-row" style="display:grid;grid-template-columns:56px auto 1fr auto;align-items:center;gap:12px;padding:20px 24px">
         <div style="font-size:34px">▶️</div>
         <div><div style="font-family:var(--rb);font-weight:900;font-size:48px;color:var(--goldl);line-height:1">02</div><div style="font-family:var(--rb);font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase">YouTube Video</div></div>
         <div class="gc-s5-desc" style="font-size:12px;color:var(--muted);line-height:1.6;padding-left:12px;border-left:1px solid var(--muted2)">15–25 dakika · SEO optimize<br>Thumbnail tasarımı · Alt yazı</div>
@@ -603,7 +610,7 @@ body{
           <li>Yeni bayi açılışı kutlama içerikleri</li>
         </ul>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="gc-mini2" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
         <div class="card card-red" style="text-align:center;padding:20px">
           <div style="font-family:var(--rb);font-weight:900;font-size:36px;color:var(--red)">%3–5</div>
           <div class="small" style="margin-top:4px">Story → Link Tıklama</div>
@@ -644,7 +651,7 @@ body{
       </div>
       <div class="card" style="padding:22px">
         <div class="h-card" style="margin-bottom:14px">🎥 Ekipman</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div class="gc-mini2" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
           <div class="card" style="padding:12px;text-align:center;border-radius:2px">📷<div style="font-size:11px;color:var(--muted);margin-top:4px">Sony FX3 / Canon R5</div></div>
           <div class="card" style="padding:12px;text-align:center;border-radius:2px">🎯<div style="font-size:11px;color:var(--muted);margin-top:4px">DJI Ronin Gimbal</div></div>
           <div class="card" style="padding:12px;text-align:center;border-radius:2px">🚁<div style="font-size:11px;color:var(--muted);margin-top:4px">Drone Çekim</div></div>
@@ -684,7 +691,7 @@ body{
   <div class="eyebrow reveal">Yayın Takvimi</div>
   <div class="h-title reveal r2"><span class="gold">10 Mayıs — 10 Haziran 2026</span></div>
   <div class="rule reveal r2"><div class="rule-diamond"></div></div>
-  <div class="reveal r3" style="display:grid;grid-template-columns:1fr auto 1fr auto;gap:24px;align-items:start" class="cal-2col">
+  <div class="reveal r3 cal-2col" style="display:grid;grid-template-columns:1fr auto 1fr auto;gap:24px;align-items:start">
     <div>
       <div style="font-family:var(--rb);font-size:14px;letter-spacing:.15em;color:var(--goldl);margin-bottom:12px;text-transform:uppercase">Mayıs 2026</div>
       <div class="cal-grid">
