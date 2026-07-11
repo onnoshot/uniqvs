@@ -290,6 +290,18 @@ a{color:inherit;text-decoration:none}
   font-size:.88rem;font-weight:600;
   color:#fff;line-height:1.2;
 }
+.work-card__caselink{
+  display:inline-block;
+  margin-top:.5rem;
+  font-size:.7rem;
+  font-weight:600;
+  letter-spacing:.02em;
+  color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.5);
+  pointer-events:auto;
+  transition:opacity .2s ease;
+}
+.work-card__caselink:hover{opacity:.7}
 
 /* Hover — desktop */
 .work-card:hover .work-card__img img{transform:scale(1.04)}
@@ -839,6 +851,36 @@ a{color:inherit;text-decoration:none}
 }
 .blog-article__inner li::marker{color:var(--red)}
 .blog-article__inner strong{color:var(--ink);font-weight:600}
+.blog-article__inner table{
+  width:100%;
+  border-collapse:collapse;
+  margin:0 0 1.6rem;
+  font-size:.88rem;
+}
+.blog-article__inner th,
+.blog-article__inner td{
+  text-align:left;
+  padding:.7rem .9rem;
+  border-bottom:1px solid var(--border);
+  color:var(--ink2);
+  line-height:1.5;
+}
+.blog-article__inner th{
+  color:var(--ink);
+  font-weight:600;
+  font-size:.78rem;
+  letter-spacing:.02em;
+  border-bottom:2px solid var(--ink);
+}
+.blog-article__inner tr:last-child td{border-bottom:none}
+.blog-article__inner blockquote{
+  border-left:3px solid var(--red);
+  margin:0 0 1.6rem;
+  padding:.2rem 0 .2rem 1.2rem;
+  font-size:.98rem;
+  font-style:italic;
+  color:var(--ink);
+}
 
 .blog-cta-box{
   background:var(--ink);

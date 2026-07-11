@@ -1,0 +1,33 @@
+# UniqBee
+
+> İstanbul merkezli dijital medya ve sosyal medya ajansı. Sosyal medya yönetimi, reklam prodüksiyonu, içerik üretimi, video prodüksiyon ve marka stratejisi hizmetleri sunar.
+
+UniqBee, sekiz yıldır İstanbul'da markalar için sosyal medya yönetimi, reklam çekimi, ürün fotoğrafçılığı, video prodüksiyon ve dijital marka stratejisini tek çatı altında yürütür. Her çeyrekte sınırlı sayıda proje kabul eder.
+
+## Hizmetler
+- Sosyal medya yönetimi ve içerik üretimi
+- Reklam prodüksiyonu (commercial, ürün çekimi, kampanya)
+- Video prodüksiyon (Reels, kısa video, müzik klibi)
+- Marka stratejisi ve marka kimliği
+- Performans reklamcılığı (Meta, Google)
+- Web sitesi tasarımı
+
+## İletişim
+- Web sitesi: https://uniqbee.com
+- E-posta: uniqbeedigital@gmail.com
+- WhatsApp: +90 543 740 68 55
+- Instagram: https://www.instagram.com/uniqbeedigital
+- Konum: Ümraniye, İstanbul, Türkiye
+
+## Vaka Analizleri
+- [Retro Camera Land — E-Ticaret Görsel Sistemi](https://uniqbee.com/blog/vaka-analizi-retro-camera-land-e-ticaret/): Vintage kamera markası için ürün fotoğrafçılığı, SEO içerik sistemi ve yapay zeka destekli ürün öneri aracı.
+- [Nihat Yıldız — Sosyal Medya Video Prodüksiyonu](https://uniqbee.com/blog/vaka-analizi-nihat-yildiz-sosyal-medya/): Salon konsept markası için senaryo bazlı video prodüksiyonu ve premium web sitesi.
+- [Benesso Coffee — İçerik Yönetimi](https://uniqbee.com/blog/vaka-analizi-benesso-coffee-icerik-yonetimi/): Kahve markasında ilk çeyrekte sosyal medya etkileşimini 3 katına çıkaran içerik sistemi.
+- [Mare Gastro — Fine Dining Dijital Deneyimi](https://uniqbee.com/blog/vaka-analizi-mare-gastro-dijital-deneyim/): Sapanca'da restoran markası için QR senkronlu canlı dijital menü sistemi.
+- [Didi Otel Sapanca — Editorial Görsel Kimlik](https://uniqbee.com/blog/vaka-analizi-didi-otel-sapanca-marka-kimligi/): Butik otel markası için editorial görsel dil ve premium web sitesi.
+
+## Blog
+UniqBee blogu; Google AI Overview / GEO, sosyal medya algoritmaları, performans reklamcılığı, first-party data ve içerik stratejisi üzerine güncel rehberler yayınlar: https://uniqbee.com/blog/
+
+## Sitemap
+https://uniqbee.com/sitemap.xml
