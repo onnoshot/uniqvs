@@ -440,14 +440,13 @@ a{color:inherit;text-decoration:none}
 .pstep2__card{background-size:cover;background-position:center}
 .pstep2__card::before{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(160deg,rgba(10,10,10,.94) 0%,rgba(10,10,10,.88) 55%,rgba(10,10,10,.8) 100%);
+  background:linear-gradient(160deg,rgba(10,10,10,.86) 0%,rgba(10,10,10,.8) 55%,rgba(10,10,10,.72) 100%);
   z-index:0;
 }
-.pstep2__card--bg-discovery{background-image:radial-gradient(ellipse 120% 80% at 20% 0%,#1c1c1c 0%,#0a0a0a 60%)}
-.pstep2__card--bg-strategy{background-image:radial-gradient(ellipse 120% 80% at 80% 0%,#1c1414 0%,#0a0a0a 60%)}
+.pstep2__card--bg-discovery{background-image:url(/images/process/kesif-analiz-mood-board.jpg)}
+.pstep2__card--bg-strategy{background-image:url(/images/process/strateji-planlama-masasi.jpg)}
 .pstep2__card--bg-produce{background-image:url(/images/backstage/arac-reklam-filmi-gimbal-cekimi.jpg)}
-.pstep2__card--bg-produce::before{background:linear-gradient(160deg,rgba(10,10,10,.86) 0%,rgba(10,10,10,.78) 55%,rgba(10,10,10,.7) 100%)}
-.pstep2__card--bg-optimize{background-image:radial-gradient(ellipse 120% 80% at 80% 100%,#161c1c 0%,#0a0a0a 60%)}
+.pstep2__card--bg-optimize{background-image:url(/images/process/olcum-analitik-ekran.jpg)}
 .pstep2__card > *{position:relative;z-index:1}
 .pstep2:hover .pstep2__card{border-color:var(--red-line);box-shadow:0 12px 32px rgba(0,0,0,.35);transform:translateY(-2px)}
 
@@ -464,8 +463,6 @@ a{color:inherit;text-decoration:none}
 @keyframes pstepIconIn{0%{opacity:0;transform:scale(.5) rotate(-30deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
 .pstep2__card h3{font-size:.95rem;font-weight:600;margin-bottom:.55rem;color:#fff}
 .pstep2__card p{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.7}
-.pstep2__example{margin-top:.9rem;padding-top:.9rem;border-top:1px solid rgba(255,255,255,.1);font-size:.76rem;color:rgba(255,255,255,.45)!important}
-.pstep2__example strong{color:var(--red);font-weight:600}
 
 @media (prefers-reduced-motion: reduce){
   .pstep2.ps-in .pstep2__icon{animation:none}
@@ -628,43 +625,6 @@ a{color:inherit;text-decoration:none}
 #cursor-dot,#cursor-ring{display:none}
 
 
-/* ─── TICKER / MARQUEE ─── */
-.ticker-wrap{
-  overflow:hidden;
-  background:var(--ink);
-  padding:14px 0;
-  border-top:1px solid rgba(255,255,255,.04);
-  border-bottom:1px solid rgba(255,255,255,.04);
-}
-.ticker{display:flex;overflow:hidden;white-space:nowrap}
-.ticker__track{
-  display:inline-flex;
-  align-items:center;
-  gap:2.5rem;
-  animation:tickerScroll 32s linear infinite;
-  padding-right:2.5rem;
-  flex-shrink:0;
-}
-.ticker-wrap:hover .ticker__track{animation-play-state:paused}
-.ticker__track span{
-  font-size:.62rem;
-  font-weight:600;
-  letter-spacing:.15em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.42);
-  white-space:nowrap;
-  flex-shrink:0;
-}
-.ticker__sep{
-  color:var(--red)!important;
-  font-size:.8rem!important;
-  letter-spacing:0!important;
-  opacity:.65;
-}
-@keyframes tickerScroll{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
 
 
 /* ─── BLOG PREVIEW SECTION ─── */
@@ -938,12 +898,10 @@ a{color:inherit;text-decoration:none}
   .hero__badge{font-size:.58rem;padding:.36rem .85rem}
   .hero__title{font-size:clamp(2.4rem,12vw,3.2rem)!important;line-height:1.05}
   .hero__desc{font-size:.87rem}
-  .stat-card__num{font-size:clamp(2.4rem,10vw,3.2rem)!important}
   .bp-card__title{font-size:.9rem}
 }
 
 @media(prefers-reduced-motion:reduce){
-  .ticker__track{animation:none}
   .loader__bee{animation:none}
   #cursor-dot,#cursor-ring{transition:none}
   .reveal,.ab-reveal,.pstep2,.work-card{transition:none!important;opacity:1!important;transform:none!important;filter:none!important}
