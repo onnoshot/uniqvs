@@ -516,17 +516,3 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 
 // custom cursor removed
-
-// ── Impact strip reveal ──
-(function(){
-  const items = document.querySelectorAll('.impact-item');
-  if (!items.length) return;
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (!e.isIntersecting) return;
-      setTimeout(() => e.target.classList.add('in'), i * 120);
-      obs.unobserve(e.target);
-    });
-  }, { threshold: 0.2 });
-  items.forEach(el => obs.observe(el));
-})();
