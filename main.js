@@ -15,12 +15,14 @@ let navOpen = false;
 burger.addEventListener('click', () => {
   navOpen = !navOpen;
   navLinks.classList.toggle('open', navOpen);
+  document.body.classList.toggle('nav-open', navOpen);
   const [s1, s2] = burger.querySelectorAll('span');
   s1.style.transform = navOpen ? 'rotate(45deg) translate(4px,4px)' : '';
   s2.style.transform = navOpen ? 'rotate(-45deg) translate(4px,-4px)' : '';
 });
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   navOpen = false; navLinks.classList.remove('open');
+  document.body.classList.remove('nav-open');
   burger.querySelectorAll('span').forEach(s => s.style.transform = '');
 }));
 
