@@ -262,6 +262,22 @@ document.addEventListener('touchstart', e => {
   }
 }, { passive: true });
 
+// ── Reel poster: click-to-play (swap thumbnail for the real Instagram embed) ──
+document.querySelectorAll('.reel-poster').forEach(card => {
+  card.addEventListener('click', () => {
+    if (card.querySelector('iframe')) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = card.dataset.embed;
+    iframe.loading = 'lazy';
+    iframe.scrolling = 'no';
+    iframe.allowTransparency = 'true';
+    iframe.className = 'reel-poster__frame';
+    iframe.title = 'UniqBee Instagram';
+    card.querySelectorAll('.reel-poster__img,.reel-poster__play,.reel-poster__tag').forEach(el => el.remove());
+    card.appendChild(iframe);
+  });
+});
+
 // ── Smooth anchor scroll ──
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
