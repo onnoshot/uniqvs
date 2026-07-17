@@ -5,12 +5,15 @@
 UniqBee, sekiz yıldır İstanbul'da markalar için sosyal medya yönetimi, reklam çekimi, ürün fotoğrafçılığı, video prodüksiyon ve dijital marka stratejisini tek çatı altında yürütür. Her çeyrekte sınırlı sayıda proje kabul eder.
 
 ## Hizmetler
+Detaylı hizmet sayfası: https://uniqbee.com/hizmetler/
+- Fotoğraf çekimleri (ürün, mekan, portre, kampanya)
 - Sosyal medya yönetimi ve içerik üretimi
 - Reklam prodüksiyonu (commercial, ürün çekimi, kampanya)
 - Video prodüksiyon (Reels, kısa video, müzik klibi)
 - Marka stratejisi ve marka kimliği
+- Google İşletme Profili ve Google yorum yönetimi
 - Performans reklamcılığı (Meta, Google)
-- Web sitesi tasarımı
+- Web sitesi tasarımı ve AI destekli üretim
 
 ## İletişim
 - Web sitesi: https://uniqbee.com
@@ -27,15 +30,24 @@ UniqBee, sekiz yıldır İstanbul'da markalar için sosyal medya yönetimi, rekl
 - [Didi Otel Sapanca: Editorial Görsel Kimlik](https://uniqbee.com/blog/vaka-analizi-didi-otel-sapanca-marka-kimligi/): Butik otel markası için logo/kurumsal kimlik tasarımı, sosyal medya yönetimi, oda fotoğrafçılığı ve premium web sitesi.
 
 ## Bölgesel Kapsam
-İstanbul merkezli olmakla birlikte İstanbul, Ankara, İzmir, Bursa, Antalya, Kocaeli, Sakarya, Tekirdağ, Eskişehir, Samsun, Denizli, Muğla, Fethiye, Rize ve Artvin dahil Türkiye genelinde hizmet verir. Sapanca (Sakarya) bölgesinde Didi Otel ve Mare Gastro ile düzenli aylık iş birliği yürütülür.
+İstanbul merkezli olmakla birlikte İstanbul, Ankara, İzmir, Bursa, Antalya, Kocaeli, Sakarya, Tekirdağ, Eskişehir, Samsun, Denizli, Muğla, Fethiye, Rize, Artvin, Gaziantep, Adana ve Mersin dahil Türkiye genelinde hizmet verir. Sapanca (Sakarya) bölgesinde Didi Otel ve Mare Gastro ile düzenli aylık iş birliği yürütülür.
 - [Sapanca'da Dijital Pazarlama](https://uniqbee.com/blog/sapanca-dijital-pazarlama-otel-restoran/): Turistik bir bölgede otel ve restoranlar için dijital pazarlama rehberi.
 - [Sakarya ve Kocaeli'de Dijital Medya Ajansı](https://uniqbee.com/blog/sakarya-kocaeli-sosyal-medya-ajansi/): Bölgedeki işletmeler için ajans seçim kriterleri.
 
-## Backstage
-UniqBee'nin reklam filmi, sosyal medya video ve fotoğraf çekimlerinden prodüksiyon kulisi: https://uniqbee.com/backstage/
+## Kurumsal Sayfalar
+- Hakkımızda: https://uniqbee.com/hakkimizda/ — İstanbul merkezli, 8 yıllık geçmiş, çalışma prensipleri.
+- Backstage: https://uniqbee.com/backstage/ — reklam filmi, sosyal medya video ve fotoğraf çekimlerinden prodüksiyon kulisi.
+
+## Google Yorum Yönetimi Blog Serisi
+- [Google Yorumlarının Önemi](https://uniqbee.com/blog/google-yorumlarinin-onemi/): Yerel arama sıralaması ve satın alma kararına etkisi.
+- [Google Yorumları Nasıl Yönetilir?](https://uniqbee.com/blog/google-yorumlari-nasil-yonetilir/): Adım adım yönetim rehberi.
+- [Olumsuz Google Yorumlarına Nasıl Cevap Verilmeli?](https://uniqbee.com/blog/olumsuz-google-yorumlarina-cevap-verme/): Kriz yönetimi ve doğru ton.
+- [Google Yorum Sayısı Nasıl Artırılır?](https://uniqbee.com/blog/google-yorum-sayisi-nasil-artirilir/): Etik ve Google politikalarına uygun yöntemler.
+- [Google Yıldız Puanı Satışları Nasıl Etkiler?](https://uniqbee.com/blog/google-yildiz-puani-satis-etkisi/): Puan ve yorum sayısının satışa etkisi.
+- [Google Yorum Yönetimi Hizmeti](https://uniqbee.com/blog/google-yorum-yonetimi-hizmeti/): UniqBee'nin sosyal medya yönetimiyle entegre yorum yönetimi yaklaşımı.
 
 ## Blog
-UniqBee blogu; Google AI Overview / GEO, sosyal medya algoritmaları, performans reklamcılığı, first-party data ve içerik stratejisi üzerine güncel rehberler yayınlar: https://uniqbee.com/blog/
+UniqBee blogu; Google AI Overview / GEO, sosyal medya algoritmaları, performans reklamcılığı, Google yorum ve itibar yönetimi, first-party data ve içerik stratejisi üzerine güncel rehberler yayınlar: https://uniqbee.com/blog/
 
 ## Sitemap
 https://uniqbee.com/sitemap.xml
