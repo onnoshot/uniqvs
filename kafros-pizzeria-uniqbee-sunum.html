@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<script>document.documentElement.classList.add('jsanim')</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kafro's Pizzeria × UniqBee — 2026</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#070605;
+  --surface:rgba(255,255,255,.045);
+  --surface2:rgba(255,255,255,.07);
+  --border:rgba(255,255,255,.09);
+  --gold:#f0a500;--goldl:#ffc94d;--golddim:rgba(240,165,0,.13);--goldbdr:rgba(240,165,0,.28);
+  --terra:#d9603b;--terral:#f0895f;--terradim:rgba(217,96,59,.13);--terrabdr:rgba(217,96,59,.3);
+  --stone:#8f8577;--stonedim:rgba(143,133,119,.16);
+  --cream:#f6f0e4;--muted:rgba(246,240,228,.5);--muted2:rgba(246,240,228,.26);
+  --fh:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text',system-ui,'Segoe UI',sans-serif;
+  --fb:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,'Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--cream);font-family:var(--fb);
+  overflow-x:hidden;
+  padding-top:60px;
+}
+::selection{background:var(--gold);color:#1a1200}
+
+/* progress */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:900;background:linear-gradient(90deg,var(--terra),var(--gold));transition:width .08s linear;pointer-events:none}
+
+/* topbar */
+#topbar{position:fixed;top:0;left:0;right:0;width:100%;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:14px 44px;background:rgba(7,6,5,.78);border-bottom:1px solid var(--border);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);gap:16px}
+.tb-logo{display:flex;align-items:center;gap:12px;min-width:0}
+.tb-x{color:var(--muted2);font-size:15px;font-weight:300}
+.tb-word{font-family:var(--fh);font-weight:700;font-size:14px;letter-spacing:.01em;color:var(--cream);white-space:nowrap}
+.tb-right{display:flex;align-items:center;gap:18px;flex-shrink:0}
+.tb-sec{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.tb-sec strong{color:var(--goldl)}
+.tb-links{display:flex;gap:18px}
+.tb-links a{font-size:11px;letter-spacing:.08em;color:var(--muted);text-decoration:none;transition:color .2s}
+.tb-links a:hover{color:var(--goldl)}
+.lang-toggle{display:flex;align-items:center;gap:2px;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:3px;flex-shrink:0}
+.lang-btn{font-family:var(--fh);font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:6px 13px;border-radius:999px;border:none;background:transparent;color:var(--muted);cursor:pointer;transition:all .25s;line-height:1;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.lang-btn.active{background:var(--gold);color:#1a1200}
+.lang-btn:hover:not(.active){color:var(--cream)}
+
+/* layout */
+.sec{width:100%;position:relative;border-bottom:1px solid rgba(255,255,255,.05)}
+.inner{position:relative;z-index:1;width:100%;max-width:1180px;margin:0 auto;padding:100px 56px}
+
+/* reveal animation — gated behind .jsanim so content is visible by default if JS can't run */
+.reveal{transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+html.jsanim .reveal{opacity:0;transform:translateY(28px)}
+html.jsanim .reveal.in{opacity:1;transform:translateY(0)}
+.reveal.r2{transition-delay:.08s}
+.reveal.r3{transition-delay:.16s}
+.reveal.r4{transition-delay:.24s}
+.reveal.r5{transition-delay:.32s}
+
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--goldl);display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold);flex-shrink:0}
+
+.h-display{font-family:var(--fh);font-weight:800;font-size:clamp(46px,6.4vw,92px);line-height:.98;letter-spacing:-.02em;color:var(--cream)}
+.h-title{font-family:var(--fh);font-weight:700;font-size:clamp(26px,3.6vw,52px);line-height:1.08;color:var(--cream)}
+.h-sub{font-family:var(--fh);font-weight:700;font-size:clamp(16px,1.8vw,22px);color:var(--cream);line-height:1.25}
+.h-card{font-family:var(--fh);font-weight:700;font-size:clamp(14px,1.3vw,17px);color:var(--cream);line-height:1.3}
+.gold{color:var(--goldl)}.terra{color:var(--terral)}
+.body{font-size:clamp(13.5px,1vw,15.5px);line-height:1.75;color:rgba(246,240,228,.68);font-weight:400}
+.small{font-size:12.5px;line-height:1.6;color:var(--muted);font-weight:400}
+
+.rule{display:flex;align-items:center;gap:14px;margin:22px 0}
+.rule::before{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--goldbdr),transparent)}
+.rule-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+/* glass card */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:28px;backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);transition:transform .4s cubic-bezier(.16,1,.3,1),background .4s,border-color .4s}
+.card:hover{transform:translateY(-3px);background:var(--surface2);border-color:var(--goldbdr)}
+.card-gold{background:var(--golddim);border-color:var(--goldbdr)}
+.card-terra{background:var(--terradim);border-color:var(--terrabdr)}
+
+.stat-hero{display:flex;flex-direction:column;gap:2px;padding:26px 28px;background:var(--surface);border-radius:22px;border:1px solid var(--border)}
+.stat-hero .big{font-family:var(--fh);font-weight:800;font-size:clamp(40px,6.5vw,72px);line-height:1;color:var(--goldl)}
+.stat-hero .unit{font-family:var(--fh);font-size:clamp(18px,2.6vw,28px);font-weight:700;color:var(--gold)}
+.stat-hero .lbl{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.stat-hero.terra .big{color:var(--terral)}
+
+.tag{font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:999px;border:1px solid;display:inline-block}
+.tg{border-color:var(--goldbdr);color:var(--goldl);background:var(--golddim)}
+.tt{border-color:var(--terrabdr);color:var(--terral);background:var(--terradim)}
+.tm{border-color:var(--border);color:var(--muted);background:transparent}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+
+.pillar{padding:30px 26px;border:1px solid var(--border);border-radius:24px;background:var(--surface);display:flex;flex-direction:column;gap:14px;height:100%;position:relative;overflow:hidden}
+.pillar::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:24px 24px 0 0}
+.pl1::before{background:linear-gradient(90deg,var(--gold),transparent)}
+.pl2::before{background:linear-gradient(90deg,var(--terra),transparent)}
+.pl3::before{background:linear-gradient(90deg,var(--stone),transparent)}
+.pnum{font-family:var(--fh);font-weight:800;font-size:56px;line-height:1;opacity:.08;position:absolute;top:10px;right:18px}
+
+.blist{display:flex;flex-direction:column;gap:7px}
+.blist li{list-style:none;font-size:13px;color:rgba(246,240,228,.68);padding-left:18px;position:relative;line-height:1.6}
+.blist li::before{content:'—';position:absolute;left:0;color:var(--goldl)}
+
+.ci{border:1px solid var(--border);border-radius:20px;padding:20px 18px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;background:var(--surface)}
+.ci-g{border-color:var(--goldbdr);background:var(--golddim)}
+.ci-t{border-color:var(--terrabdr);background:var(--terradim)}
+.ci-num{font-family:var(--fh);font-weight:800;font-size:46px;color:rgba(255,255,255,.06);line-height:1;position:absolute;bottom:-6px;right:10px}
+.ci-title{font-family:var(--fh);font-weight:700;font-size:13.5px;line-height:1.35;color:var(--cream)}
+.ci-desc{font-size:11.5px;color:var(--muted);line-height:1.55}
+
+.crow{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:center;padding:18px 20px;border:1px solid var(--border);border-radius:18px;background:var(--surface);transition:all .3s}
+.crow:hover{background:var(--golddim);border-color:var(--goldbdr)}
+.crow-icon{font-size:24px;text-align:center}
+
+.why{padding:30px 24px;border:1px solid var(--border);border-radius:22px;background:var(--surface);text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;transition:all .3s}
+.why:hover{background:var(--golddim);border-color:var(--goldbdr);transform:translateY(-3px)}
+.why-icon{font-size:34px}
+
+.brow{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.05)}
+.brow:hover{background:rgba(255,255,255,.02)}
+.brow-amt{font-family:var(--fh);font-weight:700;font-size:17px;color:var(--cream);white-space:nowrap}
+.brow-plain{padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column;gap:3px}
+.brow-plain:hover{background:rgba(255,255,255,.02)}
+
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cday-h{font-size:9px;font-weight:600;letter-spacing:.08em;color:var(--muted);text-align:center;padding:4px 0;text-transform:uppercase}
+.cday{aspect-ratio:1;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;background:rgba(255,255,255,.03);color:var(--muted)}
+.cday.e{background:transparent}
+.cday.tt{background:var(--terradim);color:var(--cream);border:1px solid var(--terrabdr)}
+.cday.gd{background:var(--golddim);color:var(--cream);border:1px solid var(--goldbdr)}
+.cday.sh{background:rgba(240,165,0,.28);color:var(--goldl);border:1px solid var(--gold);font-weight:800}
+
+.persona{border:1px solid var(--border);border-radius:24px;padding:30px;height:100%;display:flex;flex-direction:column;gap:12px;background:var(--surface);position:relative;overflow:hidden}
+.persona::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:24px 24px 0 0}
+.pg::before{background:linear-gradient(90deg,var(--gold),transparent)}
+.pt::before{background:linear-gradient(90deg,var(--terra),transparent)}
+.ps::before{background:linear-gradient(90deg,var(--stone),transparent)}
+.p-icon{font-size:32px}
+.p-age{font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.svc-i{display:flex;align-items:center;gap:10px;padding:14px 16px;border:1px solid var(--border);border-radius:16px;background:var(--surface);font-family:var(--fh);font-weight:600;font-size:12.5px;transition:all .3s}
+.svc-i:hover{border-color:var(--goldbdr);background:var(--golddim);transform:translateY(-2px)}
+.svc-i .ico{font-size:18px;flex-shrink:0}
+
+.timeline{display:flex;flex-direction:column;gap:0}
+.trow{display:flex;gap:0;align-items:stretch}
+.tdot-col{display:flex;flex-direction:column;align-items:center;margin-right:18px}
+.tdot{width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:4px}
+.tline{flex:1;width:1px;background:var(--goldbdr)}
+.tbody{padding-bottom:20px;flex:1}
+.ttime{font-family:var(--fh);font-weight:700;font-size:13px;color:var(--goldl)}
+.tdesc{font-size:13px;color:rgba(246,240,228,.68);margin-top:2px}
+
+/* audit compare rows */
+.audit-row{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);border-radius:18px;overflow:hidden;margin-bottom:10px}
+.audit-cell{padding:18px 22px;display:flex;flex-direction:column;gap:4px}
+.audit-cell.now{background:var(--terradim);border-right:1px solid var(--border)}
+.audit-cell.goal{background:var(--golddim)}
+.audit-lbl{font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.audit-val{font-family:var(--fh);font-weight:700;font-size:14px;color:var(--cream)}
+
+/* progress meter */
+.meter{flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.meter-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--goldl));width:0;transition:width 1.4s cubic-bezier(.16,1,.3,1)}
+
+/* cover */
+#s1{min-height:100vh;display:flex;align-items:center;background:radial-gradient(ellipse 65% 75% at 18% 42%,rgba(240,165,0,.1) 0%,transparent 55%),radial-gradient(ellipse 55% 65% at 88% 78%,rgba(217,96,59,.09) 0%,transparent 50%),var(--bg);overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(2px);opacity:.5;animation:drift 22s ease-in-out infinite}
+.b1{width:420px;height:420px;top:-120px;right:-100px;background:radial-gradient(circle,rgba(240,165,0,.16),transparent 70%);animation-duration:26s}
+.b2{width:320px;height:320px;bottom:-80px;left:-60px;background:radial-gradient(circle,rgba(217,96,59,.14),transparent 70%);animation-duration:19s;animation-delay:-6s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-24px) scale(1.08)}}
+.cover-tag{display:flex;align-items:center;gap:12px;margin-bottom:30px}
+.cover-tag-line{width:44px;height:1px;background:var(--gold)}
+.cover-tag-text{font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--goldl)}
+.cover-title{font-family:var(--fh);font-weight:800;font-size:clamp(50px,8.6vw,116px);line-height:.94;letter-spacing:-.02em;color:var(--cream);margin-bottom:8px}
+.cover-partner{font-size:clamp(13px,1.6vw,18px);letter-spacing:.05em;color:rgba(246,240,228,.5);margin-bottom:44px;display:flex;align-items:center;gap:14px}
+.cover-bottom{display:flex;align-items:center;flex-wrap:wrap;gap:0;border-top:1px solid var(--border);padding-top:30px;margin-top:14px}
+.cover-pill{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--goldl);padding:10px 26px;border:1px solid var(--goldbdr);border-radius:999px;white-space:nowrap;background:var(--golddim)}
+.cover-sep{width:1px;height:40px;background:var(--border);margin:0 30px;flex-shrink:0}
+.cover-meta-lbl{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.cover-meta-val{font-family:var(--fh);font-weight:700;font-size:15px;color:var(--cream)}
+
+#s18{background:radial-gradient(ellipse 75% 75% at 82% 45%,rgba(240,165,0,.12) 0%,transparent 55%),var(--bg)}
+
+@media(max-width:768px){
+  body{padding-top:50px}
+  #topbar{padding:10px 14px}
+  .tb-links,.tb-sec{display:none}
+  .tb-word{font-size:12.5px}
+  .tb-x,.tb-word-sub{display:none}
+  #s1{min-height:auto!important;padding-top:20px}
+  .inner{padding:56px 20px}
+  .g2,.g3,.g4,.split{grid-template-columns:1fr!important}
+  .svc{grid-template-columns:1fr 1fr!important}
+  .audit-row{grid-template-columns:1fr!important}
+  .audit-cell.now{border-right:none;border-bottom:1px solid var(--border)}
+  .cover-tag{flex-direction:column;align-items:flex-start!important;gap:16px}
+  .cover-bottom{flex-direction:column;align-items:flex-start;gap:14px}
+  .cover-sep{display:none}
+  .blob{display:none}
+  .cal-2col{grid-template-columns:1fr!important}
+  .cal-divider{display:none!important}
+  .cal-stats{flex-direction:row!important;flex-wrap:wrap}
+  .h-title{font-size:clamp(24px,6vw,38px)!important}
+  .lang-toggle-cover .lang-btn{padding:10px 20px;font-size:12px}
+}
+@media(max-width:480px){
+  .svc{grid-template-columns:1fr!important}
+  .g4{grid-template-columns:1fr 1fr!important}
+}
+</style>
+</head>
+<body>
+
+<svg style="display:none" aria-hidden="true"><symbol id="ub" viewBox="0 0 3000 3000"><g transform="translate(0,3000) scale(.1,-.1)" fill="currentColor"><path d="M9905 28027 c-159 -56 -271 -138 -348 -255 -103 -155 -128 -357 -67 -541 27 -81 68 -146 185 -291 179 -223 692 -868 830 -1043 77 -98 184 -233 238 -300 115 -143 156 -193 275 -342 174 -217 580 -723 720 -896 78 -97 142 -183 142 -191 0 -8 -51 -58 -113 -111 -183 -155 -421 -408 -598 -637 -83 -107 -257 -363 -339 -499 -133 -221 -311 -614 -384 -846 -67 -216 -99 -326 -116 -411 -5 -27 -17 -78 -25 -114 -8 -36 -26 -150 -39 -255 -59 -462 -57 -744 10 -1153 8 -51 17 -99 20 -106 9 -24 -21 -33 -141 -44 -405 -38 -1447 -185 -1825 -258 -41 -8 -100 -19 -130 -24 -317 -58 -954 -195 -1160 -249 -41 -11 -235 -60 -430 -109 -195 -50 -402 -103 -460 -120 -58 -16 -118 -33 -135 -36 -119 -26 -933 -303 -1145 -389 -47 -19 -182 -74 -300 -122 -118 -48 -235 -96 -260 -107 -25 -12 -65 -30 -90 -41 -231 -103 -730 -366 -849 -446 -14 -10 -107 -71 -206 -136 -610 -401 -1029 -783 -1456 -1330 -364 -466 -669 -1068 -854 -1685 -49 -164 -120 -480 -150 -665 -8 -55 -20 -127 -25 -160 -29 -186 -54 -516 -54 -730 -1 -206 28 -570 63 -810 102 -686 313 -1317 641 -1915 122 -221 294 -479 484 -725 259 -336 709 -777 1059 -1040 128 -97 410 -284 542 -360 91 -53 487 -255 499 -255 3 0 34 -13 68 -29 336 -153 684 -261 1158 -360 317 -66 693 -101 1085 -101 420 0 785 42 1185 136 157 37 194 46 370 94 173 47 476 156 633 229 37 17 69 31 71 31 4 0 144 65 335 156 74 36 140 63 147 60 7 -2 20 -49 29 -103 46 -264 83 -431 129 -593 92 -318 194 -658 205 -679 5 -9 23 -57 39 -106 33 -97 218 -561 273 -685 101 -229 373 -748 516 -985 195 -324 480 -708 767 -1035 565 -641 1369 -1226 2106 -1532 926 -385 1882 -497 2830 -332 47 8 109 19 139 24 228 39 755 202 968 300 24 11 45 20 49 20 9 0 358 173 451 224 78 42 183 103 228 133 369 242 532 361 796 582 85 71 359 323 383 353 11 13 60 68 110 123 310 340 486 567 731 939 73 111 140 215 149 231 9 17 27 46 39 66 133 214 348 630 489 949 16 36 33 74 38 85 135 296 397 1078 490 1460 48 202 100 468 100 521 0 16 6 38 13 47 11 16 24 11 152 -52 140 -69 334 -161 340 -161 2 0 36 -15 77 -34 40 -18 105 -47 143 -64 302 -132 884 -289 1279 -347 314 -45 382 -49 811 -50 450 0 511 5 845 61 487 83 978 226 1327 385 674 308 1088 581 1599 1055 347 321 647 686 931 1130 415 649 695 1443 798 2259 33 260 39 371 39 680 0 386 -12 535 -75 923 -43 266 -137 631 -238 917 -48 139 -57 161 -92 242 -11 24 -19 45 -19 47 0 9 -76 169 -162 341 -164 327 -362 633 -583 900 -202 245 -251 300 -384 435 -466 471 -1121 924 -1858 1286 -116 57 -214 104 -217 104 -3 0 -34 13 -70 30 -115 52 -457 190 -626 252 -91 33 -201 73 -244 90 -194 73 -713 239 -901 288 -66 17 -163 43 -215 57 -52 14 -111 29 -130 33 -19 4 -136 33 -260 65 -124 31 -270 67 -325 80 -55 12 -172 40 -260 60 -166 38 -322 72 -485 105 -445 91 -608 121 -790 150 -74 11 -205 31 -290 45 -85 13 -256 38 -380 55 -124 17 -252 35 -285 40 -63 10 -81 12 -498 60 -142 16 -263 32 -268 36 -6 3 -8 17 -4 31 30 123 65 486 65 688 0 262 -34 607 -81 825 -12 52 -25 113 -29 135 -12 52 -51 197 -84 305 -109 364 -303 775 -534 1135 -89 138 -305 423 -409 542 -111 125 -320 330 -428 419 -46 38 -84 76 -84 84 0 8 30 52 67 96 37 45 93 115 125 155 133 170 764 959 907 1134 86 105 188 231 227 280 39 50 142 180 230 291 143 181 232 292 476 593 263 322 276 339 316 420 47 93 62 162 63 291 1 186 -51 319 -173 440 -147 147 -413 225 -602 176 -167 -44 -266 -118 -433 -326 -33 -41 -118 -147 -189 -235 -71 -88 -179 -221 -239 -295 -61 -74 -190 -234 -287 -355 -208 -261 -752 -944 -958 -1204 -80 -101 -182 -229 -227 -285 -103 -128 -315 -398 -357 -453 -18 -23 -38 -45 -46 -48 -7 -3 -47 10 -90 29 -335 151 -820 290 -1201 345 -270 39 -379 45 -735 45 -436 0 -649 -20 -1020 -95 -275 -56 -658 -182 -909 -298 -86 -40 -90 -41 -106 -24 -15 16 -263 326 -765 958 -87 110 -256 321 -375 469 -118 148 -262 328 -320 401 -124 157 -500 624 -626 778 -49 60 -102 128 -119 151 -99 139 -264 313 -349 368 -90 58 -170 80 -306 84 -108 3 -120 1 -205 -29z m4045 -9640 c0 -8 -9 -40 -19 -73 -11 -32 -31 -104 -46 -159 -27 -100 -109 -378 -125 -425 -5 -14 -25 -79 -46 -145 -121 -394 -288 -833 -460 -1213 -13 -29 -24 -54 -24 -57 0 -2 -16 -38 -35 -79 -19 -42 -35 -78 -35 -80 0 -2 -27 -61 -60 -131 -33 -70 -60 -129 -60 -131 0 -7 -232 -470 -273 -546 -19 -35 -72 -133 -117 -218 -45 -85 -125 -229 -178 -320 -52 -91 -113 -196 -135 -235 -175 -306 -536 -868 -738 -1152 -239 -335 -675 -891 -889 -1133 -451 -511 -1063 -1088 -1464 -1380 -48 -36 -120 -89 -160 -118 -195 -143 -502 -339 -721 -460 -426 -234 -979 -455 -1305 -522 -25 -5 -79 -17 -120 -25 -239 -52 -363 -66 -615 -72 -356 -8 -563 12 -903 87 -220 48 -346 86 -532 157 -148 57 -369 163 -498 240 -41 24 -76 43 -79 43 -2 0 -66 41 -141 91 -572 383 -1008 906 -1315 1577 -96 209 -182 478 -247 772 -17 79 -40 257 -52 398 -12 154 -5 606 12 717 5 39 15 104 21 145 46 325 134 593 329 995 147 303 276 493 523 772 315 356 668 615 1309 962 152 82 360 182 528 253 52 22 109 46 125 53 255 108 570 220 870 310 50 15 101 31 115 36 14 4 61 18 105 30 44 12 112 30 150 41 75 21 87 24 210 58 315 85 926 228 1290 301 28 5 95 19 150 30 55 12 145 29 200 39 55 10 186 35 290 55 215 41 591 104 800 134 77 12 201 30 275 41 476 73 1061 137 1895 210 66 6 194 17 285 25 212 18 647 49 1065 75 706 43 845 48 845 27z m2410 2 c863 -43 1769 -111 2485 -185 132 -13 284 -29 337 -34 391 -38 803 -93 1278 -170 69 -11 152 -24 185 -30 183 -29 254 -41 390 -64 83 -15 197 -36 255 -47 58 -11 155 -29 215 -40 162 -28 589 -119 940 -201 121 -28 236 -54 255 -58 54 -11 411 -105 570 -150 355 -100 834 -252 1040 -330 47 -18 110 -41 140 -52 30 -12 123 -50 205 -86 83 -35 184 -79 225 -97 196 -85 616 -308 805 -428 500 -317 931 -721 1188 -1114 266 -408 464 -904 542 -1358 40 -232 55 -593 35 -842 -49 -604 -268 -1231 -618 -1768 -275 -423 -600 -749 -1016 -1020 -151 -99 -191 -121 -381 -215 -378 -186 -654 -272 -1145 -357 -147 -25 -173 -27 -490 -27 -402 -1 -510 12 -920 110 -662 159 -1350 502 -2040 1018 -207 154 -292 223 -500 405 -594 520 -915 862 -1503 1598 -258 324 -491 644 -688 948 -199 305 -234 362 -404 650 -65 110 -145 245 -178 300 -139 230 -519 966 -675 1306 -40 86 -102 228 -138 315 -36 88 -74 178 -85 201 -26 57 -140 350 -201 513 -75 202 -218 641 -252 770 -8 30 -44 159 -80 286 -36 127 -66 239 -66 248 0 20 5 20 290 5z m-1306 -2881 c68 -162 170 -391 246 -553 73 -155 251 -512 311 -625 28 -52 78 -147 111 -210 125 -236 291 -517 445 -753 46 -70 83 -132 83 -138 0 -13 -2477 -12 -2485 2 -4 5 15 42 43 82 108 157 294 477 427 732 90 174 170 326 230 440 105 196 244 482 352 720 70 154 163 374 163 385 0 6 8 10 18 10 12 0 28 -25 56 -92z m2613 -4257 c23 -25 81 -93 129 -151 147 -180 329 -372 706 -745 351 -349 460 -451 638 -600 46 -38 105 -90 132 -113 47 -43 47 -44 41 -95 -15 -141 -119 -747 -130 -758 -4 -4 -1883 -9 -4175 -11 -3338 -2 -4169 0 -4180 10 -7 7 -17 54 -24 105 -6 50 -22 142 -34 202 -31 159 -38 203 -57 369 l-17 148 45 42 c25 22 101 90 169 150 187 163 340 306 485 451 368 367 666 680 808 847 86 102 163 189 170 192 6 2 1191 5 2632 4 l2620 0 42 -47z m813 -4417 c0 -22 -130 -262 -232 -428 -558 -910 -1386 -1647 -2158 -1921 -197 -70 -354 -113 -530 -149 -241 -47 -275 -51 -565 -51 -262 0 -290 2 -439 28 -305 54 -478 105 -781 231 -216 89 -507 261 -739 435 -584 440 -971 898 -1415 1676 -50 89 -91 168 -91 178 0 16 200 17 3475 17 3216 0 3475 -1 3475 -16z"/></g></symbol></svg>
+
+<div id="progress"></div>
+
+<header id="topbar">
+  <div class="tb-logo">
+    <svg width="20" height="20" viewBox="0 0 3000 3000" style="color:var(--goldl);flex-shrink:0"><use href="#ub"/></svg>
+    <span class="tb-word">UniqBee</span>
+    <span class="tb-x">×</span>
+    <span class="tb-word tb-word-sub">Kafro's Pizzeria</span>
+  </div>
+  <div class="tb-right">
+    <div class="tb-sec" id="sec-ctr">Marka Ortaklığı Sunumu <strong>2026</strong></div>
+    <div class="tb-links"><a href="https://www.uniqbee.com" target="_blank">uniqbee.com</a></div>
+    <div class="lang-toggle" id="langToggle">
+      <button type="button" class="lang-btn active" data-lang="tr">TR</button>
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- S1 KAPAK -->
+<section class="sec" id="s1">
+<div class="blob b1"></div><div class="blob b2"></div>
+<div class="inner">
+  <div class="cover-tag reveal" style="justify-content:space-between;width:100%">
+    <div style="display:flex;align-items:center;gap:12px"><div class="cover-tag-line"></div><div class="cover-tag-text" data-en="Brand Partnership Proposal — 2026">Marka Ortaklığı Teklifi — 2026</div></div>
+    <div class="lang-toggle lang-toggle-cover">
+      <button type="button" class="lang-btn active" data-lang="tr">TR</button>
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
+  <div class="cover-title reveal r2">KAFRO'S<br><span style="color:var(--goldl)">PIZZERIA</span></div>
+  <div class="cover-partner reveal r3">
+    <span>×</span>
+    <svg width="24" height="24" viewBox="0 0 3000 3000" style="color:var(--goldl);opacity:.9"><use href="#ub"/></svg>
+    <span>UniqBee Digital Agency</span>
+  </div>
+  <div class="cover-bottom reveal r4">
+    <div class="cover-pill">Elbeğendi (Kafro) · Midyat · Mardin</div>
+    <div class="cover-sep"></div>
+    <div><div class="cover-meta-lbl" data-en="Prepared by">Hazırlayan</div><div class="cover-meta-val">UniqBee Digital Agency</div></div>
+    <div class="cover-sep"></div>
+    <div><div class="cover-meta-lbl" data-en="Website">Web</div><div class="cover-meta-val" style="color:var(--goldl)">uniqbee.com</div></div>
+  </div>
+</div>
+</section>
+
+<!-- S2 KAFRO'S KİM -->
+<section class="sec" id="s2">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="Brand Story">Marka Hikayesi</div>
+  <div class="h-title reveal r2" data-en="A Village's Diaspora Story Became<br><span class='gold'>Turkey's &ldquo;Pizza Village&rdquo;</span>">Bir Köyün Diaspora Hikayesinden<br>Doğan <span class="gold">Türkiye'nin "Pizza Köyü"</span></div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1.3fr;gap:36px;align-items:start" class="reveal r3 split">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="stat-hero"><div><span class="big">2010</span></div><div class="lbl" data-en="Founding Year — Nail Demir">Kuruluş Yılı — Nail Demir</div></div>
+      <div class="stat-hero terra"><div><span class="big">~15</span></div><div class="lbl" data-en="Households — Small Assyrian Village">Haneli Küçük Süryani Köyü</div></div>
+      <div class="stat-hero"><div><span class="big">30.5K</span></div><div class="lbl" data-en="Instagram Followers">Instagram Takipçisi</div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <p class="body" data-en="Kafro — known in Turkish as Elbeğendi — is an Assyrian village in the Turabdin region near Midyat, at the foot of Bagok Mountain. Families who emigrated to Europe (Germany, Switzerland) in the 1970s–90s due to regional pressure began returning from the mid-2000s onward, rebuilding the village with stone villas. Today it's one of the most modern, well-planned villages in the region.">Kafro — Türkçe adıyla Elbeğendi — Midyat'ta Turabdin bölgesinde, Bagok Dağı eteklerinde kurulu bir Süryani köyü. 1970'ler-1990'lar arasında bölgedeki baskılar yüzünden Avrupa'ya (Almanya, İsviçre) göç eden aileler, 2000'lerin ortasından itibaren memleketlerine geri dönüp köyü taş villalarla yeniden inşa etti. Bugün bölgenin en modern, en düzenli köylerinden biri.</p>
+      <p class="body" data-en="After many years living in Europe, <strong style='color:var(--cream)'>Nail Demir</strong> brought the Italian pizza craft he learned there back to his village and opened Kafro's Pizzeria in 2010. Thin crust baked in a wood-fired stone oven meets local ingredients (including kenger) — a fusion that earned the village the title &ldquo;Turkey's Pizza Village.&rdquo;">Uzun yıllar Avrupa'da yaşayan <strong style="color:var(--cream)">Nail Demir</strong>, orada öğrendiği İtalyan pizza ustalığını köyüne taşıdı ve 2010'da Kafro's Pizzeria'yı açtı. Odun ateşli taş fırında pişen ince hamur, yöresel malzemelerle (kenger dahil) buluşuyor — bu füzyon köyü "Türkiye'nin Pizza Köyü" unvanına taşıdı.</p>
+      <div class="svc">
+        <div class="svc-i"><span class="ico">🔥</span><span data-en="Wood-Fired Stone Oven">Odun Ateşli Taş Fırın</span></div>
+        <div class="svc-i"><span class="ico">🍕</span><span data-en="Thin Crust — Italian Style">İnce Hamur — İtalyan Usulü</span></div>
+        <div class="svc-i"><span class="ico">🌿</span><span data-en="Local Ingredients (Kenger, etc.)">Yöresel Malzeme (Kenger vs.)</span></div>
+        <div class="svc-i"><span class="ico">⛪</span><span data-en="Assyrian Village Character">Süryani Köy Dokusu</span></div>
+        <div class="svc-i"><span class="ico">🏛️</span><span data-en="Stone Villa Architecture">Taş Villa Mimarisi</span></div>
+        <div class="svc-i"><span class="ico">🌍</span><span data-en="Multilingual Team (DE·KU·AR·TR)">Çok Dilli Ekip (DE·KU·AR·TR)</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- S3 DİJİTAL DENETİM -->
+<section class="sec" id="s3">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="Digital Presence Audit">Dijital Varlık Denetimi</div>
+  <div class="h-title reveal r2" data-en="The Brand Is Famous — <span class='terra'>But the Digital Infrastructure Doesn't Show It</span>">Marka Ünlü — <span class="terra">Ama Dijital Altyapı Bunu Yansıtmıyor</span></div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <p class="body reveal r2" style="max-width:680px;margin-bottom:24px" data-en="Our research shows Kafro's Pizzeria is a rare brand: widely known organically, yet with serious gaps in its corporate digital presence. The current findings are below.">Araştırmamız, Kafro's Pizzeria'nın organik olarak çok tanınan ama kurumsal dijital varlık açısından ciddi boşlukları olan nadir bir marka olduğunu gösteriyor. Aşağıda güncel bulgular yer alıyor.</p>
+  <div class="reveal r3">
+    <div class="audit-row">
+      <div class="audit-cell now"><div class="audit-lbl" data-en="📸 Instagram — Right Now">📸 Instagram — Şu An</div><div class="audit-val" data-en="30.5K followers · Only ~16 posts · Months of silence (gap from Oct '24 to Dec '25)">30.5K takipçi · Sadece ~16 paylaşım · Aylar süren sessizlik (paylaşımlar arası Ekim '24 → Aralık '25 boşluğu)</div></div>
+      <div class="audit-cell goal"><div class="audit-lbl" data-en="🎯 What It Should Be">🎯 Olması Gereken</div><div class="audit-val" data-en="A weekly, consistent Reels + post flow — a content engine that actively turns the 30K audience into visits and reservations">Haftalık düzenli Reels + post akışı, 30K'lık kitleyi aktif olarak satışa ve rezervasyona çeviren bir içerik motoru</div></div>
+    </div>
+    <div class="audit-row">
+      <div class="audit-cell now"><div class="audit-lbl" data-en="🎥 TikTok — Right Now">🎥 TikTok — Şu An</div><div class="audit-val" data-en="No official brand account; gone viral entirely organically through dozens of traveler/food-blogger videos, with zero brand control">Markanın kendi hesabı yok; onlarca gezgin/food-blogger videosuyla tamamen organik / kontrolsüz viral olmuş</div></div>
+      <div class="audit-cell goal"><div class="audit-lbl" data-en="🎯 What It Should Be">🎯 Olması Gereken</div><div class="audit-val" data-en="An official TikTok channel that steers the viral wave and tells the story correctly">Kendi TikTok hesabı ile viral dalgayı yönlendiren, hikayeyi doğru anlatan resmi kanal</div></div>
+    </div>
+    <div class="audit-row">
+      <div class="audit-cell now"><div class="audit-lbl" data-en="🌐 Website — Right Now">🌐 Web Sitesi — Şu An</div><div class="audit-val" data-en="Built on Wix, dated © 2022, Turkish only; an &ldquo;en.&rdquo; subdomain exists but has no real English content; no online ordering/reservations">Wix altyapılı, © 2022 tarihli, yalnızca Türkçe; "en." alt alan adı var ama gerçek İngilizce içerik yok; online sipariş/rezervasyon yok</div></div>
+      <div class="audit-cell goal"><div class="audit-lbl" data-en="🎯 What It Should Be">🎯 Olması Gereken</div><div class="audit-val" data-en="A fast, bilingual TR/EN modern site with a reservation form and proper SEO/GEO structure">Hızlı, TR/EN çift dilli, rezervasyon formlu, SEO/GEO yapılı modern site</div></div>
+    </div>
+    <div class="audit-row">
+      <div class="audit-cell now"><div class="audit-lbl" data-en="⭐ Reviews — Right Now">⭐ Yorumlar — Şu An</div><div class="audit-val" data-en="TripAdvisor 3.4/5 (138 reviews, #11 of 48 in Midyat); recurring complaints: 2-hour waits, perceived skimpy toppings">TripAdvisor 3.4/5 (138 yorum, Midyat'ta 48 içinde #11); tekrarlayan şikayet: 2 saatlik bekleme, malzeme cimriliği algısı</div></div>
+      <div class="audit-cell goal"><div class="audit-lbl" data-en="🎯 What It Should Be">🎯 Olması Gereken</div><div class="audit-val" data-en="Actively managed reputation that responds to reviews, sets expectations, and raises the average rating">Aktif yanıtlanan, beklenti yönetimi yapan, ortalamayı yükselten bir itibar yönetimi</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- S4 POTANSİYEL -->
+<section class="sec" id="s4">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="Opportunity & Potential">Fırsat & Potansiyel</div>
+  <div class="h-title reveal r2" data-en="A Rare Situation: <span class='gold'>Demand Has Already Outpaced Supply</span>">Nadir Görülen Bir Durum: <span class="gold">Talep Arzı Çoktan Geçmiş</span></div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div class="g3 reveal r3">
+    <div class="pillar pl1">
+      <div class="pnum">01</div>
+      <div class="h-sub" style="color:var(--goldl)" data-en="🚀 An Organic Viral Foundation">🚀 Organik Viral Zemin</div>
+      <p class="body" style="font-size:13px" data-en="Kafro's is already known nationwide through dozens of influencer/traveler videos on TikTok — without a single agency campaign. That's a far more valuable starting point than building an audience from zero.">Kafro's, hiçbir ajans çalışması olmadan TikTok'ta düzinelerce influencer/gezgin videosuyla ulusal çapta tanınıyor. Bu, sıfırdan kitle inşa etmekten çok daha değerli bir başlangıç noktası.</p>
+    </div>
+    <div class="pillar pl2">
+      <div class="pnum">02</div>
+      <div class="h-sub" style="color:var(--terral)" data-en="🤖 Already Present in AI Search Engines">🤖 AI Arama Motorlarında Zaten Var</div>
+      <p class="body" style="font-size:13px" data-en="The brand is already referenced by sources ChatGPT and travel sites like Mindtrip AI and TripAdvisor draw on — but the underlying data is old and incomplete. With accurate, current content, this position can be turned in the brand's favor.">Mindtrip AI, ChatGPT'nin referans aldığı gezi siteleri ve TripAdvisor gibi kaynaklarda marka zaten anılıyor — ama kaynak veri eski/eksik. Doğru, güncel içerikle bu konumu markanın lehine çevirmek mümkün.</p>
+    </div>
+    <div class="pillar pl3">
+      <div class="pnum">03</div>
+      <div class="h-sub" style="color:var(--cream)" data-en="📖 A One-of-a-Kind Story">📖 Eşi Benzeri Olmayan Hikaye</div>
+      <p class="body" style="font-size:13px" data-en="Assyrian diaspora return + Italian pizza craft + Mesopotamian ingredients — a brand that naturally lends itself to press, documentary and long-form content.">Süryani diaspora dönüşü + İtalyan pizza ustalığı + Mezopotamya malzemeleri füzyonu — basın, belgesel ve uzun-format içerik için doğal olarak "anlatılası" bir marka.</p>
+    </div>
+  </div>
+  <div class="g3 reveal r4" style="margin-top:18px">
+    <div class="card card-terra" style="text-align:center"><div style="font-family:var(--fh);font-weight:800;font-size:32px;color:var(--terral)" data-en="2 HOURS">2 SAAT</div><div class="small" style="margin-top:6px" data-en="Reported wait time on busy days — excess demand that can be turned into experience design">Yoğun günlerde bildirilen bekleme süresi — talep fazlası deneyime dönüştürülebilir bir fırsat</div></div>
+    <div class="card card-gold" style="text-align:center"><div style="font-family:var(--fh);font-weight:800;font-size:32px;color:var(--goldl)">30.5K</div><div class="small" style="margin-top:6px" data-en="Ready-made Instagram audience that's almost never actively used">Neredeyse hiç aktif kullanılmayan hazır Instagram kitlesi</div></div>
+    <div class="card" style="text-align:center"><div style="font-family:var(--fh);font-weight:800;font-size:32px;color:var(--cream)">0</div><div class="small" style="margin-top:6px" data-en="Competing brands that have genuinely claimed the &ldquo;Mardin + gourmet pizza&rdquo; position today">Rakip markanın "Mardin + gurme pizza" konumunu bugün gerçek anlamda sahiplenmiş olması</div></div>
+  </div>
+</div>
+</section>
+
+<!-- S5 HEDEF KİTLE -->
+<section class="sec" id="s5">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="Target Audience">Hedef Kitle</div>
+  <div class="h-title reveal r2" data-en="3 Core Visitor Profiles">3 Temel Ziyaretçi Profili</div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div class="g3 reveal r3">
+    <div class="persona pg">
+      <div class="p-icon">📸</div>
+      <div class="h-card" style="color:var(--goldl)" data-en="Traveler & Content Hunter">Gezgin & İçerik Avcısı</div>
+      <div class="p-age" data-en="20–40 · Active on TikTok/Instagram">20–40 Yaş · TikTok/Instagram Aktif</div>
+      <ul class="blist">
+        <li data-en="Arrives via Explore pages and travel accounts">"Keşfet" ve seyahat hesaplarından geliyor</li>
+        <li data-en="Visits to shoot photos and videos">Fotoğraf/video paylaşmak için ziyaret ediyor</li>
+        <li data-en="Sensitive to wait time and overall experience">Bekleme süresine ve deneyime duyarlı</li>
+        <li data-en="Drawn to the story and village character">Hikaye ve köy dokusuna ilgi duyuyor</li>
+      </ul>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px"><span class="tag tg">Reels</span><span class="tag tg">UGC</span></div>
+    </div>
+    <div class="persona pt">
+      <div class="p-icon">✈️</div>
+      <div class="h-card" style="color:var(--terral)" data-en="Foreign Tourist & Diaspora">Yabancı Turist & Diaspora</div>
+      <div class="p-age" data-en="Finds via TripAdvisor/AI Search">TripAdvisor/AI Arama ile Buluyor</div>
+      <ul class="blist">
+        <li data-en="Touring Mardin along the Turabdin monastery route">Turabdin manastır rotasında Mardin'i geziyor</li>
+        <li data-en="Looking for content and information in English/German">İngilizce/Almanca içerik ve bilgi arıyor</li>
+        <li data-en="May have an Assyrian diaspora connection">Süryani diaspora bağlantısı kurabiliyor</li>
+        <li data-en="Needs a reservation option and clear hours">Rezervasyon ve net saat bilgisine ihtiyaç duyuyor</li>
+      </ul>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px"><span class="tag tt">Web/EN</span><span class="tag tt">GEO</span></div>
+    </div>
+    <div class="persona ps">
+      <div class="p-icon">👨‍👩‍👧</div>
+      <div class="h-card" style="color:var(--cream)" data-en="Local & Family Visitors">Bölge Halkı & Aile Ziyaretçisi</div>
+      <div class="p-age" data-en="Mardin/Midyat & Surroundings">Mardin/Midyat ve Çevresi</div>
+      <ul class="blist">
+        <li data-en="Chooses it for weekend family outings">Hafta sonu aile gezisi için tercih ediyor</li>
+        <li data-en="Sensitive to price/value perception">Fiyat/değer algısına duyarlı</li>
+        <li data-en="Comes through word of mouth">Ağızdan ağıza tavsiyeyle geliyor</li>
+        <li data-en="Reads Google reviews before deciding">Google yorumlarını okuyup karar veriyor</li>
+      </ul>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px"><span class="tag tm">Google</span><span class="tag tm" data-en="Local">Yerel</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- S6 HİZMET KAPSAMI -->
+<section class="sec" id="s6">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="Scope of Services">Hizmet Kapsamı</div>
+  <div class="h-title reveal r2" data-en="UniqBee's End-to-End<br><span class='gold'>Responsibility for Kafro's</span>">UniqBee'nin Kafro's İçin<br><span class="gold">Uçtan Uca Sorumluluğu</span></div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div class="g3 reveal r3">
+    <div class="card"><div style="font-size:28px;margin-bottom:12px">📷</div><div class="h-card" style="margin-bottom:6px" data-en="Product & Menu Photography">Ürün & Menü Fotoğraf Çekimi</div><p class="small" data-en="Professional, consistent, appetite-inducing reshoots of pizza, meze and venue visuals.">Pizza, meze ve mekan görsellerinin profesyonel, tutarlı ve iştah açıcı şekilde yeniden çekimi.</p></div>
+    <div class="card"><div style="font-size:28px;margin-bottom:12px">🎬</div><div class="h-card" style="margin-bottom:6px" data-en="Social Media Reels Production">Sosyal Medya Reels Çekimi</div><p class="small" data-en="Short-video production centered on the oven, the dough, the village and the story — including editing and music.">Fırın, hamur, köy ve hikaye odaklı kısa video prodüksiyonu — kurgu ve müzikle birlikte.</p></div>
+    <div class="card"><div style="font-size:28px;margin-bottom:12px">🎨</div><div class="h-card" style="margin-bottom:6px" data-en="Content & Post Design">İçerik & Post Tasarımı</div><p class="small" data-en="Carousel, story and feed designs matched to the brand voice, with copy and hashtag strategy.">Marka diline uygun carousel, story ve feed tasarımları; metin ve hashtag stratejisiyle birlikte.</p></div>
+    <div class="card"><div style="font-size:28px;margin-bottom:12px">🌐</div><div class="h-card" style="margin-bottom:6px" data-en="New Website (One-Time)">Yeni Web Sitesi (Tek Seferlik)</div><p class="small" data-en="A new, bilingual TR/EN, fast, mobile-first corporate site with a reservation form.">TR/EN çift dilli, hızlı, mobil öncelikli, rezervasyon formlu yeni kurumsal site.</p></div>
+    <div class="card"><div style="font-size:28px;margin-bottom:12px">⭐</div><div class="h-card" style="margin-bottom:6px" data-en="Google Review Management">Google Yorum Yönetimi</div><p class="small" data-en="Google Business Profile optimization, review responses, reputation tracking and rating improvement.">Google İşletme Profili optimizasyonu, yorumlara yanıt, itibar takibi ve puan iyileştirme.</p></div>
+    <div class="card"><div style="font-size:28px;margin-bottom:12px">🔍</div><div class="h-card" style="margin-bottom:6px" data-en="SEO / GEO / SGE Work">SEO / GEO / SGE Çalışması</div><p class="small" data-en="Becoming an accurate, current, prominent brand on Google search and in AI search engines like ChatGPT/Gemini.">Google aramalarında ve ChatGPT/Gemini gibi yapay zeka arama motorlarında doğru, güncel ve öne çıkan bir marka olmak.</p></div>
+  </div>
+</div>
+</section>
+
+<!-- S7 AYLIK PAKET -->
+<section class="sec" id="s7">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="Monthly Content Package">Aylık İçerik Paketi</div>
+  <div class="h-title reveal r2" data-en="1 Shoot Visit — <span class='gold'>16 Posts</span> · 2 Platforms">1 Çekim Ziyareti — <span class="gold">16 Yayın</span> · 2 Platform</div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:start" class="reveal r3 split">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card" style="display:grid;grid-template-columns:52px auto 1fr auto;align-items:center;gap:14px;padding:22px 24px">
+        <div style="font-size:32px">🎬</div>
+        <div><div style="font-family:var(--fh);font-weight:800;font-size:42px;color:var(--goldl);line-height:1">08</div><div style="font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--muted);text-transform:uppercase" data-en="Reels Videos">Reels Videosu</div></div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6;padding-left:14px;border-left:1px solid var(--border)" data-en="Oven, dough, village and guest moments<br>Professional editing and captions">Fırın, hamur, köy ve müşteri anları<br>Profesyonel kurgu ve altyazı</div>
+        <div class="tag tt">Reels</div>
+      </div>
+      <div class="card" style="display:grid;grid-template-columns:52px auto 1fr auto;align-items:center;gap:14px;padding:22px 24px">
+        <div style="font-size:32px">🖼️</div>
+        <div><div style="font-family:var(--fh);font-weight:800;font-size:42px;color:var(--goldl);line-height:1">06</div><div style="font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--muted);text-transform:uppercase" data-en="Carousel / Post">Carousel / Post</div></div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6;padding-left:14px;border-left:1px solid var(--border)" data-en="Menu, story and review-themed cards<br>Brand template + strong copy">Menü, hikaye ve yorum temalı kartlar<br>Marka şablonu + güçlü metin</div>
+        <div class="tag tg">Carousel</div>
+      </div>
+      <div class="card" style="display:grid;grid-template-columns:52px auto 1fr auto;align-items:center;gap:14px;padding:22px 24px">
+        <div style="font-size:32px">📅</div>
+        <div><div style="font-family:var(--fh);font-weight:800;font-size:42px;color:var(--goldl);line-height:1">02</div><div style="font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--muted);text-transform:uppercase" data-en="Story Series">Story Serisi</div></div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.6;padding-left:14px;border-left:1px solid var(--border)" data-en="Queue/wait status, daily menu<br>Real-time engagement content">Kuyruk/bekleme durumu, günlük menü<br>Anlık etkileşim içerikleri</div>
+        <div class="tag tm" data-en="Story">Story</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card card-gold" style="text-align:center;padding:34px">
+        <div style="font-family:var(--fh);font-weight:800;font-size:80px;color:var(--goldl);line-height:1">16</div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:8px" data-en="Total Monthly Posts">Toplam Aylık Yayın</div>
+        <div style="width:40px;height:1px;background:var(--gold);margin:16px auto"></div>
+        <div style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Instagram · TikTok</div>
+      </div>
+      <div class="card" style="padding:22px">
+        <div class="h-card" style="margin-bottom:14px" data-en="Why This Scope?">Neden Bu Kapsam?</div>
+        <p class="small" style="line-height:1.7" data-en="Given Kafro's location and seasonality, 1 professional shoot visit per month provides enough raw material for a steady flow of 16 monthly posts. The scope can scale up as demand grows.">Kafro's'un konumu ve mevsimsellik göz önünde bulundurularak ayda 1 profesyonel çekim ziyareti, aylık 16 yayınlık düzenli bir akış için yeterli ham içeriği sağlar. Talep büyüdükçe kapsam ölçeklenebilir.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- S8 REELS KONSEPTLERİ -->
+<section class="sec" id="s8">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="Reels Content Plan">Reels İçerik Planı</div>
+  <div class="h-title reveal r2" data-en="8 Reels Concepts <span class='terra'>— First Month</span>">8 Reels Konsepti <span class="terra">— İlk Ay</span></div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div class="g4 reveal r3">
+    <div class="ci ci-t"><div class="ci-num">01</div><span class="tag tt" style="width:fit-content;font-size:9px" data-en="STORY">HİKAYE</span><div class="ci-title" data-en="🏘️ Turkey's Pizza Village — Kafro's Story">🏘️ Türkiye'nin Pizza Köyü — Kafro'nun Hikayesi</div><div class="ci-desc" data-en="Diaspora return and the village's rebirth. Hook: &ldquo;Why is this village's name linked to pizza?&rdquo;">Diaspora dönüşü ve köyün yeniden doğuşu. Hook: "Bu köyün adı neden pizza ile anılıyor?"</div></div>
+    <div class="ci ci-t"><div class="ci-num">02</div><span class="tag tt" style="width:fit-content;font-size:9px" data-en="INSPIRE">İLHAM</span><div class="ci-title" data-en="🔥 From Wood Oven to Table — Time-Lapse">🔥 Odun Fırından Sofraya — Time-lapse</div><div class="ci-desc" data-en="Fast-cut edit from stretching the dough to a baked pizza. High view potential.">Hamur açımından pişmiş pizzaya hızlı kesimli montaj. Yüksek izlenme potansiyeli.</div></div>
+    <div class="ci ci-t"><div class="ci-num">03</div><span class="tag tt" style="width:fit-content;font-size:9px" data-en="EDUCATE">EĞİT</span><div class="ci-title" data-en="🌿 Kenger Pizza — A Flavor You've Never Heard Of">🌿 Kenger'li Pizza — Hiç Duymadığınız Lezzet</div><div class="ci-desc" data-en="Introducing the local ingredient. Curiosity-driven, save-worthy content format.">Yöresel malzemenin tanıtımı. Merak uyandırıcı, kaydedilen içerik formatı.</div></div>
+    <div class="ci ci-t"><div class="ci-num">04</div><span class="tag tt" style="width:fit-content;font-size:9px" data-en="CONVERT">DÖNÜŞTÜR</span><div class="ci-title" data-en="⏱️ 3 Things That Make the Wait Worth It">⏱️ Bekleme Süresini Değerli Kılan 3 Şey</div><div class="ci-desc" data-en="Turns the 2-hour wait perception into experience, with a positive, humorous tone.">2 saatlik bekleme algısını deneyime çeviren pozitif, mizahi anlatım.</div></div>
+    <div class="ci ci-t"><div class="ci-num">05</div><span class="tag tt" style="width:fit-content;font-size:9px" data-en="INSPIRE">İLHAM</span><div class="ci-title" data-en="⛪ Village Tour — Stone Villas and Church">⛪ Köy Turu — Taş Villalar ve Kilise</div><div class="ci-desc" data-en="Behind the scenes. Highlights the architecture and peaceful atmosphere.">Behind the scenes. Mimari doku ve huzurlu atmosfer vurgusu.</div></div>
+    <div class="ci ci-t"><div class="ci-num">06</div><span class="tag tt" style="width:fit-content;font-size:9px" data-en="CONVERT">DÖNÜŞTÜR</span><div class="ci-title" data-en="🗺️ How to Get From Mardin to Kafro">🗺️ Mardin'den Kafro'ya Nasıl Gidilir?</div><div class="ci-desc" data-en="Practical directions + reservation CTA. Reduces lost visitors with useful content.">Pratik yol tarifi + rezervasyon CTA'sı. Ziyaretçi kaybını azaltan pratik içerik.</div></div>
+    <div class="ci ci-t"><div class="ci-num">07</div><span class="tag tt" style="width:fit-content;font-size:9px" data-en="EDUCATE">EĞİT</span><div class="ci-title" data-en="🇮🇹 From Italy to Mesopotamia: A Craftsman's Journey">🇮🇹 İtalya'dan Mezopotamya'ya: Bir Ustanın Yolculuğu</div><div class="ci-desc" data-en="Nail Demir's story of returning from Europe. An interview format that builds emotional connection.">Nail Demir'in Avrupa'dan dönüş hikayesi. Duygusal bağ kuran röportaj formatı.</div></div>
+    <div class="ci ci-t"><div class="ci-num">08</div><span class="tag tt" style="width:fit-content;font-size:9px" data-en="INSPIRE">İLHAM</span><div class="ci-title" data-en="⭐ Guest Moments — Real Reactions">⭐ Ziyaretçi Anları — Gerçek Tepkiler</div><div class="ci-desc" data-en="First-bite reaction shots. Social proof format with high share rate.">İlk lokma anı reaksiyonları. Sosyal kanıt formatı, yüksek paylaşım oranı.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- S9 CAROUSEL KONSEPTLERİ -->
+<section class="sec" id="s9">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="Carousel & Post Plan">Carousel & Post Planı</div>
+  <div class="h-title reveal r2" data-en="6 Carousel Concepts <span class='gold'>— Swipe & Learn</span>">6 Carousel Konsepti <span class="gold">— Kaydır & Öğren</span></div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div class="g3 reveal r3">
+    <div class="ci ci-g"><div class="ci-num">01</div><span class="tag tg" style="width:fit-content;font-size:9px" data-en="EDUCATE">EĞİT</span><div class="ci-title" data-en="📖 What Is Kafro's? From 2010 to Today">📖 Kafro's Nedir? 2010'dan Bugüne</div><div class="ci-desc" data-en="Brand introduction series. The founding story told through numbers.">Marka tanıtım serisi. Kuruluş hikayesi sayılarla anlatılıyor.</div></div>
+    <div class="ci ci-g"><div class="ci-num">02</div><span class="tag tg" style="width:fit-content;font-size:9px" data-en="CONVERT">DÖNÜŞTÜR</span><div class="ci-title" data-en="🍕 Our Menu: Which Pizza Is Right for You?">🍕 Menümüz: Hangi Pizza Size Göre?</div><div class="ci-desc" data-en="Visual menu catalog. A card format that makes deciding easier.">Görsel menü kataloğu. Karar vermeyi kolaylaştıran kart formatı.</div></div>
+    <div class="ci ci-g"><div class="ci-num">03</div><span class="tag tg" style="width:fit-content;font-size:9px" data-en="EDUCATE">EĞİT</span><div class="ci-title" data-en="🗓️ 5 Things to Know Before You Visit">🗓️ Ziyaret Öncesi Bilmeniz Gereken 5 Şey</div><div class="ci-desc" data-en="Hours, transport, reservations and wait-time expectations — content that reduces complaints.">Saat, ulaşım, rezervasyon ve bekleme beklentisi yönetimi — şikayetleri azaltan içerik.</div></div>
+    <div class="ci ci-g"><div class="ci-num">04</div><span class="tag tg" style="width:fit-content;font-size:9px" data-en="INSPIRE">İLHAM</span><div class="ci-title" data-en="⛪ Kafro Village: The Story of a Return">⛪ Kafro Köyü: Bir Dönüşün Hikayesi</div><div class="ci-desc" data-en="Diaspora and the village's rebuilding. A press- and documentary-style narrative.">Diaspora ve köy yeniden inşası. Basın ve belgesel niteliğinde anlatım.</div></div>
+    <div class="ci ci-g"><div class="ci-num">05</div><span class="tag tg" style="width:fit-content;font-size:9px" data-en="CONVERT">DÖNÜŞTÜR</span><div class="ci-title" data-en="⭐ What Our Guests Say">⭐ Misafirlerimiz Ne Diyor?</div><div class="ci-desc" data-en="Social proof through real reviews and photos. A transparent, balanced positive/negative selection.">Gerçek yorum ve fotoğraflarla sosyal kanıt. Şeffaf, olumlu-olumsuz dengeli seçki.</div></div>
+    <div class="ci ci-g"><div class="ci-num">06</div><span class="tag tg" style="width:fit-content;font-size:9px" data-en="EDUCATE">EĞİT</span><div class="ci-title" data-en="🌍 A Stop on the Turabdin Route">🌍 Turabdin Rotasında Bir Durak</div><div class="ci-desc" data-en="Positioning alongside Mor Gabriel and nearby travel routes. SEO value aimed at tourists.">Mor Gabriel ve çevre gezi rotalarıyla birlikte konumlandırma. Turist odaklı SEO değeri.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- S10 GOOGLE YORUM YÖNETİMİ -->
+<section class="sec" id="s10">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="Reputation Management">İtibar Yönetimi</div>
+  <div class="h-title reveal r2" data-en="Google & TripAdvisor <span class='gold'>Review Strategy</span>">Google & TripAdvisor <span class="gold">Yorum Stratejisi</span></div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start" class="reveal r3 split">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="crow"><div class="crow-icon">📍</div><div><div class="h-card" style="margin-bottom:3px" data-en="Google Business Profile Optimization">Google İşletme Profili Optimizasyonu</div><p class="small" data-en="Current hours, current photos, the right category and menu information — the profile used to its full potential.">Güncel saatler, güncel fotoğraflar, doğru kategori ve menü bilgisi ile profil tam kapasite kullanılır.</p></div></div>
+      <div class="crow"><div class="crow-icon">💬</div><div><div class="h-card" style="margin-bottom:3px" data-en="Professional Replies to Every Review">Tüm Yorumlara Profesyonel Yanıt</div><p class="small" data-en="Positive reviews are thanked, negative reviews are answered with a solution-focused tone that matches the brand voice.">Olumlu yorumlar teşekkürle, olumsuz yorumlar çözüm odaklı ve marka sesine uygun şekilde yanıtlanır.</p></div></div>
+      <div class="crow"><div class="crow-icon">⏱️</div><div><div class="h-card" style="margin-bottom:3px" data-en="Expectation-Setting Content">Beklenti Yönetimi İçeriği</div><p class="small" data-en="The root cause of the &ldquo;2-hour wait&rdquo; complaint — a lack of information — is addressed through content.">"2 saat bekleme" şikayetinin kök nedenine — bilgi eksikliğine — içerikle çözüm üretilir.</p></div></div>
+      <div class="crow"><div class="crow-icon">📊</div><div><div class="h-card" style="margin-bottom:3px" data-en="Monthly Reputation Report">Aylık İtibar Raporu</div><p class="small" data-en="Rating changes, new review counts and recurring themes are reported monthly.">Puan değişimi, yeni yorum sayısı ve tekrar eden temalar aylık olarak raporlanır.</p></div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card card-terra" style="padding:24px">
+        <div class="h-card" style="color:var(--terral);margin-bottom:12px" data-en="📉 Current Standing">📉 Mevcut Durum</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px"><div style="font-size:11px;color:var(--muted);min-width:110px">TRIPADVISOR</div><div class="meter"><div class="meter-fill" data-w="68"></div></div><div style="font-family:var(--fh);font-weight:700;color:var(--terral);font-size:13px">3.4/5</div></div>
+          <div style="display:flex;align-items:center;gap:10px"><div style="font-size:11px;color:var(--muted);min-width:110px">YANDEX</div><div class="meter"><div class="meter-fill" data-w="80"></div></div><div style="font-family:var(--fh);font-weight:700;color:var(--goldl);font-size:13px">4.0/5</div></div>
+          <div style="display:flex;align-items:center;gap:10px"><div style="font-size:11px;color:var(--muted);min-width:110px">RESTAURANTGURU</div><div class="meter"><div class="meter-fill" data-w="78"></div></div><div style="font-family:var(--fh);font-weight:700;color:var(--goldl);font-size:13px">3.9/5</div></div>
+        </div>
+      </div>
+      <div class="card" style="padding:18px;text-align:center">
+        <div class="small" style="text-transform:uppercase;letter-spacing:.14em;margin-bottom:4px" data-en="Target">Hedef</div>
+        <div style="font-family:var(--fh);font-weight:800;font-size:40px;color:var(--goldl);line-height:1">4.5+</div>
+        <div class="small" data-en="A consistent, actively managed rating average across all platforms">Tüm platformlarda tutarlı, aktif yönetilen puan ortalaması</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- S11 SEO/GEO/SGE -->
+<section class="sec" id="s11">
+<div class="inner">
+  <div class="eyebrow reveal">SEO · GEO · SGE Stratejisi</div>
+  <div class="h-title reveal r2" data-en="Standing Out on Google and <span class='gold'>in AI Search</span>">Google'da ve <span class="gold">Yapay Zeka Aramalarında</span> Öne Çıkma</div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <p class="body reveal r2" style="max-width:700px;margin-bottom:24px" data-en="AI-powered search and travel tools like ChatGPT, Google AI Overviews and Mindtrip already know Kafro's Pizzeria — but with old, incomplete data. That's not a disadvantage; it's a position that can quickly be claimed with the right content.">ChatGPT, Google AI Overviews ve Mindtrip gibi yapay zeka destekli arama/gezi araçları Kafro's Pizzeria'yı zaten biliyor — ama eski, eksik verilerle. Bu bir dezavantaj değil, doğru içerikle hızla ele geçirilebilecek bir konum avantajıdır.</p>
+  <div class="g3 reveal r3">
+    <div class="pillar pl1"><div class="pnum">01</div><div class="h-sub" style="color:var(--goldl)" data-en="🏷️ Structured Data">🏷️ Yapılandırılmış Veri</div><p class="body" style="font-size:13px" data-en="Restaurant/LocalBusiness JSON-LD schema, menu, pricing and hours — in a format AI engines can read correctly.">Restaurant/LocalBusiness JSON-LD şeması, menü, fiyat ve çalışma saatleri — AI motorlarının doğru okuyabileceği formatta.</p></div>
+    <div class="pillar pl2"><div class="pnum">02</div><div class="h-sub" style="color:var(--terral)" data-en="✍️ GEO Content Production">✍️ GEO İçerik Üretimi</div><p class="body" style="font-size:13px" data-en="Q&amp;A-style blog content for queries like &ldquo;best pizza in Mardin,&rdquo; &ldquo;Midyat travel route,&rdquo; &ldquo;how to get to Kafro village.&rdquo;">"Mardin'de en iyi pizza", "Midyat gezi rotası", "Kafro köyü nasıl gidilir" gibi soru-cevap formatında blog içerikleri.</p></div>
+    <div class="pillar pl3"><div class="pnum">03</div><div class="h-sub" style="color:var(--cream)" data-en="🔗 Off-Site Authority">🔗 Site-Dışı Otorite</div><p class="body" style="font-size:13px" data-en="Consistent, current information on TripAdvisor, Google, Wanderlog and similar sources; collaboration with press and travel bloggers.">TripAdvisor, Google, Wanderlog gibi kaynaklarda tutarlı ve güncel bilgi; basın ve gezi bloggerlarıyla iş birliği.</p></div>
+  </div>
+  <div class="g4 reveal r4" style="margin-top:18px">
+    <div class="card" style="text-align:center;padding:20px"><div style="font-size:22px">🇬🇧</div><div class="small" style="margin-top:6px;font-weight:600" data-en="English Content">İngilizce İçerik</div></div>
+    <div class="card" style="text-align:center;padding:20px"><div style="font-size:22px">📍</div><div class="small" style="margin-top:6px;font-weight:600" data-en="Location Schema">Konum Şeması</div></div>
+    <div class="card" style="text-align:center;padding:20px"><div style="font-size:22px">⚡</div><div class="small" style="margin-top:6px;font-weight:600" data-en="Speed Optimization">Hız Optimizasyonu</div></div>
+    <div class="card" style="text-align:center;padding:20px"><div style="font-size:22px">🤖</div><div class="small" style="margin-top:6px;font-weight:600" data-en="llms.txt / AI Access">llms.txt / AI Erişimi</div></div>
+  </div>
+</div>
+</section>
+
+<!-- S12 WEB SİTESİ -->
+<section class="sec" id="s12">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="New Website — One-Time">Yeni Web Sitesi — Tek Seferlik</div>
+  <div class="h-title reveal r2" data-en="From a Site Stuck in 2022 to a <span class='gold'>Modern Showcase</span>">2022'den Kalan Siteden <span class="gold">Modern Bir Vitrine</span></div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start" class="reveal r3 split">
+    <div class="card" style="padding:26px">
+      <div class="h-card" style="margin-bottom:14px" data-en="📦 Scope">📦 Kapsam</div>
+      <ul class="blist">
+        <li data-en="Modern single-page design (Home, Menu, Story, Location &amp; Contact)">Tek sayfa modern tasarım (Ana Sayfa, Menü, Hikaye, Konum & İletişim)</li>
+        <li data-en="Fully bilingual TR/EN content — a real translation, a real English page">Tam TR/EN çift dilli içerik — gerçek çeviri, gerçek İngilizce sayfa</li>
+        <li data-en="Visual refresh with professionally shot product/venue photos">Profesyonel çekilen ürün/mekan fotoğrafları ile görsel yenileme</li>
+        <li data-en="Reservation / inquiry form (WhatsApp integration)">Rezervasyon / bilgi talep formu (WhatsApp entegrasyonu)</li>
+        <li data-en="Google Maps integration + clear directions">Google Haritalar entegrasyonu + net yol tarifi</li>
+        <li data-en="SEO fundamentals: meta data, JSON-LD schema, fast loading">SEO temelleri: meta veriler, JSON-LD şema, hızlı yükleme</li>
+        <li data-en="Mobile-first design (most visitors arrive from their phones)">Mobil öncelikli tasarım (ziyaretçilerin büyük kısmı telefondan geliyor)</li>
+      </ul>
+    </div>
+    <div class="card card-gold" style="text-align:center;padding:34px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px" data-en="One-Time Cost">Tek Seferlik Bedel</div>
+      <div style="font-family:var(--fh);font-weight:800;font-size:56px;color:var(--goldl);line-height:1">30.000₺</div>
+      <div style="width:40px;height:1px;background:var(--gold);margin:18px auto"></div>
+      <div class="small" data-en="Includes setup, design, translation and launch">Kurulum, tasarım, çeviri ve yayına alma dahil</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- S13 PRODÜKSİYON + SEYAHAT -->
+<section class="sec" id="s13">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="Production & Travel Plan">Prodüksiyon & Seyahat Planı</div>
+  <div class="h-title reveal r2" data-en="Team Accommodation & Expenses — <span class='terra'>One-Time Setup</span>">Ekip Konaklama & Masraf — <span class="terra">Tek Seferlik Kurulum</span></div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start" class="reveal r3 split">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card card-terra" style="padding:22px">
+        <div class="h-card" style="color:var(--terral);margin-bottom:10px" data-en="📍 The Logistics Reality">📍 Lojistik Gerçeği</div>
+        <p class="small" style="line-height:1.7" data-en="Kafro (Elbeğendi) is a small village tied to Midyat, far from central Mardin and the airport. For the first setup shoot, the production team needs to stay in the region and arrange local transport.">Kafro (Elbeğendi), Mardin merkeze ve havalimanına uzak, Midyat'a bağlı küçük bir köy. Prodüksiyon ekibinin ilk kurulum çekimi için bölgede konaklaması ve yerel ulaşım sağlaması gerekiyor.</p>
+      </div>
+      <div class="card" style="padding:22px">
+        <div class="h-card" style="margin-bottom:14px" data-en="🧾 What's Covered">🧾 Kapsanan Kalemler</div>
+        <ul class="blist">
+          <li data-en="Team accommodation (Mardin/Midyat, 2–3 nights)">Ekip konaklaması (Mardin/Midyat, 2-3 gece)</li>
+          <li data-en="Transport between Mardin ↔ Midyat ↔ Kafro village">Mardin ↔ Midyat ↔ Kafro köyü ulaşım</li>
+          <li data-en="Team meals and on-site expenses">Ekip yemek ve saha masrafları</li>
+          <li data-en="Logistics for the first setup shoot day">İlk kurulum çekim gününün lojistiği</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card card-gold" style="text-align:center;padding:34px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px" data-en="One-Time Cost">Tek Seferlik Bedel</div>
+      <div style="font-family:var(--fh);font-weight:800;font-size:56px;color:var(--goldl);line-height:1">20.000₺</div>
+      <div style="width:40px;height:1px;background:var(--gold);margin:18px auto"></div>
+      <div class="small" data-en="Includes accommodation, transport and on-site expenses">Konaklama, ulaşım ve saha masrafları dahil</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- S14 TAKVİM -->
+<section class="sec" id="s14">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="Sample Publishing Calendar">Örnek Yayın Takvimi</div>
+  <div class="h-title reveal r2" data-en="First Month — <span class='gold'>16 Posts</span>">İlk Ay — <span class="gold">16 Yayın</span></div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div class="reveal r3 cal-2col" style="display:grid;grid-template-columns:1fr auto 1fr;gap:28px;align-items:start">
+    <div>
+      <div style="font-family:var(--fh);font-weight:700;font-size:14px;letter-spacing:.1em;color:var(--goldl);margin-bottom:14px;text-transform:uppercase" data-en="Week 1 — Week 2">1. Hafta — 2. Hafta</div>
+      <div class="cal-grid">
+        <div class="cday-h" data-en="Mon">Pzt</div><div class="cday-h" data-en="Tue">Sal</div><div class="cday-h" data-en="Wed">Çar</div><div class="cday-h" data-en="Thu">Per</div><div class="cday-h" data-en="Fri">Cum</div><div class="cday-h" data-en="Sat">Cmt</div><div class="cday-h" data-en="Sun">Paz</div>
+        <div class="cday sh" data-en="✦ Shoot">✦ Çekim</div><div class="cday">2</div><div class="cday tt">3</div><div class="cday">4</div><div class="cday gd">5</div><div class="cday">6</div><div class="cday">7</div>
+        <div class="cday tt">8</div><div class="cday">9</div><div class="cday gd">10</div><div class="cday">11</div><div class="cday tt">12</div><div class="cday">13</div><div class="cday gd">14</div>
+      </div>
+    </div>
+    <div class="cal-divider" style="width:1px;background:var(--border);align-self:stretch;margin-top:34px"></div>
+    <div>
+      <div style="font-family:var(--fh);font-weight:700;font-size:14px;letter-spacing:.1em;color:var(--goldl);margin-bottom:14px;text-transform:uppercase" data-en="Week 3 — Week 4">3. Hafta — 4. Hafta</div>
+      <div class="cal-grid">
+        <div class="cday-h" data-en="Mon">Pzt</div><div class="cday-h" data-en="Tue">Sal</div><div class="cday-h" data-en="Wed">Çar</div><div class="cday-h" data-en="Thu">Per</div><div class="cday-h" data-en="Fri">Cum</div><div class="cday-h" data-en="Sat">Cmt</div><div class="cday-h" data-en="Sun">Paz</div>
+        <div class="cday tt">15</div><div class="cday">16</div><div class="cday gd">17</div><div class="cday">18</div><div class="cday tt">19</div><div class="cday">20</div><div class="cday gd">21</div>
+        <div class="cday tt">22</div><div class="cday">23</div><div class="cday gd">24</div><div class="cday">25</div><div class="cday tt">26</div><div class="cday">27</div><div class="cday gd">28</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:20px">
+        <div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;border-radius:4px;background:var(--terradim);border:1px solid var(--terrabdr);flex-shrink:0"></div><span class="small" data-en="Reels Publish Day (8)">Reels Yayın Günü (8)</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;border-radius:4px;background:var(--golddim);border:1px solid var(--goldbdr);flex-shrink:0"></div><span class="small" data-en="Carousel / Post Day (6)">Carousel / Post Günü (6)</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><div style="width:12px;height:12px;border-radius:4px;background:rgba(240,165,0,.28);border:1px solid var(--gold);flex-shrink:0"></div><span class="small" data-en="Shoot Day">Çekim Günü</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- S15 UNIQBEE KATKISI -->
+<section class="sec" id="s15">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="UniqBee's Contribution">UniqBee'nin Katkısı</div>
+  <div class="h-title reveal r2" data-en="We Don't Just <span class='gold'>Produce Content</span>">Biz Sadece İçerik <span class="gold">Üretmiyoruz</span></div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div class="g2 reveal r3">
+    <div class="crow"><div class="crow-icon">🎯</div><div><div class="h-card" style="margin-bottom:3px" data-en="Strategy & Planning">Strateji & Planlama</div><p class="small" data-en="Brand voice, content calendar and positioning are designed from the ground up.">Marka sesi, içerik takvimi ve konumlandırma baştan sona tasarlanır.</p></div></div>
+    <div class="crow"><div class="crow-icon">🎬</div><div><div class="h-card" style="margin-bottom:3px" data-en="Professional Production">Profesyonel Prodüksiyon</div><p class="small" data-en="Cinema-quality shooting, editing, color grading and audio mixing.">Sinema kalitesi çekim, kurgu, renk düzeltme ve ses miksajı.</p></div></div>
+    <div class="crow"><div class="crow-icon">✍️</div><div><div class="h-card" style="margin-bottom:3px" data-en="Copywriting & Storytelling">Copywriting & Hikaye Anlatımı</div><p class="small" data-en="Copy that tells Kafro's unique story accurately and compellingly.">Kafro'nun benzersiz hikayesini doğru ve etkileyici şekilde anlatan metinler.</p></div></div>
+    <div class="crow"><div class="crow-icon">🌐</div><div><div class="h-card" style="margin-bottom:3px" data-en="Website & SEO/GEO Infrastructure">Web & SEO/GEO Altyapısı</div><p class="small" data-en="New site, bilingual content, and visibility in AI search.">Yeni site, çift dilli içerik ve yapay zeka aramalarında görünürlük.</p></div></div>
+    <div class="crow"><div class="crow-icon">📲</div><div><div class="h-card" style="margin-bottom:3px" data-en="Social Media Management">Sosyal Medya Yönetimi</div><p class="small" data-en="Scheduled publishing, comment/DM monitoring and community management.">Zamanlanmış yayın, yorum/DM takibi ve topluluk yönetimi.</p></div></div>
+    <div class="crow"><div class="crow-icon">⭐</div><div><div class="h-card" style="margin-bottom:3px" data-en="Reputation Management">İtibar Yönetimi</div><p class="small" data-en="Active monitoring and response to Google/TripAdvisor reviews.">Google/TripAdvisor yorumlarının aktif takibi ve yanıtlanması.</p></div></div>
+    <div class="crow"><div class="crow-icon">📊</div><div><div class="h-card" style="margin-bottom:3px" data-en="Monthly Performance Report">Aylık Performans Raporu</div><p class="small" data-en="Reach, engagement and rating/review progress reported regularly.">Erişim, etkileşim ve yorum/puan gelişimi düzenli olarak raporlanır.</p></div></div>
+    <div class="crow"><div class="crow-icon">🤝</div><div><div class="h-card" style="margin-bottom:3px" data-en="Weekly Check-In">Haftalık Check-in</div><p class="small" data-en="An approval process before every post, with a fast revision cycle.">Her yayın öncesi onay süreci, hızlı revizyon döngüsü.</p></div></div>
+  </div>
+</div>
+</section>
+
+<!-- S16 BÜTÇE -->
+<section class="sec" id="s16">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="Budget Breakdown">Bütçe Dökümü</div>
+  <div class="h-title reveal r2" data-en="Transparent Pricing">Şeffaf Fiyatlandırma</div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px" class="reveal r3">
+    <div style="font-family:var(--fh);font-weight:700;font-size:15px;color:var(--goldl);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px" data-en="Monthly Social Media Management">Aylık Sosyal Medya Yönetimi</div>
+    <div class="brow-plain"><div style="font-family:var(--fh);font-weight:700;font-size:14px" data-en="🎯 Strategy, Planning & Reporting">🎯 Strateji, Planlama & Raporlama</div><div class="small" data-en="Content strategy, publishing calendar, monthly analysis">İçerik stratejisi, yayın takvimi, aylık analiz</div></div>
+    <div class="brow-plain"><div style="font-family:var(--fh);font-weight:700;font-size:14px" data-en="📷 Product / Menu Photography">📷 Ürün / Menü Fotoğraf Çekimi</div><div class="small" data-en="Monthly visual refresh, seasonal product shoots">Aylık görsel yenileme, mevsimsel ürün çekimleri</div></div>
+    <div class="brow-plain"><div style="font-family:var(--fh);font-weight:700;font-size:14px" data-en="🎬 8 Reels Production & Editing">🎬 8 Reels Prodüksiyon & Kurgu</div><div class="small" data-en="Shooting, editing, music, captions, export">Çekim, kurgu, müzik, altyazı, export</div></div>
+    <div class="brow-plain"><div style="font-family:var(--fh);font-weight:700;font-size:14px" data-en="🖼️ 6 Carousel / Post Designs">🖼️ 6 Carousel / Post Tasarım</div><div class="small" data-en="Graphic design, copywriting, brand consistency">Grafik tasarım, copywriting, marka uyumu</div></div>
+    <div class="brow-plain"><div style="font-family:var(--fh);font-weight:700;font-size:14px" data-en="📲 Social Media & Community Management">📲 Sosyal Medya Yönetimi & Community</div><div class="small" data-en="Scheduling, comments, DMs, stories">Zamanlama, yorumlar, DM, stories</div></div>
+    <div class="brow-plain"><div style="font-family:var(--fh);font-weight:700;font-size:14px" data-en="⭐ Google / TripAdvisor Review Management">⭐ Google / TripAdvisor Yorum Yönetimi</div><div class="small" data-en="Profile optimization, responses, monthly reputation report">Profil optimizasyonu, yanıtlama, aylık itibar raporu</div></div>
+    <div class="brow-plain"><div style="font-family:var(--fh);font-weight:700;font-size:14px" data-en="🔍 SEO / GEO / SGE Optimization">🔍 SEO / GEO / SGE Optimizasyonu</div><div class="small" data-en="Monthly content, schema updates, AI search tracking">Aylık içerik, şema güncellemesi, AI arama takibi</div></div>
+    <div style="display:grid;grid-template-columns:1fr auto;padding:16px 18px;border-top:1px solid var(--goldbdr);margin-top:6px">
+      <span style="font-family:var(--fh);font-weight:700;font-size:16px" data-en="Monthly Total">Aylık Toplam</span>
+      <span style="font-family:var(--fh);font-weight:800;font-size:22px;color:var(--goldl)">80.000₺</span>
+    </div>
+    <div class="small" style="margin-top:2px" data-en="This price is valid for the first 3 months. Afterward, if both the agency and the client agree, the budget can be revisited and the collaboration continues on new terms.">Bu fiyat ilk 3 ay için geçerlidir. Sonrasında hem ajans hem firmanın istemesi halinde bütçe yeniden değerlendirilerek işbirliğine devam edilir.</div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:10px" class="reveal r4">
+    <div style="font-family:var(--fh);font-weight:700;font-size:15px;color:var(--terral);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px" data-en="One-Time Setup">Tek Seferlik Kurulum</div>
+    <div class="brow"><div><div style="font-family:var(--fh);font-weight:700;font-size:14px" data-en="🌐 New Website">🌐 Yeni Web Sitesi</div><div class="small" data-en="Design, bilingual content, reservation form, SEO foundation">Tasarım, çift dil, rezervasyon formu, SEO temeli</div></div><div class="brow-amt">30.000₺</div></div>
+    <div class="brow"><div><div style="font-family:var(--fh);font-weight:700;font-size:14px" data-en="🧳 Team Accommodation & Travel Expenses">🧳 Ekip Konaklama & Seyahat Masrafı</div><div class="small" data-en="Accommodation and transport for the first setup shoot">İlk kurulum çekimi için konaklama ve ulaşım</div></div><div class="brow-amt">20.000₺</div></div>
+    <div style="display:grid;grid-template-columns:1fr auto;padding:16px 18px;border-top:1px solid var(--terrabdr);margin-top:6px">
+      <span style="font-family:var(--fh);font-weight:700;font-size:16px" data-en="One-Time Total">Tek Seferlik Toplam</span>
+      <span style="font-family:var(--fh);font-weight:800;font-size:22px;color:var(--terral)">50.000₺</span>
+    </div>
+  </div>
+
+  <div class="reveal r5" style="margin-top:28px">
+    <div class="card card-gold" style="text-align:center;padding:36px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px" data-en="Total First-Month Investment">İlk Ay Toplam Yatırım</div>
+      <div style="font-family:var(--fh);font-weight:800;font-size:clamp(44px,6vw,72px);color:var(--goldl);line-height:1">130.000₺</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:6px" data-en="Following months are just <strong style='color:var(--cream)'>80,000₺</strong> per month">Sonraki aylar yalnızca <strong style="color:var(--cream)">80.000₺</strong> aylık yönetim bedeli</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- S17 NEDEN UNIQBEE -->
+<section class="sec" id="s17">
+<div class="inner">
+  <div class="eyebrow reveal" data-en="Why UniqBee?">Neden UniqBee?</div>
+  <div class="h-title reveal r2" data-en="<span class='gold'>6 Differences</span> That Set You Apart">Sizi Öne Çıkaran <span class="gold">6 Fark</span></div>
+  <div class="rule reveal r2"><div class="rule-dot"></div></div>
+  <div class="g3 reveal r3">
+    <div class="why"><div class="why-icon">🏆</div><div class="h-card" data-en="A Story-First Approach">Hikaye Odaklı Yaklaşım</div><p class="small" data-en="Every brand tells a story; we find it, tell it right, and amplify it.">Her marka bir hikaye anlatır; biz o hikayeyi bulur, doğru anlatır ve çoğaltırız.</p></div>
+    <div class="why"><div class="why-icon">🎬</div><div class="h-card" data-en="End-to-End Production">Uçtan Uca Prodüksiyon</div><p class="small" data-en="From strategy to shooting, from editing to publishing, all under one roof. One point of contact.">Stratejiden çekime, kurgudan yayına kadar tek çatı altında. Tek muhatap.</p></div>
+    <div class="why"><div class="why-icon">📈</div><div class="h-card" data-en="Data-Driven Strategy">Veri Odaklı Strateji</div><p class="small" data-en="Every decision is backed by measurement — tracked through reach, engagement and rating growth.">Her kararın arkasında ölçüm vardır — erişim, etkileşim ve puan gelişimiyle takip edilir.</p></div>
+    <div class="why"><div class="why-icon">🤖</div><div class="h-card" data-en="GEO/SGE Expertise">GEO/SGE Uzmanlığı</div><p class="small" data-en="Beyond classic SEO — current expertise in visibility across AI search engines.">Klasik SEO'nun ötesinde, yapay zeka arama motorlarında görünürlük konusunda güncel bilgi.</p></div>
+    <div class="why"><div class="why-icon">🔐</div><div class="h-card" data-en="A Transparent Process">Şeffaf Süreç</div><p class="small" data-en="Weekly check-ins, monthly reports, real-time communication. You always see where the budget goes.">Haftalık check-in, aylık rapor, anlık iletişim. Paranın nereye gittiğini her zaman görürsünüz.</p></div>
+    <div class="why"><div class="why-icon">🌱</div><div class="h-card" data-en="Built to Grow">Büyümeye Hazır Yapı</div><p class="small" data-en="As Kafro's grows, the package grows with it — content volume and scope scale flexibly.">Kafro's büyüdükçe paket de büyür — içerik hacmi ve kapsam esnek şekilde ölçeklenir.</p></div>
+  </div>
+</div>
+</section>
+
+<!-- S18 KAPANIŞ -->
+<section class="sec" id="s18">
+<div class="inner" style="text-align:center;align-items:center;display:flex;flex-direction:column;justify-content:center;min-height:80vh">
+  <div style="margin-bottom:32px"><svg width="64" height="64" viewBox="0 0 3000 3000" style="color:var(--goldl)"><use href="#ub"/></svg></div>
+  <div style="font-size:11px;font-weight:600;letter-spacing:.36em;text-transform:uppercase;color:var(--goldl);margin-bottom:24px" class="reveal" data-en="Whenever you're ready, so are we">Hazır olduğunuzda biz hazırız</div>
+  <div class="h-display reveal r2" data-en="Let's Tell This Story<br><span class='gold'>Together.</span>">Bu Hikayeyi<br><span class="gold">Birlikte Anlatalım.</span></div>
+  <div style="display:flex;align-items:center;gap:16px;margin:28px 0" class="reveal r3">
+    <div style="flex:1;max-width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))"></div>
+    <div style="width:6px;height:6px;background:var(--gold);border-radius:50%"></div>
+    <div style="flex:1;max-width:120px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)"></div>
+  </div>
+  <p class="body reveal r3" style="max-width:540px;font-size:15px;margin-bottom:36px" data-en="Kafro's Pizzeria already has one of Turkey's most original brand stories. As UniqBee, we're ready to give that story the digital presence it deserves.">Kafro's Pizzeria zaten Türkiye'nin en özgün marka hikayelerinden birine sahip. UniqBee olarak bu hikayeyi hak ettiği dijital karşılığa kavuşturmaya hazırız.</p>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center" class="reveal r4">
+    <a href="https://www.uniqbee.com" target="_blank" rel="noopener" style="text-decoration:none"><div class="card card-gold" style="padding:22px 28px;text-align:center;min-width:170px"><div style="font-size:24px;margin-bottom:8px">🌐</div><div style="font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:5px" data-en="Website">Web Site</div><div style="font-family:var(--fh);font-weight:700;font-size:13px;color:var(--goldl)">uniqbee.com</div></div></a>
+    <div class="card card-gold" style="padding:22px 28px;text-align:center;min-width:170px"><div style="font-size:24px;margin-bottom:8px">📧</div><div style="font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:5px" data-en="Contact">İletişim</div><div style="font-family:var(--fh);font-weight:700;font-size:13px;color:var(--goldl)">uniqbeedigital@gmail.com</div></div>
+    <div class="card card-gold" style="padding:22px 28px;text-align:center;min-width:170px"><div style="font-size:24px;margin-bottom:8px">💰</div><div style="font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:5px" data-en="First Month">İlk Ay</div><div style="font-family:var(--fh);font-weight:700;font-size:13px;color:var(--goldl)">130.000₺</div></div>
+  </div>
+  <div style="font-size:10px;font-weight:600;letter-spacing:.24em;color:var(--muted);margin-top:40px" class="reveal r5">KAFRO'S PIZZERIA × UNIQBEE DIGITAL AGENCY — 2026</div>
+</div>
+</section>
+
+<script>
+// progress bar
+const bar=document.getElementById('progress');
+window.addEventListener('scroll',()=>{
+  const pct=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
+  bar.style.width=Math.min(pct,100)+'%';
+},{passive:true});
+
+// reveal on scroll (with IntersectionObserver fallback + safety timeout so nothing stays stuck hidden)
+const revealEls=document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  const revealObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+  },{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
+  revealEls.forEach(el=>revealObs.observe(el));
+} else {
+  revealEls.forEach(el=>el.classList.add('in'));
+}
+// safety net: force-reveal anything still hidden after 3.5s (handles constrained mobile webviews)
+setTimeout(()=>{ document.querySelectorAll('.reveal:not(.in)').forEach(el=>el.classList.add('in')); },3500);
+
+// meter fill animation
+const meters=document.querySelectorAll('.meter-fill');
+if('IntersectionObserver' in window){
+  const meterObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.width=e.target.dataset.w+'%'; meterObs.unobserve(e.target); } });
+  },{threshold:0.4});
+  meters.forEach(m=>meterObs.observe(m));
+} else {
+  meters.forEach(m=>{ m.style.width=m.dataset.w+'%'; });
+}
+
+// section counter in topbar
+const sections=document.querySelectorAll('.sec');
+const secCtr=document.getElementById('sec-ctr');
+const secNamesTR=['Kapak',"Kafro's Kim?",'Dijital Denetim','Potansiyel','Hedef Kitle','Hizmet Kapsamı','Aylık Paket','8 Reels','Carousel','Yorum Yönetimi','SEO/GEO/SGE','Web Sitesi','Prodüksiyon','Takvim','UniqBee Katkı','Bütçe','Neden UniqBee?','Kapanış'];
+const secNamesEN=['Cover',"Who's Kafro's?",'Digital Audit','Potential','Target Audience','Scope of Services','Monthly Package','8 Reels','Carousel','Review Mgmt','SEO/GEO/SGE','Website','Production','Calendar','UniqBee Contribution','Budget','Why UniqBee?','Closing'];
+let currentLang='tr';
+let currentSecIndex=0;
+function updateSecCtr(){
+  const names=currentLang==='en'?secNamesEN:secNamesTR;
+  secCtr.innerHTML=(names[currentSecIndex]||'')+' <strong>'+(currentSecIndex+1)+'/'+sections.length+'</strong>';
+}
+if('IntersectionObserver' in window){
+  const secObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const i=Array.from(sections).indexOf(e.target);
+        if(i>=0){ currentSecIndex=i; updateSecCtr(); }
+      }
+    });
+  },{threshold:0.2});
+  sections.forEach(s=>secObs.observe(s));
+}
+
+// language toggle
+function applyLang(lang){
+  currentLang=lang;
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    if(lang==='en'){
+      if(el.dataset.trHtml===undefined) el.dataset.trHtml=el.innerHTML;
+      el.innerHTML=el.dataset.en;
+    } else if(el.dataset.trHtml!==undefined){
+      el.innerHTML=el.dataset.trHtml;
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+  updateSecCtr();
+}
+// event delegation on document so every lang toggle (topbar + cover, present or future) works
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('.lang-btn');
+  if(!btn) return;
+  applyLang(btn.dataset.lang);
+});
+</script>
+</body>
+</html>
