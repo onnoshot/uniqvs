@@ -140,6 +140,10 @@ section{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;positio
 .inv-inc li{font-size:12.5px;color:var(--cream);display:flex;align-items:center;gap:10px;}
 .inv-inc li::before{content:'✓';color:var(--gold);font-size:11px;flex-shrink:0;}
 .inv-note{max-width:520px;margin:20px auto 0;text-align:center;font-size:11.5px;color:var(--muted);line-height:1.7;}
+.inv-terms{display:flex;justify-content:center;gap:48px;margin-top:26px;flex-wrap:wrap;}
+.it{text-align:center;}
+.it-lbl{font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--gold);display:block;margin-bottom:6px;}
+.it-val{font-size:12px;color:var(--cream);line-height:1.5;max-width:230px;display:block;}
 
 /* ─── NEDEN UNİQBEE ─── */
 #s7{background:var(--bg);}
@@ -368,6 +372,16 @@ section{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;positio
         <li>Web sitesi, basın kiti ve pazarlama materyali için ticari ve süresiz kullanım hakkı</li>
       </ul>
     </div>
+    <div class="inv-terms">
+      <div class="it">
+        <span class="it-lbl" data-i18n="s6-t1-lbl">Ödeme Koşulları</span>
+        <span class="it-val" data-i18n="s6-t1-val">%50 onay sonrası çekim öncesi, %50 teslimde</span>
+      </div>
+      <div class="it">
+        <span class="it-lbl" data-i18n="s6-t2-lbl">Geçerlilik</span>
+        <span class="it-val" data-i18n="s6-t2-val">22 Temmuz 2026'dan itibaren 1 ay (22 Ağustos 2026'ya kadar)</span>
+      </div>
+    </div>
     <p class="inv-note" data-i18n="s6-note">Sezonluk menü güncellemeleri, kahvaltı çekimi, spa alanı görselleri gibi ek ihtiyaçlarda indirimli paket sunulabilir.</p>
   </div>
 </section>
@@ -543,6 +557,10 @@ const I18N = {
   's6-badge': { tr: 'Fotoğraf Çekimi Teklifi', en: 'Photography Proposal' },
   's6-period': { tr: '+ KDV · tek seferlik', en: '+ VAT · one-time' },
   's6-note': { tr: 'Sezonluk menü güncellemeleri, kahvaltı çekimi, spa alanı görselleri gibi ek ihtiyaçlarda indirimli paket sunulabilir.', en: 'For additional needs such as seasonal menu updates, breakfast photography, or spa area visuals, a discounted package can be offered.' },
+  's6-t1-lbl': { tr: 'Ödeme Koşulları', en: 'Payment Terms' },
+  's6-t1-val': { tr: '%50 onay sonrası çekim öncesi, %50 teslimde', en: '50% after approval before the shoot, 50% upon delivery' },
+  's6-t2-lbl': { tr: 'Geçerlilik', en: 'Validity' },
+  's6-t2-val': { tr: "22 Temmuz 2026'dan itibaren 1 ay (22 Ağustos 2026'ya kadar)", en: '1 month from July 22, 2026 (through August 22, 2026)' },
   's6-list': {
     tr: '<li>1 gün toplantı, brief & keşif</li><li>1 gün profesyonel fotoğraf çekimi</li><li>İstenilen oranda boyutlandırma ve teslim</li><li>Sosyal medya için ekstra lifestyle çekimler dahil</li><li>Edit, retouch ve teslim: 1 hafta içinde</li><li>Tüm ekipman, kamera, lens, ışık ve asistan giderleri dahildir</li><li>Web sitesi, basın kiti ve pazarlama materyali için ticari ve süresiz kullanım hakkı</li>',
     en: '<li>1 day of meeting, brief & scouting</li><li>1 day of professional photography</li><li>Resizing and delivery in requested ratios</li><li>Additional lifestyle shots for social media included</li><li>Edit, retouch, and delivery within 1 week</li><li>All equipment, camera, lens, lighting, and assistant costs included</li><li>Commercial, unlimited-term usage rights for website, press kit, and marketing materials</li>'
