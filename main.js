@@ -262,6 +262,38 @@ document.addEventListener('touchstart', e => {
   }
 }, { passive: true });
 
+// ── Video poster cards: hover-to-play (desktop) / tap-to-play (mobile) ──
+(function initVideoPosters() {
+  const posters = [...document.querySelectorAll('.work-card--poster')];
+  if (!posters.length) return;
+
+  function playCard(card) {
+    const video = card.querySelector('.work-card__video');
+    if (!video) return;
+    card.classList.add('is-playing');
+    if (video.readyState === 0) video.load();
+    video.play().catch(() => {});
+  }
+  function stopCard(card) {
+    const video = card.querySelector('.work-card__video');
+    card.classList.remove('is-playing');
+    if (video) { video.pause(); video.currentTime = 0; }
+  }
+
+  posters.forEach(card => {
+    card.addEventListener('mouseenter', () => playCard(card));
+    card.addEventListener('mouseleave', () => stopCard(card));
+    card.addEventListener('touchstart', () => {
+      posters.forEach(c => { if (c !== card) stopCard(c); });
+      playCard(card);
+    }, { passive: true });
+  });
+
+  document.addEventListener('touchstart', e => {
+    if (!e.target.closest('.work-card--poster')) posters.forEach(stopCard);
+  }, { passive: true });
+})();
+
 // ── Reel poster: click-to-play (swap thumbnail for the real Instagram embed) ──
 document.querySelectorAll('.reel-poster').forEach(card => {
   card.addEventListener('click', () => {
