@@ -85,7 +85,7 @@ document.querySelectorAll('.stat-card__num[data-count]').forEach(el => counterOb
   const moreBtn  = document.getElementById('workMoreBtn');
   const FADE_OUT = 160;  // ms fade-out duration
   const STAGGER  = 42;   // ms between card entrances
-  let activeCat  = 'all';
+  let activeCat  = 'reference';
   let transitioning = false;
   let pendingRequest = null;
 
@@ -98,17 +98,8 @@ document.querySelectorAll('.stat-card__num[data-count]').forEach(el => counterOb
     container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
   }
 
-  // Decide which cards are "visible" for a given category + expand state
-  function visibleCards(cat, expanded) {
-    if (cat === 'all') {
-      const base = cards.filter(c => !c.classList.contains('work-card--extra'));
-      if (expanded) {
-        const extra = cards.filter(c => c.classList.contains('work-card--extra'));
-        return [...base, ...extra];
-      }
-      return base;
-    }
-    // Category: show all matching cards (extras included)
+  // Decide which cards are "visible" for a given category (extras included — every tab is a plain category filter)
+  function visibleCards(cat) {
     return cards.filter(c => c.dataset.category === cat);
   }
 
@@ -126,7 +117,7 @@ document.querySelectorAll('.stat-card__num[data-count]').forEach(el => counterOb
     if (transitioning) { pendingRequest = { cat, expanded }; return; }
     transitioning = true;
 
-    const nextVisible = visibleCards(cat, expanded);
+    const nextVisible = visibleCards(cat);
     const nextSet     = new Set(nextVisible);
 
     // --- Phase 1: fade out cards that won't be in next view ---
@@ -162,11 +153,8 @@ document.querySelectorAll('.stat-card__num[data-count]').forEach(el => counterOb
       staggerIn(toShow);
 
       // Show/hide "more" button
-      const hasExtras = cards.some(c =>
-        c.classList.contains('work-card--extra') &&
-        (cat === 'all' ? true : c.dataset.category === cat)
-      );
-      const showMoreBtn = cat === 'all' && !expanded && hasExtras;
+      const hasExtras = cards.some(c => c.classList.contains('work-card--extra') && c.dataset.category === cat);
+      const showMoreBtn = !expanded && hasExtras;
       if (moreWrap) moreWrap.classList.toggle('wc-hidden', !showMoreBtn);
 
       setTimeout(() => {
@@ -206,9 +194,11 @@ document.querySelectorAll('.stat-card__num[data-count]').forEach(el => counterOb
   }
 
   // Init: show first 12 cards with stagger
-  const initial = visibleCards('all', false);
+  const initial = visibleCards('reference');
   cards.forEach(c => {
-    if (!initial.includes(c)) {
+    if (initial.includes(c)) {
+      if (c.classList.contains('work-card--extra')) { c.classList.add('wc-show'); c.style.display = ''; }
+    } else {
       c.classList.add('wc-hidden');
       if (c.classList.contains('work-card--extra')) c.style.display = 'none';
     }
