@@ -87,6 +87,7 @@ document.querySelectorAll('.stat-card__num[data-count]').forEach(el => counterOb
   const STAGGER  = 42;   // ms between card entrances
   let activeCat  = 'all';
   let transitioning = false;
+  let pendingRequest = null;
 
   // Mobile: scroll active tab into center
   function scrollTabCenter(tab) {
@@ -122,7 +123,7 @@ document.querySelectorAll('.stat-card__num[data-count]').forEach(el => counterOb
   }
 
   function applyFilter(cat, expanded) {
-    if (transitioning) return;
+    if (transitioning) { pendingRequest = { cat, expanded }; return; }
     transitioning = true;
 
     const nextVisible = visibleCards(cat, expanded);
@@ -168,7 +169,14 @@ document.querySelectorAll('.stat-card__num[data-count]').forEach(el => counterOb
       const showMoreBtn = cat === 'all' && !expanded && hasExtras;
       if (moreWrap) moreWrap.classList.toggle('wc-hidden', !showMoreBtn);
 
-      setTimeout(() => { transitioning = false; }, toShow.length * STAGGER + 200);
+      setTimeout(() => {
+        transitioning = false;
+        if (pendingRequest) {
+          const next = pendingRequest;
+          pendingRequest = null;
+          applyFilter(next.cat, next.expanded);
+        }
+      }, toShow.length * STAGGER + 200);
     }, FADE_OUT);
   }
 
