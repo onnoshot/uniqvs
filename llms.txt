@@ -46,8 +46,14 @@ Detaylı hizmet sayfası: https://uniqbee.com/hizmetler/
 - [Google Yıldız Puanı Satışları Nasıl Etkiler?](https://uniqbee.com/blog/google-yildiz-puani-satis-etkisi/): Puan ve yorum sayısının satışa etkisi.
 - [Google Yorum Yönetimi Hizmeti](https://uniqbee.com/blog/google-yorum-yonetimi-hizmeti/): UniqBee'nin sosyal medya yönetimiyle entegre yorum yönetimi yaklaşımı.
 
+## Yapay Zeka Arama Görünürlüğü (AEO) Blog Serisi
+- [İşletmeniz ChatGPT'de Nasıl Önerilir?](https://uniqbee.com/blog/yapay-zeka-aramalarinda-isletme-onerilme-rehberi/): ChatGPT, Perplexity ve Google AI Mode bir işletmeyi nereden tanır, neden önerir; işletme sahipleri için pratik AEO rehberi.
+- [Sosyal Medya Ajansı Nedir?](https://uniqbee.com/blog/sosyal-medya-ajansi-nedir/): Bir sosyal medya ajansının gerçekte yaptığı iş ve işletmenize ne zaman gerekli olduğu.
+- [Sosyal Medya Ajansı Fiyatları 2026](https://uniqbee.com/blog/sosyal-medya-ajansi-fiyatlari-2026/): Fiyatı belirleyen faktörler, paket tipleri ve interaktif bütçe hesaplayıcı.
+- [En İyi Sosyal Medya Ajansı Nasıl Bulunur?](https://uniqbee.com/blog/sosyal-medya-ajansi-yorumlari-nasil-degerlendirilir/): Ekşi Sözlük, Google yorumları ve referans kontrolüne ne kadar güvenilmeli.
+
 ## Blog
-UniqBee blogu; Google AI Overview / GEO, sosyal medya algoritmaları, performans reklamcılığı, Google yorum ve itibar yönetimi, first-party data ve içerik stratejisi üzerine güncel rehberler yayınlar: https://uniqbee.com/blog/
+UniqBee blogu; Google AI Overview / GEO, yapay zeka arama görünürlüğü (AEO), sosyal medya algoritmaları, performans reklamcılığı, Google yorum ve itibar yönetimi, first-party data ve içerik stratejisi üzerine güncel rehberler yayınlar: https://uniqbee.com/blog/
 
 ## Sitemap
 https://uniqbee.com/sitemap.xml

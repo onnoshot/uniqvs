@@ -1066,6 +1066,48 @@ a{color:inherit;text-decoration:none}
   letter-spacing:-.02em;
 }
 
+/* ═══ Interactive: audit checklist w/ live score ═══ */
+.ai-checklist{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.75rem 1.75rem 1.9rem;margin:2.2rem 0}
+.ai-checklist__head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem;flex-wrap:wrap;gap:.5rem}
+.ai-checklist__head h4{font-size:1rem;font-weight:700;color:var(--ink);margin:0;letter-spacing:-.01em}
+.ai-checklist__score{font-size:.8rem;font-weight:700;color:var(--red);white-space:nowrap}
+.ai-checklist__bar{height:6px;border-radius:4px;background:var(--bg3);overflow:hidden;margin-bottom:1.35rem}
+.ai-checklist__bar-fill{height:100%;width:0%;background:var(--red);border-radius:4px;transition:width .35s var(--ease)}
+.ai-checklist ul{list-style:none;margin:0;display:flex;flex-direction:column;gap:.55rem}
+.ai-checklist li{margin:0;font-size:inherit}
+.ai-checklist li::marker{content:none}
+.ai-checklist label{display:flex;align-items:flex-start;gap:.7rem;padding:.7rem .85rem;border-radius:var(--r-sm);background:var(--bg);border:1px solid var(--border);cursor:pointer;transition:border-color .2s,background .2s}
+.ai-checklist label:hover{border-color:var(--red-line)}
+.ai-checklist input[type=checkbox]{margin-top:.2rem;width:16px;height:16px;accent-color:var(--red);cursor:pointer;flex-shrink:0}
+.ai-checklist label:has(input:checked){border-color:var(--red-line);background:var(--red-dim)}
+.ai-checklist label:has(input:checked) span{color:var(--ink2);text-decoration:line-through;text-decoration-color:var(--ink3)}
+.ai-checklist span{font-size:.88rem;color:var(--ink);line-height:1.55}
+
+/* ═══ Interactive: diagnostic accordion ═══ */
+.diag{display:flex;flex-direction:column;gap:.65rem;margin:2.2rem 0}
+.diag-item{border:1px solid var(--border);border-radius:var(--r-sm);background:var(--bg2);overflow:hidden}
+.diag-item__q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.15rem;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--ff);font-size:.92rem;font-weight:600;color:var(--ink)}
+.diag-item__q::after{content:'+';font-size:1.3rem;font-weight:400;color:var(--red);flex-shrink:0;transition:transform .25s var(--ease);line-height:1}
+.diag-item.open .diag-item__q::after{transform:rotate(45deg)}
+.diag-item__a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}
+.diag-item__a p{padding:0 1.15rem 1.1rem;margin:0;font-size:.88rem;color:var(--ink2);line-height:1.7}
+.diag-item.open .diag-item__a{max-height:260px}
+
+/* ═══ Interactive: budget calculator ═══ */
+.calc-box{background:radial-gradient(ellipse 120% 100% at 50% 0%,#1a1a1a 0%,var(--ink) 60%);border:1px solid rgba(255,255,255,.08);border-radius:var(--r-lg);padding:2.25rem 2rem;margin:2.2rem 0}
+.calc-box h4{color:#fff;font-size:1.1rem;font-weight:700;margin:0 0 .4rem;letter-spacing:-.01em}
+.calc-box p.calc-hint{color:rgba(255,255,255,.5);font-size:.85rem;margin:0 0 1.4rem;line-height:1.6}
+.calc-row{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+.calc-row label{color:rgba(255,255,255,.75);font-size:.85rem;font-weight:600;flex-shrink:0}
+.calc-row select,
+.calc-row input[type=number]{flex:1;min-width:160px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:.65rem .9rem;color:#fff;font-size:.95rem;font-family:var(--ff)}
+.calc-row select:focus,
+.calc-row input[type=number]:focus{outline:none;border-color:var(--red)}
+.calc-row select option{color:#0a0a0a}
+.calc-result{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-sm);padding:1.1rem 1.25rem;margin-top:.4rem}
+.calc-result__amount{font-size:1.6rem;font-weight:800;color:#fff;letter-spacing:-.02em}
+.calc-result__label{font-size:.78rem;color:rgba(255,255,255,.5);margin-top:.3rem;line-height:1.5}
+
 /* Blog listing page */
 .blog-hero{
   padding:calc(var(--nav-h) + 3.5rem) 0 3.5rem;
