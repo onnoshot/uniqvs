@@ -308,6 +308,23 @@ document.querySelectorAll('.reel-poster').forEach(card => {
   });
 });
 
+// ── Language switcher dropdown ──
+(function () {
+  const trigger = document.getElementById('langTrigger');
+  const menu = document.getElementById('langMenu');
+  if (!trigger || !menu) return;
+  const close = () => { menu.classList.remove('open'); trigger.setAttribute('aria-expanded', 'false'); };
+  trigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = menu.classList.toggle('open');
+    trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav__lang-item')) close();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+})();
+
 // ── Smooth anchor scroll ──
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {

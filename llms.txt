@@ -15,6 +15,9 @@ Detaylı hizmet sayfası: https://uniqbee.com/hizmetler/
 - Performans reklamcılığı (Meta, Google)
 - Web sitesi tasarımı ve AI destekli üretim
 
+## Diller
+Ana sayfa 6 dilde yayında: Türkçe (varsayılan) https://uniqbee.com/, English https://uniqbee.com/en/, Deutsch https://uniqbee.com/de/, Français https://uniqbee.com/fr/, Português https://uniqbee.com/pt/, العربية https://uniqbee.com/ar/.
+
 ## İletişim
 - Web sitesi: https://uniqbee.com
 - E-posta: uniqbeedigital@gmail.com

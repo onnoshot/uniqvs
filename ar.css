@@ -1,0 +1,25 @@
+/* ═══════════════════════════════════════════════
+   UniqBee — ar.css
+   Targeted RTL overrides for the Arabic homepage.
+   Loaded after style.css; only touches physical
+   (non-logical) properties that don't auto-flip
+   with dir="rtl", plus directional icon mirroring.
+   The Turkey coverage map is intentionally excluded
+   from any mirroring (it must stay geographically correct).
+   ═══════════════════════════════════════════════ */
+
+.nav__lang-menu{right:auto;left:0}
+
+.nav__link-chevron,
+.ownsite-card__link svg,
+.bp-card__arrow{transform:scaleX(-1)}
+.bp-card:hover .bp-card__arrow{transform:scaleX(-1) translateX(5px)}
+
+.pstep2__line{
+  background:linear-gradient(to left,var(--red),rgba(204,28,28,.15));
+  transform-origin:right;
+}
+
+@media(max-width:768px){
+  .nav__link-chevron{transform:scaleX(-1)}
+}
