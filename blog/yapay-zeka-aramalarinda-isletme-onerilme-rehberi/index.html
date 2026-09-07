@@ -24,6 +24,14 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"ChatGPT bir işletmeyi önerirken bilgiyi nereden alıyor?","acceptedAnswer":{"@type":"Answer","text":"Kendi web sitenizden, Google Business Profile'ınızdan, üçüncü taraf dizinlerden, haber/basın kaynaklarından ve toplanan kullanıcı yorumlarından. Tek bir kaynağa değil, web genelindeki tutarlı sinyallere bakıyor."}},{"@type":"Question","name":"AI Overview ile ChatGPT'nin bir işletmeyi önermesi aynı şey mi?","acceptedAnswer":{"@type":"Answer","text":"Hayır. Google AI Overview arama sonucunun üstünde bir özet gösterir; ChatGPT gibi konuşan asistanlar ise doğrudan bir öneri/tavsiye şeklinde cevap üretir ve kaynak kümesi farklıdır. İkisi için de optimize etmek gerekir, tek bir formatın diğerini garanti etmesi beklenmemeli."}},{"@type":"Question","name":"AI aramalarından gelen trafiği Google Analytics'te nasıl görürüm?","acceptedAnswer":{"@type":"Answer","text":"GA4'te Trafik Edinme raporunda kaynak/mecra filtresine chatgpt.com, perplexity.ai veya gemini.google.com gibi domainleri arayarak bu trafiği ayrıştırabilirsiniz. Hacim küçük olsa da genellikle yüksek niyetli, kaliteli ziyaretçi trafiğidir."}},{"@type":"Question","name":"Küçük bir işletme için AEO'ya nereden başlamalı?","acceptedAnswer":{"@type":"Answer","text":"Önce Google Business Profile'ı eksiksiz ve güncel tutmakla, ardından web sitesinde temel Organization/LocalBusiness şemasını eklemekle başlayın. Yorum hacmini artırmak ve web sitesindeki bilgilerin (adres, telefon, çalışma saatleri) her yerde tutarlı olması bu aşamada en yüksek etkiyi yaratır."}}]}
   </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7B74WD2X7W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7B74WD2X7W');
+  </script>
 </head>
 <body>
 
@@ -270,5 +278,6 @@
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
     })();
   </script>
+  <script src="/cta-track.js"></script>
 </body>
 </html>
