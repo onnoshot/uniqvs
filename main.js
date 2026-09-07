@@ -349,3 +349,42 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 
 // custom cursor removed
+
+// ── CTA / button click tracking (GA4) ──
+(function () {
+  const SECTION_IDS = ['hero', 'coverage', 'work', 'services', 'platforms', 'about', 'process', 'faq', 'blog', 'contact'];
+  function sectionOf(el) {
+    if (el.closest('#nav')) return 'nav';
+    if (el.closest('footer')) return 'footer';
+    for (const id of SECTION_IDS) { if (el.closest('#' + id)) return id; }
+    return 'other';
+  }
+  function typeOf(el) {
+    const href = el.getAttribute('href') || '';
+    if (/^https:\/\/wa\.me\//.test(href)) return 'whatsapp';
+    if (/instagram\.com/.test(href)) return 'instagram';
+    if (/^mailto:/.test(href)) return 'email';
+    if (/^tel:/.test(href)) return 'phone';
+    if (el.classList.contains('nav__cta')) return 'nav_cta';
+    if (el.classList.contains('btn')) return 'button';
+    return 'link';
+  }
+  document.addEventListener('click', function (e) {
+    const el = e.target.closest('a, button');
+    if (!el) return;
+    const trackable = el.matches(
+      'a[href^="https://wa.me/"], a[href^="mailto:"], a[href^="tel:"], a[href*="instagram.com"], .btn, .nav__cta'
+    );
+    if (!trackable) return;
+    if (typeof window.gtag !== 'function') return;
+    const section = sectionOf(el);
+    const type = typeOf(el);
+    const label = (el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 60) || el.getAttribute('aria-label') || '';
+    window.gtag('event', 'cta_click_' + type + '_' + section, {
+      cta_type: type,
+      cta_section: section,
+      cta_label: label,
+      cta_page: location.pathname,
+    });
+  }, true);
+})();
