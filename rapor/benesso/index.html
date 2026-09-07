@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benesso — Rapor | UniqBee</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #CC1111;
+      --bg: #0a0a0a;
+      --card: #111;
+      --border: rgba(255,255,255,0.08);
+      --text: #f0f0f0;
+      --muted: rgba(255,255,255,0.45);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── LOCK SCREEN ── */
+    #lock {
+      position: fixed; inset: 0;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 24px;
+      transition: opacity 0.4s ease;
+    }
+
+    #lock.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .lock__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
+      text-decoration: none;
+    }
+
+    .lock__logo svg { width: 32px; height: 32px; }
+
+    .lock__logo span {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .lock__card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .lock__icon {
+      width: 48px; height: 48px;
+      background: rgba(204,17,17,0.12);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .lock__icon svg { width: 22px; height: 22px; }
+
+    .lock__title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .lock__sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    .lock__input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      font-size: 15px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 14px;
+      letter-spacing: 0.05em;
+    }
+
+    .lock__input:focus { border-color: rgba(204,17,17,0.5); }
+    .lock__input.error { border-color: var(--red); animation: shake 0.3s; }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
+    .lock__btn {
+      width: 100%;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 13px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .lock__btn:hover { opacity: 0.88; }
+
+    .lock__err {
+      font-size: 12px;
+      color: var(--red);
+      margin-top: 10px;
+      min-height: 16px;
+      text-align: center;
+    }
+
+    /* ── DASHBOARD ── */
+    #dashboard { display: none; }
+    #dashboard.visible { display: block; }
+
+    .dash-header {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dash-header__logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text);
+    }
+
+    .dash-header__logo svg { width: 28px; height: 28px; }
+    .dash-header__logo span { font-size: 16px; font-weight: 600; }
+
+    .dash-header__meta {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .dash-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 32px;
+    }
+
+    .dash-title {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .dash-period {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .kpi {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .kpi__label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .kpi__value {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .kpi__value span { font-size: 18px; color: var(--muted); }
+
+    .kpi__delta {
+      font-size: 12px;
+      color: #4ade80;
+    }
+
+    .kpi__delta.down { color: var(--red); }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .chart-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 16px;
+    }
+
+    .chart-placeholder {
+      height: 180px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 16px;
+    }
+
+    .note {
+      background: rgba(204,17,17,0.07);
+      border: 1px solid rgba(204,17,17,0.2);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 32px;
+    }
+
+    .note strong { color: var(--text); }
+
+    @media (max-width: 600px) {
+      .dash-header { padding: 16px; }
+      .dash-body { padding: 24px 16px; }
+      .kpi__value { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── LOCK SCREEN ── -->
+  <div id="lock">
+    <a href="https://uniqbee.com" class="lock__logo">
+      <svg viewBox="0 0 36 36" fill="none">
+        <path d="M18 3 L32 10 L32 26 L18 33 L4 26 L4 10 Z" stroke="#cc1c1c" stroke-width="1.5" fill="none"/>
+        <path d="M18 10 L26 14.5 L26 21.5 L18 26 L10 21.5 L10 14.5 Z" fill="rgba(204,28,28,0.1)"/>
+        <circle cx="18" cy="18" r="3" fill="#cc1c1c"/>
+      </svg>
+      <span>UniqBee</span>
+    </a>
+
+    <div class="lock__card">
+      <div class="lock__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#CC1111" stroke-width="2" stroke-linecap="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <div class="lock__title">Rapor Erişimi</div>
+      <div class="lock__sub">Bu rapor gizlidir. Devam etmek için şifrenizi girin.</div>
+      <input
+        type="password"
+        id="pwInput"
+        class="lock__input"
+        placeholder="Şifre"
+        autocomplete="current-password"
+      />
+      <button class="lock__btn" id="pwBtn">Görüntüle</button>
+      <div class="lock__err" id="pwErr"></div>
+    </div>
+  </div>
+
+  <!-- ── DASHBOARD ── -->
+  <div id="dashboard">
+
+    <header class="dash-header">
+      <a href="https://uniqbee.com" class="dash-header__logo">
+        <svg viewBox="0 0 36 36" fill="none">
+          <path d="M18 3 L32 10 L32 26 L18 33 L4 26 L4 10 Z" stroke="#cc1c1c" stroke-width="1.5" fill="none"/>
+          <path d="M18 10 L26 14.5 L26 21.5 L18 26 L10 21.5 L10 14.5 Z" fill="rgba(204,28,28,0.1)"/>
+          <circle cx="18" cy="18" r="3" fill="#cc1c1c"/>
+        </svg>
+        <span>UniqBee</span>
+      </a>
+      <div class="dash-header__meta">Benesso &mdash; Performans Raporu</div>
+    </header>
+
+    <div class="dash-body">
+      <div class="dash-title">Benesso</div>
+      <div class="dash-period">Ocak 2025 — Mart 2025 &nbsp;·&nbsp; Aylık Performans Özeti</div>
+
+      <!-- KPIs -->
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi__label">Toplam Erişim</div>
+          <div class="kpi__value">284<span>K</span></div>
+          <div class="kpi__delta">↑ %18 geçen aya göre</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">Etkileşim</div>
+          <div class="kpi__value">42<span>K</span></div>
+          <div class="kpi__delta">↑ %11</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">Etkileşim Oranı</div>
+          <div class="kpi__value">6.2<span>%</span></div>
+          <div class="kpi__delta">↑ %0.4 puan</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__label">Yeni Takipçi</div>
+          <div class="kpi__value">1.8<span>K</span></div>
+          <div class="kpi__delta down">↓ %3</div>
+        </div>
+      </div>
+
+      <!-- Chart placeholder -->
+      <div class="chart-card">
+        <div class="section-title">Haftalık Erişim</div>
+        <div class="chart-placeholder">
+          Grafik buraya gelecek
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Not:</strong> Bu rapor UniqBee tarafından Benesso için hazırlanmıştır.
+        Veriler Instagram ve Meta Business Suite'ten alınmıştır. Sorularınız için
+        <a href="https://wa.me/905437406855" style="color:#CC1111">iletişime geçin</a>.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // SHA-256 hash of the password
+    // To generate: https://emn178.github.io/online-tools/sha256.html
+    // Current password hash below — change this for each client
+    const PASSWORD_HASH = 'BURAYA_HASH_GELECEK';
+
+    const SESSION_KEY = 'uniqbee_rapor_benesso';
+
+    async function sha256(str) {
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+
+    function unlock() {
+      document.getElementById('lock').classList.add('hide');
+      document.getElementById('dashboard').classList.add('visible');
+      setTimeout(() => document.getElementById('lock').style.display = 'none', 400);
+    }
+
+    // Check session
+    if (sessionStorage.getItem(SESSION_KEY) === '1') unlock();
+
+    document.getElementById('pwBtn').addEventListener('click', async () => {
+      const val = document.getElementById('pwInput').value;
+      const hash = await sha256(val);
+      if (hash === PASSWORD_HASH) {
+        sessionStorage.setItem(SESSION_KEY, '1');
+        unlock();
+      } else {
+        const inp = document.getElementById('pwInput');
+        const err = document.getElementById('pwErr');
+        inp.classList.add('error');
+        err.textContent = 'Şifre hatalı, tekrar deneyin.';
+        setTimeout(() => inp.classList.remove('error'), 400);
+      }
+    });
+
+    document.getElementById('pwInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('pwBtn').click();
+    });
+  </script>
+
+</body>
+</html>
