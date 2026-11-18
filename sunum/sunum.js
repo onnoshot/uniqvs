@@ -173,6 +173,26 @@
   }
 
   /* =========================================================
+     KAMERA ARKASI SLAYTI: görünürken 4 sn'de bir geçer
+     ========================================================= */
+  var bts = $('#bts');
+  if (bts) {
+    var slides = $$('.slide', bts), dots = $$('.bts__dots i', bts), cap = $('#btsCap'), si = 0, timer = null;
+    var go = function (n) {
+      slides[si].classList.remove('on'); dots[si] && dots[si].classList.remove('on');
+      si = (n + slides.length) % slides.length;
+      slides[si].classList.add('on'); dots[si] && dots[si].classList.add('on');
+      if (cap) cap.textContent = slides[si].getAttribute('data-cap') || '';
+    };
+    var start = function () { if (!timer) timer = setInterval(function () { go(si + 1); }, 4000); };
+    var stop = function () { clearInterval(timer); timer = null; };
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) { e.isIntersecting ? start() : stop(); });
+    }, { threshold: 0.25 }).observe(bts);
+    document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); });
+  }
+
+  /* =========================================================
      HİZMET İKONLARI: görünür olunca çizilir, sonra döngüye girer
      ========================================================= */
   var svcIO = new IntersectionObserver(function (es) {
@@ -271,7 +291,7 @@
 
   // görsel parallax
   $$('[data-par]').forEach(function (m) {
-    var inner = $$('img, video', m);
+    var inner = m.querySelector('.par-in') ? [m.querySelector('.par-in')] : $$('img, video', m);
     gsap.fromTo(inner, { yPercent: -7, scale: 1.16 }, { yPercent: 7, scale: 1.16, ease: 'none',
       scrollTrigger: { trigger: m, start: 'top bottom', end: 'bottom top', scrub: true } });
   });

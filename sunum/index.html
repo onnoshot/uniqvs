@@ -124,7 +124,20 @@ html.anim .biz__text .sw{opacity:.18}
 .fact b{display:block;font-size:clamp(28px,3.2vw,44px);letter-spacing:-.035em;line-height:1;font-weight:700}
 .fact span{display:block;color:var(--ink2);font-size:15px;margin-top:10px}
 .biz__img{aspect-ratio:21/9;margin-top:clamp(48px,6vw,80px)}
-@media (max-width:899px){.biz__img{aspect-ratio:4/3}}
+@media (max-width:899px){.biz__img{aspect-ratio:4/5}}
+.bts .par-in{position:absolute;inset:0}
+.bts .slide{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1.2s var(--ease)}
+.bts .slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 6s linear}
+.bts .slide.on{opacity:1}
+.bts .slide.on img{transform:scale(1)}
+.bts::after{content:"";position:absolute;inset:auto 0 0 0;height:40%;background:linear-gradient(transparent,rgba(10,10,11,.75));pointer-events:none}
+.bts__ui{position:absolute;left:20px;right:20px;bottom:18px;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:13px;color:var(--ink2)}
+.bts__dots{display:flex;gap:6px}
+.bts__dots i{width:18px;height:2px;background:rgba(243,240,234,.3);border-radius:2px;transition:background .4s,width .4s var(--ease)}
+.bts__dots i.on{width:34px;background:var(--red2)}
+.bts__cap{text-align:right}
+@media (max-width:899px){.bts__ui{left:14px;right:14px;bottom:14px;font-size:12px}.bts__dots i{width:12px}.bts__dots i.on{width:24px}}
+@media (prefers-reduced-motion:reduce){.bts .slide img{transition:none;transform:none}}
 @media (min-width:900px){.facts{grid-template-columns:repeat(4,1fr)}.fact{border-bottom:0}}
 
 /* ---------- 3 hizmetler ---------- */
@@ -363,7 +376,16 @@ html.anim [data-split]:not(.ready){visibility:hidden}
       <div class="fact rv"><b>Onlarca marka</b><span>Moda, gastronomi, otelcilik, kurumsal</span></div>
       <div class="fact rv"><b>İstanbul</b><span>Merkezli, Türkiye genelinde çekim</span></div>
     </div>
-    <div class="media biz__img" data-par><img src="/sunum/m/biz-set-1440.webp" srcset="/sunum/m/biz-set-720.webp 720w, /sunum/m/biz-set-1440.webp 1440w" sizes="(min-width:1320px) 1320px, 100vw" alt="Çekim setinde monitörden kadraj kontrolü" loading="lazy" decoding="async"></div>
+    <div class="media biz__img bts" data-par id="bts" aria-roledescription="slayt" aria-label="Kamera arkası">
+      <div class="par-in">
+        <figure class="slide on" data-cap="Moda çekimi · monitörden kadraj kontrolü"><img src="/sunum/m/bts-moda-1440.webp" srcset="/sunum/m/bts-moda-720.webp 720w, /sunum/m/bts-moda-1440.webp 1440w" sizes="(min-width:1320px) 1320px, 100vw" style="object-position:50% 58%" alt="Moda çekiminde monitörden kadraj kontrolü" loading="lazy" decoding="async"></figure>
+        <figure class="slide" data-cap="Soner Sarıkabadayı · Mevzu Derin klip çekimi"><img src="/sunum/m/bts-soner-monitor.webp" style="object-position:50% 14%" alt="Soner Sarıkabadayı Mevzu Derin klip çekiminde monitör" loading="lazy" decoding="async"></figure>
+        <figure class="slide" data-cap="Set içi renk ve ışık kontrolü"><img src="/sunum/m/bts-renk-1440.webp" srcset="/sunum/m/bts-renk-720.webp 720w, /sunum/m/bts-renk-1440.webp 1440w" sizes="(min-width:1320px) 1320px, 100vw" style="object-position:50% 62%" alt="Çekim setinde renk kontrol monitörü" loading="lazy" decoding="async"></figure>
+        <figure class="slide" data-cap="Soner Sarıkabadayı · Mevzu Derin klip çekimi"><img src="/sunum/m/bts-soner-klaket.webp" style="object-position:50% 52%" alt="Soner Sarıkabadayı Mevzu Derin klaketi" loading="lazy" decoding="async"></figure>
+        <figure class="slide" data-cap="Portre çekimi · canlı monitör"><img src="/sunum/m/bts-portre-1440.webp" srcset="/sunum/m/bts-portre-720.webp 720w, /sunum/m/bts-portre-1440.webp 1440w" sizes="(min-width:1320px) 1320px, 100vw" style="object-position:50% 45%" alt="Portre çekiminde monitör kontrolü" loading="lazy" decoding="async"></figure>
+      </div>
+      <div class="bts__ui"><span class="bts__dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span><span class="bts__cap" id="btsCap">Moda çekimi · monitörden kadraj kontrolü</span></div>
+    </div>
   </div>
 </section>
 
