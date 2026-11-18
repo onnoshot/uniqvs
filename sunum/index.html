@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UniqBee · Ajans Sunumu</title>
+<meta name="description" content="UniqBee dijital medya ajansı: hizmetler, çalışma süreci ve seçili işler.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="UniqBee">
+<meta property="og:title" content="UniqBee · Ajans Sunumu">
+<meta property="og:description" content="Fikri bulan, çeken ve yayınlayan aynı ekip. Hizmetler, süreç ve seçili işler.">
+<meta property="og:url" content="https://uniqbee.com/sunum">
+<meta property="og:image" content="https://uniqbee.com/sunum/m/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="UniqBee ajans sunumu kapak görseli">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="UniqBee · Ajans Sunumu">
+<meta name="twitter:description" content="Fikri bulan, çeken ve yayınlayan aynı ekip.">
+<meta name="twitter:image" content="https://uniqbee.com/sunum/m/og.jpg">
+<link rel="preload" href="/sunum/f/sfpd-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/sunum/f/sfpd-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="/sunum/m/hero-cunda-p.webp">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7B74WD2X7W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7B74WD2X7W', { page_title: 'Sunum' });
+</script>
+
+<style>
+@font-face{font-family:'SF Pro Display';src:url(/sunum/f/sfpd-regular.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'SF Pro Display';src:url(/sunum/f/sfpd-semibold.woff2) format('woff2');font-weight:500 600;font-style:normal;font-display:swap}
+@font-face{font-family:'SF Pro Display';src:url(/sunum/f/sfpd-bold.woff2) format('woff2');font-weight:700 900;font-style:normal;font-display:swap}
+:root{
+  --bg:#0a0a0b; --bg2:#111113; --bg3:#18181b;
+  --ink:#f3f0ea; --ink2:rgba(243,240,234,.66); --ink3:rgba(243,240,234,.4);
+  --line:rgba(243,240,234,.12);
+  --red:#cc1c1c; --red2:#e23a3a;
+  --ff:'SF Pro Display',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --gut:clamp(20px,4vw,56px);
+  --bar:64px;
+  --max:1320px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--ff);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+em{font-style:normal;color:var(--red2)}
+::selection{background:var(--red);color:#fff}
+
+/* ---------- ortak ---------- */
+.sec{position:relative;padding:clamp(88px,11vw,160px) var(--gut)}
+.wrap{max-width:var(--max);margin:0 auto}
+.head{display:grid;gap:18px;margin-bottom:clamp(40px,6vw,80px)}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);font-weight:600}
+.eyebrow b{color:var(--red2)}
+.h2{font-size:clamp(38px,6vw,88px);line-height:1;letter-spacing:-.04em;font-weight:700;max-width:16ch}
+.lede{font-size:clamp(17px,1.5vw,20px);color:var(--ink2);max-width:52ch}
+.media{position:relative;overflow:hidden;background:var(--bg3);border-radius:6px}
+.media>img,.media>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.media>video{opacity:0;transition:opacity .5s var(--ease)}
+.media.is-playing>video{opacity:1}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+.wi{display:inline-block;will-change:transform}
+
+/* ---------- üst bar ---------- */
+.bar{position:fixed;inset:0 0 auto 0;height:var(--bar);z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gut)}
+.bar::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(10,10,11,.7),rgba(10,10,11,0));transition:background .4s;pointer-events:none}
+.bar.solid::before{background:rgba(10,10,11,.85);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{position:relative;display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em;font-size:17px}
+.brand img{width:26px;height:26px}
+.bar__now{position:relative;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);display:none}
+.bar__cta{position:relative;font-size:14px;font-weight:600;padding:10px 18px;border-radius:999px;background:var(--ink);color:var(--bg);transition:background .3s,color .3s}
+.bar__cta:hover{background:var(--red);color:#fff}
+.progress{position:fixed;left:0;top:0;height:2px;width:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0);z-index:51}
+@media (min-width:900px){.bar__now{display:block}}
+
+/* ---------- 1 açılış ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:calc(var(--bar) + 24px) var(--gut) clamp(32px,5vw,64px);overflow:hidden;isolation:isolate}
+.hero__media{position:absolute;inset:-12px;z-index:-2;display:grid;grid-template-columns:repeat(3,1fr);gap:4px;filter:blur(2.5px) brightness(.62) saturate(.8)}
+.hero__media .media{border-radius:0}
+.hero__media .d{display:none}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,10,11,.66) 0%,rgba(10,10,11,.55) 35%,rgba(10,10,11,.88) 68%,rgba(10,10,11,.98) 100%)}
+.hero__in{max-width:var(--max);margin:0 auto;width:100%}
+.hero .eyebrow{color:var(--ink2);margin-bottom:22px}
+.hero h1{font-size:clamp(48px,8.6vw,136px);line-height:.95;letter-spacing:-.05em;font-weight:700;max-width:12ch}
+.hero__foot{display:grid;gap:24px;margin-top:clamp(24px,3.5vw,40px)}
+.hero__foot p{color:var(--ink2);max-width:48ch;font-size:clamp(16px,1.3vw,18px)}
+.hero__btns{display:flex;flex-wrap:wrap;gap:10px}
+@media (min-width:900px){
+  .hero__media{grid-template-columns:repeat(4,1fr)}
+  .hero__media .d{display:block}
+  .hero__foot{grid-template-columns:1fr auto;align-items:end}
+}
+
+/* butonlar */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;border:1px solid var(--line);font-size:16px;font-weight:600;transition:background .3s var(--ease),border-color .3s,color .3s,transform .3s var(--ease)}
+.btn svg{width:18px;height:18px;flex:0 0 auto}
+.btn:hover{border-color:var(--ink);transform:translateY(-2px)}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.btn.primary:hover{background:var(--red2);border-color:var(--red2)}
+
+/* ---------- 2 biz kimiz ---------- */
+.biz__text{font-size:clamp(28px,3.8vw,56px);line-height:1.15;letter-spacing:-.03em;font-weight:600;max-width:24ch}
+html.anim .biz__text .sw{opacity:.18}
+.facts{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(48px,6vw,80px);border-top:1px solid var(--line)}
+.fact{padding:24px 16px 24px 0;border-bottom:1px solid var(--line)}
+.fact b{display:block;font-size:clamp(28px,3.2vw,44px);letter-spacing:-.035em;line-height:1;font-weight:700}
+.fact span{display:block;color:var(--ink2);font-size:15px;margin-top:10px}
+.biz__img{aspect-ratio:21/9;margin-top:clamp(48px,6vw,80px)}
+@media (max-width:899px){.biz__img{aspect-ratio:4/3}}
+@media (min-width:900px){.facts{grid-template-columns:repeat(4,1fr)}.fact{border-bottom:0}}
+
+/* ---------- 3 hizmetler ---------- */
+.svc-list{border-top:1px solid var(--line)}
+.svc{position:relative;display:grid;grid-template-columns:64px 1fr;grid-template-areas:"ico n" "ico h" "ico p";gap:4px 20px;align-items:center;padding:26px 0;border-bottom:1px solid var(--line);isolation:isolate}
+.svc::before{content:"";position:absolute;inset:0 calc(var(--gut) * -1);z-index:-1;background:linear-gradient(90deg,rgba(204,28,28,.14),rgba(204,28,28,0) 70%);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--ease)}
+.svc:hover::before{transform:scaleX(1)}
+.svc__n{grid-area:n;font-size:12px;letter-spacing:.14em;color:var(--red2);font-weight:600}
+.svc h3{grid-area:h;font-size:clamp(24px,2.8vw,40px);letter-spacing:-.035em;line-height:1.05;font-weight:700;transition:transform .5s var(--ease)}
+.svc p{grid-area:p;color:var(--ink2);font-size:16px;max-width:48ch;margin-top:4px}
+.svc:hover h3{transform:translateX(8px)}
+.ico{grid-area:ico;width:64px;height:64px;color:var(--ink);align-self:start;overflow:visible;transition:color .4s}
+.ico *{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ico .ac{stroke:var(--red2)}
+.ico .fl{fill:var(--red2);stroke:none}
+.svc:hover .ico{color:var(--red2)}
+html.anim .ico .dr{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.3s var(--ease)}
+html.anim .svc.in .ico .dr{stroke-dashoffset:0}
+.ico .dr:nth-of-type(2){transition-delay:.12s}.ico .dr:nth-of-type(3){transition-delay:.24s}.ico .dr:nth-of-type(4){transition-delay:.36s}.ico .dr:nth-of-type(5){transition-delay:.48s}
+html.anim .ico .lp{opacity:0;transition:opacity .6s .9s}
+html.anim .svc.in .ico .lp{opacity:1}
+.ico .spin,.ico .col,.ico .heart,.ico .blink,.ico .trace{transform-box:fill-box}
+.svc.in .ico .spin{animation:spin 9s linear infinite;transform-origin:center}
+.svc.in .ico .heart{animation:heart 2.6s var(--ease) infinite;transform-origin:center}
+.svc.in .ico .heart.h2{animation-delay:1.3s}
+.svc.in .ico .blink{animation:blink 1.4s steps(2,start) infinite}
+.svc.in .ico .col{animation:colgrow 2.4s var(--ease) infinite alternate;transform-origin:50% 100%}
+.svc.in .ico .col.c2{animation-delay:.4s}.svc.in .ico .col.c3{animation-delay:.8s}
+.svc.in .ico .trace{stroke-dasharray:1;animation:trace 3.2s var(--ease) infinite}
+.svc.in .ico .pulse{animation:pulse 2s var(--ease) infinite;transform-box:fill-box;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes heart{0%{transform:translate(0,0) scale(.6);opacity:0}25%{opacity:1}100%{transform:translate(4px,-12px) scale(1);opacity:0}}
+@keyframes blink{to{visibility:hidden}}
+@keyframes colgrow{from{transform:scaleY(.45)}to{transform:scaleY(1)}}
+@keyframes trace{0%{stroke-dashoffset:1}55%,80%{stroke-dashoffset:0}100%{stroke-dashoffset:-1}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.8);opacity:.35}}
+@media (min-width:900px){
+  .svc{grid-template-columns:56px 96px 1.1fr 1.2fr;grid-template-areas:"n ico h p";gap:32px;padding:34px 0}
+  .ico{width:80px;height:80px;align-self:center}
+  .svc p{margin-top:0}
+}
+@media (prefers-reduced-motion:reduce){.ico *{animation:none!important}}
+
+/* ---------- 4 süreç ---------- */
+.steps{position:relative;display:grid;gap:0}
+.steps__line{position:absolute;left:5px;top:10px;bottom:10px;width:1px;background:var(--line)}
+.steps__fill{position:absolute;inset:0;background:var(--red);transform-origin:50% 0;transform:scaleY(0)}
+html:not(.anim) .steps__fill{transform:none}
+.step{position:relative;padding:0 0 32px 34px}
+.step:last-child{padding-bottom:0}
+.step::before{content:"";position:absolute;left:0;top:8px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:1px solid var(--ink3);transition:background .4s,border-color .4s}
+.step.on::before,html:not(.anim) .step::before{background:var(--red);border-color:var(--red)}
+.step__n{font-size:12px;letter-spacing:.14em;color:var(--ink3);font-weight:600}
+.step h3{font-size:clamp(22px,2vw,28px);letter-spacing:-.03em;font-weight:700;margin-top:4px;transition:color .4s}
+html.anim .step:not(.on) h3{color:var(--ink3)}
+.step p{color:var(--ink2);font-size:15px;margin-top:6px;max-width:34ch}
+@media (min-width:900px){
+  .steps{grid-template-columns:repeat(6,1fr);gap:24px;padding-top:34px}
+  .steps__line{left:0;right:0;top:5px;bottom:auto;width:auto;height:1px}
+  .steps__fill{transform-origin:0 50%;transform:scaleX(0)}
+  .step{padding:0}
+  .step::before{top:-34px}
+}
+
+/* ---------- 5 işler ---------- */
+.isler{padding-bottom:clamp(64px,8vw,120px)}
+.cases{position:relative}
+.cases__track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:0 var(--gut) 8px;margin:0 calc(var(--gut) * -1);scrollbar-width:none}
+.cases__track::-webkit-scrollbar{display:none}
+.case{flex:0 0 78vw;scroll-snap-align:start;scroll-margin-left:var(--gut)}
+.case .media{aspect-ratio:4/5}
+.case__info{padding:16px 2px 0}
+.case__top{display:flex;justify-content:space-between;gap:12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.case__top b{color:var(--red2);font-weight:600}
+.case h3{font-size:clamp(26px,2.4vw,36px);letter-spacing:-.035em;line-height:1.05;font-weight:700;margin-top:8px}
+.case p{color:var(--ink2);font-size:15px;margin-top:8px;max-width:38ch}
+.play-hint{position:absolute;left:12px;bottom:12px;z-index:2;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:6px 11px;border-radius:999px;background:rgba(10,10,11,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:opacity .4s}
+.is-playing .play-hint{opacity:0}
+.cases__ui{display:flex;align-items:center;gap:16px;margin-top:28px;font-size:13px;letter-spacing:.12em;color:var(--ink3);font-variant-numeric:tabular-nums}
+.cases__bar{flex:1;height:1px;background:var(--line);position:relative;overflow:hidden}
+.cases__bar i{position:absolute;inset:0;background:var(--red);transform-origin:0 50%;transform:scaleX(.125)}
+@media (min-width:900px){
+  .cases__track{overflow:visible;scroll-snap-type:none;width:max-content;gap:24px}
+  html:not(.anim) .cases__track{overflow-x:auto;width:auto}
+  .case{flex:0 0 clamp(300px,26vw,400px)}
+  .case .media{height:min(52vh,500px);aspect-ratio:auto}
+}
+
+/* ---------- 6 markalar ---------- */
+.markalar{padding-left:0;padding-right:0;overflow:hidden}
+.markalar .wrap{padding:0 var(--gut)}
+.marquee{display:flex;overflow:hidden;border-top:1px solid var(--line);padding:clamp(18px,2.2vw,28px) 0;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee:last-child{border-bottom:1px solid var(--line)}
+.marquee__in{display:flex;flex-shrink:0;align-items:center;gap:clamp(28px,3.4vw,56px);padding-right:clamp(28px,3.4vw,56px);animation:mq 40s linear infinite}
+.marquee.rev .marquee__in{animation-direction:reverse;animation-duration:46s}
+.marquee:hover .marquee__in{animation-play-state:paused}
+.marquee__in span{font-size:clamp(30px,4.4vw,68px);letter-spacing:-.04em;font-weight:700;white-space:nowrap;line-height:1}
+.marquee.rev .marquee__in span{font-weight:400;color:var(--ink2)}
+.marquee__in img{width:clamp(18px,2vw,28px);height:auto}
+@keyframes mq{to{transform:translateX(-100%)}}
+
+/* ---------- 7 model ---------- */
+.model{background:var(--bg2)}
+.model__grid{display:grid;border-top:1px solid var(--line)}
+.mi{padding:24px 0;border-bottom:1px solid var(--line)}
+.mi small{display:block;font-size:12px;letter-spacing:.14em;color:var(--red2);font-weight:600;margin-bottom:10px}
+.mi b{display:block;font-size:clamp(22px,2vw,28px);letter-spacing:-.03em;font-weight:700;line-height:1.1}
+.mi p{color:var(--ink2);font-size:15px;margin-top:8px;max-width:32ch}
+.model__note{margin-top:clamp(40px,5vw,64px);font-size:clamp(22px,2.4vw,34px);letter-spacing:-.03em;line-height:1.2;font-weight:600;max-width:30ch}
+@media (min-width:900px){
+  .model__grid{grid-template-columns:repeat(4,1fr);gap:32px;border-top:0}
+  .mi{border-bottom:0;border-top:1px solid var(--line);padding-top:24px}
+}
+
+/* ---------- 8 iletişim ---------- */
+.contact{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-bottom:calc(32px + env(safe-area-inset-bottom))}
+.contact .wrap{width:100%}
+.contact h2{font-size:clamp(44px,7.4vw,120px);line-height:.98;letter-spacing:-.05em;font-weight:700;max-width:14ch;margin-top:24px}
+.contact .lede{margin-top:24px}
+.person{display:grid;gap:24px;margin-top:clamp(40px,5vw,64px);padding-top:28px;border-top:1px solid var(--line)}
+.person__name{font-size:clamp(24px,2.4vw,34px);font-weight:700;letter-spacing:-.03em;line-height:1.1}
+.person__role{color:var(--ink3);font-size:14px;margin-top:4px}
+.person__tel{display:inline-block;margin-top:12px;font-size:clamp(20px,2vw,26px);font-variant-numeric:tabular-nums;border-bottom:1px solid var(--line)}
+.person__tel:hover{border-color:var(--red)}
+.btns{display:grid;gap:10px}
+.btns .btn{justify-content:space-between;min-height:60px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-top:clamp(48px,6vw,80px);padding-top:22px;border-top:1px solid var(--line);font-size:13px;color:var(--ink3)}
+.foot a:hover{color:var(--ink)}
+.pdf{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--ink);padding:11px 18px;border-radius:999px;border:1px solid var(--line)}
+.pdf:hover{border-color:var(--red)}
+.badge{display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);transition:border-color .3s,transform .3s}
+.badge img{width:18px;height:18px;filter:none;margin:0}
+.badge:hover{border-color:var(--red);transform:translateY(-1px)}
+@media (min-width:900px){
+  .person{grid-template-columns:1fr 1.4fr;align-items:end}
+  .btns{grid-template-columns:repeat(3,1fr)}
+}
+
+/* mobil whatsapp */
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:40;width:56px;height:56px;border-radius:50%;background:var(--red);display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4);transform:translateY(120px);transition:transform .5s var(--ease)}
+.fab svg{width:24px;height:24px}
+.fab.show{transform:none}
+@media (min-width:900px){.fab{display:none}}
+
+/* özel imleç */
+.cur{position:fixed;left:0;top:0;z-index:100;pointer-events:none;display:none;opacity:0}
+.cur__dot{position:absolute;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:var(--red)}
+.cur__ring{position:absolute;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;border:1px solid rgba(243,240,234,.4);display:grid;place-items:center;transition:width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),background .35s,border-color .35s}
+.cur__ring span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;opacity:0;transition:opacity .25s;color:#fff}
+.cur.big .cur__ring{width:84px;height:84px;margin:-42px 0 0 -42px;background:var(--red);border-color:var(--red)}
+.cur.big .cur__ring span{opacity:1}
+.cur.link .cur__ring{width:54px;height:54px;margin:-27px 0 0 -27px;border-color:var(--red)}
+@media (hover:hover) and (pointer:fine){html.anim .cur{display:block} html.anim, html.anim a{cursor:none}}
+
+/* animasyon başlangıç durumları */
+html.anim .rv{opacity:0;transform:translateY(28px)}
+html.anim [data-split]:not(.ready){visibility:hidden}
+
+@media (prefers-reduced-motion:reduce){
+  .marquee__in{animation:none}
+  .marquee{overflow-x:auto}
+}
+
+/* yazdırma / pdf */
+@media print{
+  @page{size:A4;margin:0}
+  html,body{background:var(--bg)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .bar,.progress,.fab,.cur,.pdf,.hero__btns,.cases__ui,.play-hint{display:none!important}
+  .media>video{display:none!important}
+  .hero{min-height:410mm;break-after:page}
+  .sec{break-inside:auto}
+  .svc,.step,.mi,.fact{break-inside:avoid}
+  .cases__track{display:grid!important;grid-template-columns:repeat(4,1fr);gap:20px;overflow:visible!important;width:auto!important;transform:none!important;margin:0;padding:0}
+  .case{flex:none;break-inside:avoid}
+  .case .media{height:auto;aspect-ratio:4/5}
+  .marquee{-webkit-mask:none;mask:none}
+  .marquee__in{animation:none!important;flex-wrap:wrap;row-gap:16px}
+  .marquee__in[aria-hidden]{display:none}
+  .marquee__in span{font-size:40px}
+  .contact{min-height:0;break-before:page}
+  .rv{opacity:1!important;transform:none!important}
+  .biz__text .sw{opacity:1!important}
+  .step h3{color:var(--ink)!important}
+}
+</style>
+<script>
+  (function(){
+    var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!rm && !/[?&]print=1/.test(location.search)){
+      document.documentElement.classList.add('anim');
+      setTimeout(function(){ if(!window.__sunumReady) document.documentElement.classList.remove('anim'); }, 4000);
+    }
+  })();
+</script>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"></div>
+<header class="bar">
+  <a class="brand" href="https://uniqbee.com" aria-label="UniqBee ana sayfa"><img src="/sunum/m/bee.svg" alt="" width="26" height="26">UniqBee</a>
+  <span class="bar__now" id="barNow">Açılış</span>
+</header>
+
+<main>
+
+<!-- 1 · AÇILIŞ -->
+<section class="hero" id="acilis" data-label="Açılış">
+  <div class="hero__media" aria-hidden="true">
+    <div class="media"><img src="/sunum/m/hero-mare-p.webp" alt=""><video muted loop playsinline preload="none" data-src="/sunum/m/hero-mare.mp4" data-auto></video></div>
+    <div class="media"><img src="/sunum/m/hero-cunda-p.webp" alt="" fetchpriority="high"><video muted loop playsinline preload="none" data-src="/sunum/m/hero-cunda.mp4" data-auto></video></div>
+    <div class="media d"><img src="/sunum/m/hero-vamos-p.webp" alt=""><video muted loop playsinline preload="none" data-src="/sunum/m/hero-vamos.mp4" data-auto></video></div>
+    <div class="media"><img src="/sunum/m/hero-spanaco-p.webp" alt=""><video muted loop playsinline preload="none" data-src="/sunum/m/hero-spanaco.mp4" data-auto></video></div>
+  </div>
+
+  <div class="hero__in">
+    <p class="eyebrow rv">UniqBee · Dijital Medya Ajansı</p>
+    <h1 data-split>Fikri bulan, çeken ve yayınlayan <em>aynı&nbsp;ekip.</em></h1>
+    <div class="hero__foot rv">
+      <p>İstanbul merkezli dijital medya ajansıyız. Markalar için sosyal medya yönetimi, fotoğraf ve video prodüksiyonu, reklam yönetimi ve raporlama yapıyoruz.</p>
+      <div class="hero__btns">
+        <a class="btn" href="#isler" data-cta="hero_isler">İşleri gör</a>
+        <a class="btn primary" href="#iletisim" data-cta="hero_iletisim">Görüşme planla</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · BİZ KİMİZ -->
+<section class="sec" id="biz" data-label="Biz kimiz">
+  <div class="wrap">
+    <div class="head"><p class="eyebrow"><b>01</b>Biz kimiz</p></div>
+    <p class="biz__text" data-scrub>8 yıldır markalar için içerik üretiyoruz. Strateji, çekim, kurgu ve yayını <em>aynı ekip</em> yapıyor. Bu sayede iş bölünmeden, tek elden ilerliyor.</p>
+    <div class="facts">
+      <div class="fact rv"><b>8 yıl</b><span>Sektör deneyimi</span></div>
+      <div class="fact rv"><b>Tek ekip</b><span>Strateji, çekim, kurgu ve yayın</span></div>
+      <div class="fact rv"><b>Onlarca marka</b><span>Moda, gastronomi, otelcilik, kurumsal</span></div>
+      <div class="fact rv"><b>İstanbul</b><span>Merkezli, Türkiye genelinde çekim</span></div>
+    </div>
+    <div class="media biz__img" data-par><img src="/sunum/m/biz-set-1440.webp" srcset="/sunum/m/biz-set-720.webp 720w, /sunum/m/biz-set-1440.webp 1440w" sizes="(min-width:1320px) 1320px, 100vw" alt="Çekim setinde monitörden kadraj kontrolü" loading="lazy" decoding="async"></div>
+  </div>
+</section>
+
+<!-- 3 · HİZMETLER -->
+<section class="sec" id="hizmetler" data-label="Hizmetler">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><b>02</b>Hizmetler</p>
+      <h2 class="h2" data-split>Neler <em>yapıyoruz?</em></h2>
+    </div>
+    <div class="svc-list">
+      <article class="svc">
+        <span class="svc__n">01</span>
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true">
+          <rect class="dr" pathLength="1" x="18" y="6" width="26" height="52" rx="6"/>
+          <line class="dr" pathLength="1" x1="27" y1="51" x2="35" y2="51"/>
+          <rect class="dr" pathLength="1" x="23" y="14" width="16" height="16" rx="2"/>
+          <line class="dr" pathLength="1" x1="23" y1="36" x2="39" y2="36"/>
+          <line class="dr" pathLength="1" x1="23" y1="41" x2="33" y2="41"/>
+          <g transform="translate(51 22) scale(1.6)"><path class="heart lp fl" d="M0 1.6c-1-1.6-3.6-1-3.2 1 .4 1.6 3.2 3.2 3.2 3.2s2.8-1.6 3.2-3.2c.4-2-2.2-2.6-3.2-1z"/></g>
+          <g transform="translate(55 34) scale(1.3)"><path class="heart h2 lp fl" d="M0 1.6c-1-1.6-3.6-1-3.2 1 .4 1.6 3.2 3.2 3.2 3.2s2.8-1.6 3.2-3.2c.4-2-2.2-2.6-3.2-1z"/></g>
+        </svg>
+        <h3>Sosyal medya yönetimi</h3>
+        <p>Instagram, TikTok, YouTube ve LinkedIn hesaplarını aylık plana göre yönetiyoruz.</p>
+      </article>
+      <article class="svc">
+        <span class="svc__n">02</span>
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true">
+          <circle class="dr" pathLength="1" cx="30" cy="34" r="22"/>
+          <circle class="dr" pathLength="1" cx="30" cy="34" r="13"/>
+          <circle class="dr ac" pathLength="1" cx="30" cy="34" r="4"/>
+          <line class="dr" pathLength="1" x1="56" y1="8" x2="33" y2="31"/>
+          <polyline class="dr" pathLength="1" points="48,6 57,7 58,16"/>
+          <circle class="spin lp" cx="30" cy="34" r="28" stroke-dasharray="2 5" opacity=".5"/>
+        </svg>
+        <h3>Strateji</h3>
+        <p>Hedef kitleyi, iletişim dilini ve görsel yönü belirliyor, içerik planını buna göre hazırlıyoruz.</p>
+      </article>
+      <article class="svc">
+        <span class="svc__n">03</span>
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true">
+          <rect class="dr" pathLength="1" x="6" y="26" width="38" height="26" rx="4"/>
+          <path class="dr" pathLength="1" d="M44 34l14-7v24l-14-7z"/>
+          <circle class="dr" pathLength="1" cx="16" cy="15" r="9"/>
+          <circle class="dr" pathLength="1" cx="35" cy="15" r="9"/>
+          <g class="spin lp" style="transform-box:view-box;transform-origin:16px 15px"><line x1="16" y1="9" x2="16" y2="21"/><line x1="10" y1="15" x2="22" y2="15"/></g>
+          <g class="spin lp" style="transform-box:view-box;transform-origin:35px 15px"><line x1="35" y1="9" x2="35" y2="21"/><line x1="29" y1="15" x2="41" y2="15"/></g>
+          <circle class="blink lp fl" cx="13" cy="33" r="2.4"/>
+        </svg>
+        <h3>İçerik prodüksiyonu</h3>
+        <p>Fotoğraf, video, reklam filmi ve yapay zekâ destekli görsel üretimi. Çekim ve kurgu kendi ekibimizde.</p>
+      </article>
+      <article class="svc">
+        <span class="svc__n">04</span>
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true">
+          <polyline class="dr" pathLength="1" points="6,6 6,58 58,58"/>
+          <rect class="dr col" pathLength="1" x="14" y="38" width="8" height="20" rx="1"/>
+          <rect class="dr col c2" pathLength="1" x="28" y="28" width="8" height="30" rx="1"/>
+          <rect class="dr col c3" pathLength="1" x="42" y="18" width="8" height="40" rx="1"/>
+          <polyline class="dr ac" pathLength="1" points="12,30 26,20 38,24 56,8"/>
+          <polyline class="dr ac" pathLength="1" points="48,8 56,8 56,16"/>
+        </svg>
+        <h3>Reklam yönetimi</h3>
+        <p>Meta, Google, TikTok ve YouTube reklamlarını kuruyor, test ediyor ve bütçeyi yönetiyoruz.</p>
+      </article>
+      <article class="svc">
+        <span class="svc__n">05</span>
+        <svg class="ico" viewBox="0 0 64 64" aria-hidden="true">
+          <rect class="dr" pathLength="1" x="10" y="4" width="44" height="56" rx="5"/>
+          <line class="dr" pathLength="1" x1="18" y1="14" x2="36" y2="14"/>
+          <line class="dr" pathLength="1" x1="18" y1="20" x2="30" y2="20"/>
+          <polyline class="dr" pathLength="1" points="18,50 18,30"/>
+          <polyline class="trace ac lp" pathLength="1" points="18,46 26,38 33,42 46,28"/>
+          <circle class="pulse lp fl" cx="46" cy="28" r="2.4"/>
+        </svg>
+        <h3>Raporlama</h3>
+        <p>Her ay sonuçları yorumlarıyla birlikte raporluyor, bir sonraki ayı planlıyoruz.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · SÜREÇ -->
+<section class="sec" id="surec" data-label="Süreç">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><b>03</b>Çalışma süreci</p>
+      <h2 class="h2" data-split>Altı adımda <em>yayına.</em></h2>
+    </div>
+    <div class="steps">
+      <div class="steps__line" aria-hidden="true"><div class="steps__fill"></div></div>
+      <div class="step"><span class="step__n">01</span><h3>Tanışma</h3><p>Markanızı ve hedeflerinizi dinliyoruz.</p></div>
+      <div class="step"><span class="step__n">02</span><h3>Analiz</h3><p>Hesapları, rakipleri ve hedef kitleyi inceliyoruz.</p></div>
+      <div class="step"><span class="step__n">03</span><h3>Strateji</h3><p>İletişim dilini, platformları ve takvimi belirliyoruz.</p></div>
+      <div class="step"><span class="step__n">04</span><h3>Üretim</h3><p>Çekim, kurgu ve renk düzenlemesini yapıyoruz.</p></div>
+      <div class="step"><span class="step__n">05</span><h3>Yayın</h3><p>İçerikleri takvime göre yayınlıyor, reklamları başlatıyoruz.</p></div>
+      <div class="step"><span class="step__n">06</span><h3>Raporlama</h3><p>Sonuçları raporluyor, sonraki ayı planlıyoruz.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · İŞLER -->
+<section class="sec isler" id="isler" data-label="Seçili işler">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><b>04</b>Referanslar</p>
+      <h2 class="h2" data-split>Seçili <em>işler.</em></h2>
+    </div>
+  </div>
+  <div class="cases" id="cases">
+    <div class="cases__track" id="casesTrack">
+      <article class="case" data-case="antioch">
+        <div class="media" data-hover data-cursor="İzle"><img src="/sunum/m/ant-cunda-0-720.webp" alt="Antioch Cunda Adası reklam filmi" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="/sunum/m/ant-cunda.mp4"></video><span class="play-hint">Film</span></div>
+        <div class="case__info"><div class="case__top"><b>01</b><span>Hazır giyim · 2023'ten bu yana</span></div><h3>Antioch</h3><p>Yeni sezon ürünleri için tanıtım filmleri ve sosyal medya videoları.</p></div>
+      </article>
+      <article class="case" data-case="mare-gastro">
+        <div class="media" data-hover data-cursor="İzle"><img src="/sunum/m/mare-0-720.webp" alt="Mare Gastro tabak fotoğrafı" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="/sunum/m/mare-reel.mp4"></video><span class="play-hint">Video</span></div>
+        <div class="case__info"><div class="case__top"><b>02</b><span>Restoran · Sapanca</span></div><h3>Mare Gastro</h3><p>Kurumsal kimlik, yemek ve mekân fotoğrafları, sosyal medya, QR menü ve web sitesi.</p></div>
+      </article>
+      <article class="case" data-case="kronospan">
+        <div class="media" data-hover data-cursor="İzle"><img src="/sunum/m/kro-13-720.webp" alt="Kronospan SPANACO gemisi Boğaz'da" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="/sunum/m/kro-film.mp4"></video><span class="play-hint">Film</span></div>
+        <div class="case__info"><div class="case__top"><b>03</b><span>Kurumsal · 2025</span></div><h3>Kronospan</h3><p>SPANACO gemisinin İstanbul Boğazı geçişi için video çekimi ve kurgu.</p></div>
+      </article>
+      <article class="case" data-case="didi-otel">
+        <div class="media" data-hover data-cursor="İzle"><img src="/sunum/m/didi-0-720.webp" alt="Didi Otel havuz" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="/sunum/m/didi-reel.mp4"></video><span class="play-hint">Video</span></div>
+        <div class="case__info"><div class="case__top"><b>04</b><span>Butik otel · Sapanca</span></div><h3>Didi Otel</h3><p>Kurumsal kimlik, editoryal fotoğraf, aylık içerik ve web sitesi.</p></div>
+      </article>
+      <article class="case" data-case="retro-camera-land">
+        <div class="media" data-hover data-cursor="İzle"><img src="/sunum/m/rcl-0-720.webp" alt="Retro Camera Land ürün fotoğrafı" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="/sunum/m/rcl-reel.mp4"></video><span class="play-hint">Video</span></div>
+        <div class="case__info"><div class="case__top"><b>05</b><span>E-ticaret</span></div><h3>Retro Camera Land</h3><p>Ürün fotoğrafı ve videosu, blog içerikleri, e-posta kampanyaları ve çok dilli site.</p></div>
+      </article>
+      <article class="case" data-case="jacob-co">
+        <div class="media"><img src="/sunum/m/jac-0-720.webp" alt="Jacob Arabo Türkiye çekimi" loading="lazy" decoding="async"></div>
+        <div class="case__info"><div class="case__top"><b>06</b><span>Lüks saat · 2022</span></div><h3>Jacob &amp; Co.</h3><p>Jacob &amp; Co. ve Jacob Arabo'nun Türkiye programı için video ve fotoğraf çekimi.</p></div>
+      </article>
+      <article class="case" data-case="vamos">
+        <div class="media" data-hover data-cursor="İzle"><img src="/sunum/m/vam-0-720.webp" alt="Vamos kış koleksiyonu" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="/sunum/m/vam-social.mp4"></video><span class="play-hint">Video</span></div>
+        <div class="case__info"><div class="case__top"><b>07</b><span>Hazır giyim · 2025</span></div><h3>Vamos</h3><p>Kış koleksiyonu kampanya filmi, fotoğrafları ve sosyal medya videoları.</p></div>
+      </article>
+      <article class="case" data-case="bonnenuit">
+        <div class="media" data-hover data-cursor="İzle"><img src="/sunum/m/bon-0-720.webp" alt="BonneNuit hediye kutusu" loading="lazy" decoding="async"><video muted loop playsinline preload="none" data-src="/sunum/m/bon-reel.mp4"></video><span class="play-hint">Video</span></div>
+        <div class="case__info"><div class="case__top"><b>08</b><span>Gurme hediye</span></div><h3>BonneNuit</h3><p>Ürün ve kampanya fotoğrafları, sosyal medya videoları.</p></div>
+      </article>
+    </div>
+    <div class="wrap" style="padding:0">
+      <div class="cases__ui" aria-hidden="true"><span id="caseNow">01</span><span class="cases__bar"><i id="caseBar"></i></span><span>08</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · MARKALAR -->
+<section class="sec markalar" id="markalar" data-label="Markalar">
+  <div class="wrap"><div class="head"><p class="eyebrow"><b>05</b>Çalıştığımız markalar</p></div></div>
+  <div class="marquee" aria-label="Antioch, Mare Gastro, Kronospan, Didi Otel, Retro Camera Land, Jacob &amp; Co., Vamos, BonneNuit">
+    <div class="marquee__in"><span>Antioch</span><img src="/sunum/m/bee.svg" alt=""><span>Mare Gastro</span><img src="/sunum/m/bee.svg" alt=""><span>Kronospan</span><img src="/sunum/m/bee.svg" alt=""><span>Didi Otel</span><img src="/sunum/m/bee.svg" alt=""><span>Retro Camera Land</span><img src="/sunum/m/bee.svg" alt=""><span>Jacob &amp; Co.</span><img src="/sunum/m/bee.svg" alt=""><span>Vamos</span><img src="/sunum/m/bee.svg" alt=""><span>BonneNuit</span><img src="/sunum/m/bee.svg" alt=""></div>
+    <div class="marquee__in" aria-hidden="true"><span>Antioch</span><img src="/sunum/m/bee.svg" alt=""><span>Mare Gastro</span><img src="/sunum/m/bee.svg" alt=""><span>Kronospan</span><img src="/sunum/m/bee.svg" alt=""><span>Didi Otel</span><img src="/sunum/m/bee.svg" alt=""><span>Retro Camera Land</span><img src="/sunum/m/bee.svg" alt=""><span>Jacob &amp; Co.</span><img src="/sunum/m/bee.svg" alt=""><span>Vamos</span><img src="/sunum/m/bee.svg" alt=""><span>BonneNuit</span><img src="/sunum/m/bee.svg" alt=""></div>
+  </div>
+  <div class="marquee rev" aria-label="Benesso Coffee, Nihat Yıldız, Kamera Frame, Ljuso Kozmetik, Medprime Clinic, Gourmeturca, Global Mask, Otelyönet">
+    <div class="marquee__in"><span>Benesso Coffee</span><span>·</span><span>Nihat Yıldız</span><span>·</span><span>Kamera Frame</span><span>·</span><span>Ljuso Kozmetik</span><span>·</span><span>Medprime Clinic</span><span>·</span><span>Gourmeturca</span><span>·</span><span>Global Mask</span><span>·</span><span>Otelyönet</span><span>·</span></div>
+    <div class="marquee__in" aria-hidden="true"><span>Benesso Coffee</span><span>·</span><span>Nihat Yıldız</span><span>·</span><span>Kamera Frame</span><span>·</span><span>Ljuso Kozmetik</span><span>·</span><span>Medprime Clinic</span><span>·</span><span>Gourmeturca</span><span>·</span><span>Global Mask</span><span>·</span><span>Otelyönet</span><span>·</span></div>
+  </div>
+</section>
+
+<!-- 7 · ÇALIŞMA MODELİ -->
+<section class="sec model" id="model" data-label="Çalışma modeli">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><b>06</b>Çalışma modeli</p>
+      <h2 class="h2" data-split>Aylık, <em>markaya özel.</em></h2>
+    </div>
+    <div class="model__grid">
+      <div class="mi rv"><small>01</small><b>İçerik planı</b><p>Reels, gönderi ve hikâyelerden oluşan aylık takvim.</p></div>
+      <div class="mi rv"><small>02</small><b>Prodüksiyon</b><p>Çekim günü ve içerik adedi, markanın ihtiyacına ve isteğine göre belirlenir.</p></div>
+      <div class="mi rv"><small>03</small><b>Platformlar</b><p>Instagram, TikTok, YouTube ve LinkedIn. Reklamlarda Meta ve Google.</p></div>
+      <div class="mi rv"><small>04</small><b>Raporlama</b><p>Aylık rapor ve değerlendirme toplantısı.</p></div>
+    </div>
+    <p class="model__note rv">Hazır paket sunmuyoruz. Teklifi, görüşmeden sonra <em>markanıza özel</em> hazırlıyoruz.</p>
+  </div>
+</section>
+
+<!-- 8 · İLETİŞİM -->
+<section class="sec contact" id="iletisim" data-label="İletişim">
+  <div class="wrap">
+    <p class="eyebrow"><b>07</b>İletişim</p>
+    <h2 data-split>Birlikte neler yapabileceğimizi <em>konuşalım.</em></h2>
+    <p class="lede rv">Bu sayfa kısa bir tanıtım. Markanıza özel detaylı sunum ve teklif için Onur Oğuz ile görüşebilirsiniz.</p>
+
+    <div class="person rv">
+      <div>
+        <p class="person__name">Onur Oğuz</p>
+        <p class="person__role">UniqBee · Kurucu ve Kreatif Direktör</p>
+        <a class="person__tel" href="tel:+905432322565" data-cta="telefon_numara">0543 232 25 65</a>
+      </div>
+      <div class="btns">
+        <a class="btn primary" href="https://wa.me/905432322565?text=Merhaba%20Onur%20Bey%2C%20UniqBee%20sunumunu%20inceledim.%20Detayl%C4%B1%20g%C3%B6r%C3%BC%C5%9Fmek%20isterim." target="_blank" rel="noopener" data-cta="whatsapp">WhatsApp<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.5-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
+        <a class="btn" href="tel:+905432322565" data-cta="ara">Ara<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+        <a class="btn" href="mailto:uniqbeedigital@gmail.com?subject=UniqBee%20sunumu%20hakk%C4%B1nda" data-cta="eposta">E-posta<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <a class="pdf" href="/sunum/uniqbee-sunum.pdf" download data-cta="pdf"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>PDF olarak indir</a>
+      <span><a href="mailto:uniqbeedigital@gmail.com" data-cta="eposta_alt">uniqbeedigital@gmail.com</a> · <a href="https://www.instagram.com/uniqbeedigital" target="_blank" rel="noopener" data-cta="instagram">@uniqbeedigital</a></span>
+      <a class="badge" href="https://uniqbee.com/?utm_source=sunum&amp;utm_medium=referral&amp;utm_campaign=footer_credit" data-cta="site"><img src="/sunum/m/bee.svg" alt="" width="18" height="18">UniqBee Dijital Medya Ajansı</a>
+    </footer>
+  </div>
+</section>
+
+</main>
+
+<a class="fab" href="https://wa.me/905432322565?text=Merhaba%20Onur%20Bey%2C%20UniqBee%20sunumunu%20inceledim.%20Detayl%C4%B1%20g%C3%B6r%C3%BC%C5%9Fmek%20isterim." target="_blank" rel="noopener" aria-label="WhatsApp ile yazın" data-cta="whatsapp_fab" id="fab"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 2.4.9 2.9.8 3.4.7.5-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
+
+<div class="cur" aria-hidden="true"><div class="cur__ring"><span>İzle</span></div><div class="cur__dot"></div></div>
+
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script defer src="/sunum/sunum.js"></script>
+</body>
+</html>
