@@ -177,12 +177,11 @@
      ========================================================= */
   var bts = $('#bts');
   if (bts) {
-    var slides = $$('.slide', bts), dots = $$('.bts__dots i', bts), cap = $('#btsCap'), si = 0, timer = null;
+    var slides = $$('.slide', bts), dots = $$('.bts__dots i', bts), si = 0, timer = null;
     var go = function (n) {
       slides[si].classList.remove('on'); dots[si] && dots[si].classList.remove('on');
       si = (n + slides.length) % slides.length;
       slides[si].classList.add('on'); dots[si] && dots[si].classList.add('on');
-      if (cap) cap.textContent = slides[si].getAttribute('data-cap') || '';
     };
     var start = function () { if (!timer) timer = setInterval(function () { go(si + 1); }, 4000); };
     var stop = function () { clearInterval(timer); timer = null; };
@@ -326,24 +325,6 @@
     });
   });
   setCase(0);
-
-  // özel imleç
-  if (mqFine.matches) {
-    var cur = $('.cur'), dot = $('.cur__dot'), ring = $('.cur__ring'), lbl = $('.cur__ring span');
-    var dx = gsap.quickTo(dot, 'x', { duration: 0.12, ease: 'power3' }), dy = gsap.quickTo(dot, 'y', { duration: 0.12, ease: 'power3' });
-    var rx = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' }), ry = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
-    var curShown = false;
-    window.addEventListener('mousemove', function (e) { if (!curShown) { curShown = true; gsap.to(cur, { opacity: 1, duration: 0.3 }); } dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY); }, { passive: true });
-    document.addEventListener('mouseover', function (e) {
-      var t = e.target.closest ? e.target.closest('[data-cursor], a, button') : null;
-      cur.classList.remove('big', 'link');
-      if (!t) return;
-      if (t.hasAttribute('data-cursor')) { lbl.textContent = t.getAttribute('data-cursor'); cur.classList.add('big'); }
-      else cur.classList.add('link');
-    });
-    document.addEventListener('mouseleave', function () { gsap.to(cur, { opacity: 0, duration: 0.2 }); });
-    document.addEventListener('mouseenter', function () { if (curShown) gsap.to(cur, { opacity: 1, duration: 0.2 }); });
-  }
 
   window.addEventListener('load', function () { ST.refresh(); });
 })();
