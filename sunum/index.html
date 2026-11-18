@@ -228,14 +228,17 @@ html.anim .step:not(.on) h3{color:var(--ink3)}
 /* ---------- 6 markalar ---------- */
 .markalar{padding-left:0;padding-right:0;overflow:hidden}
 .markalar .wrap{padding:0 var(--gut)}
-.marquee{display:flex;overflow:hidden;border-top:1px solid var(--line);padding:clamp(18px,2.2vw,28px) 0;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.marquee:last-child{border-bottom:1px solid var(--line)}
-.marquee__in{display:flex;flex-shrink:0;align-items:center;gap:clamp(28px,3.4vw,56px);padding-right:clamp(28px,3.4vw,56px);animation:mq 40s linear infinite}
-.marquee.rev .marquee__in{animation-direction:reverse;animation-duration:46s}
+.marquee{display:flex;overflow:hidden;padding:clamp(14px,1.6vw,20px) 0;-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.wrap + .marquee{border-top:1px solid var(--line);padding-top:clamp(28px,3vw,40px)}
+.marquee:last-child{border-bottom:1px solid var(--line);padding-bottom:clamp(28px,3vw,40px)}
+.marquee__in{display:flex;flex-shrink:0;align-items:center;gap:clamp(22px,2.6vw,40px);padding-right:clamp(22px,2.6vw,40px);animation:mq 48s linear infinite}
+.marquee.rev .marquee__in{animation-direction:reverse;animation-duration:56s}
 .marquee:hover .marquee__in{animation-play-state:paused}
-.marquee__in span{font-size:clamp(30px,4.4vw,68px);letter-spacing:-.04em;font-weight:700;white-space:nowrap;line-height:1}
-.marquee.rev .marquee__in span{font-weight:400;color:var(--ink2)}
-.marquee__in img{width:clamp(18px,2vw,28px);height:auto}
+.marquee__in span{font-size:clamp(20px,2.2vw,32px);letter-spacing:-.02em;font-weight:500;white-space:nowrap;line-height:1;color:var(--ink2);transition:color .3s}
+.marquee__in span:hover{color:var(--ink)}
+.marquee.rev .marquee__in span{color:var(--ink3)}
+.marquee.rev .marquee__in span:hover{color:var(--ink2)}
+.marquee__in i{width:4px;height:4px;border-radius:50%;background:var(--red2);flex:none;opacity:.8}
 @keyframes mq{to{transform:translateX(-100%)}}
 
 /* ---------- 7 model ---------- */
@@ -306,7 +309,7 @@ html.anim [data-split]:not(.ready){visibility:hidden}
   .marquee{-webkit-mask:none;mask:none}
   .marquee__in{animation:none!important;flex-wrap:wrap;row-gap:16px}
   .marquee__in[aria-hidden]{display:none}
-  .marquee__in span{font-size:40px}
+  .marquee__in span{font-size:24px}
   .contact{min-height:0;break-before:page}
   .rv{opacity:1!important;transform:none!important}
   .biz__text .sw{opacity:1!important}
@@ -533,12 +536,12 @@ html.anim [data-split]:not(.ready){visibility:hidden}
 <section class="sec markalar" id="markalar" data-label="Markalar">
   <div class="wrap"><div class="head"><p class="eyebrow"><b>05</b>Çalıştığımız markalar</p></div></div>
   <div class="marquee" aria-label="Antioch, Mare Gastro, Kronospan, Didi Otel, Retro Camera Land, Jacob &amp; Co., Vamos, BonneNuit">
-    <div class="marquee__in"><span>Antioch</span><img src="/sunum/m/bee.svg" alt=""><span>Mare Gastro</span><img src="/sunum/m/bee.svg" alt=""><span>Kronospan</span><img src="/sunum/m/bee.svg" alt=""><span>Didi Otel</span><img src="/sunum/m/bee.svg" alt=""><span>Retro Camera Land</span><img src="/sunum/m/bee.svg" alt=""><span>Jacob &amp; Co.</span><img src="/sunum/m/bee.svg" alt=""><span>Vamos</span><img src="/sunum/m/bee.svg" alt=""><span>BonneNuit</span><img src="/sunum/m/bee.svg" alt=""></div>
-    <div class="marquee__in" aria-hidden="true"><span>Antioch</span><img src="/sunum/m/bee.svg" alt=""><span>Mare Gastro</span><img src="/sunum/m/bee.svg" alt=""><span>Kronospan</span><img src="/sunum/m/bee.svg" alt=""><span>Didi Otel</span><img src="/sunum/m/bee.svg" alt=""><span>Retro Camera Land</span><img src="/sunum/m/bee.svg" alt=""><span>Jacob &amp; Co.</span><img src="/sunum/m/bee.svg" alt=""><span>Vamos</span><img src="/sunum/m/bee.svg" alt=""><span>BonneNuit</span><img src="/sunum/m/bee.svg" alt=""></div>
+    <div class="marquee__in"><span>Antioch</span><i></i><span>Mare Gastro</span><i></i><span>Kronospan</span><i></i><span>Didi Otel</span><i></i><span>Retro Camera Land</span><i></i><span>Jacob &amp; Co.</span><i></i><span>Vamos</span><i></i><span>BonneNuit</span><i></i></div>
+    <div class="marquee__in" aria-hidden="true"><span>Antioch</span><i></i><span>Mare Gastro</span><i></i><span>Kronospan</span><i></i><span>Didi Otel</span><i></i><span>Retro Camera Land</span><i></i><span>Jacob &amp; Co.</span><i></i><span>Vamos</span><i></i><span>BonneNuit</span><i></i></div>
   </div>
   <div class="marquee rev" aria-label="Benesso Coffee, Nihat Yıldız, Kamera Frame, Ljuso Kozmetik, Medprime Clinic, Gourmeturca, Global Mask, Otelyönet">
-    <div class="marquee__in"><span>Benesso Coffee</span><span>·</span><span>Nihat Yıldız</span><span>·</span><span>Kamera Frame</span><span>·</span><span>Ljuso Kozmetik</span><span>·</span><span>Medprime Clinic</span><span>·</span><span>Gourmeturca</span><span>·</span><span>Global Mask</span><span>·</span><span>Otelyönet</span><span>·</span></div>
-    <div class="marquee__in" aria-hidden="true"><span>Benesso Coffee</span><span>·</span><span>Nihat Yıldız</span><span>·</span><span>Kamera Frame</span><span>·</span><span>Ljuso Kozmetik</span><span>·</span><span>Medprime Clinic</span><span>·</span><span>Gourmeturca</span><span>·</span><span>Global Mask</span><span>·</span><span>Otelyönet</span><span>·</span></div>
+    <div class="marquee__in"><span>Benesso Coffee</span><i></i><span>Nihat Yıldız</span><i></i><span>Kamera Frame</span><i></i><span>Ljuso Kozmetik</span><i></i><span>Medprime Clinic</span><i></i><span>Gourmeturca</span><i></i><span>Global Mask</span><i></i><span>Otelyönet</span><i></i></div>
+    <div class="marquee__in" aria-hidden="true"><span>Benesso Coffee</span><i></i><span>Nihat Yıldız</span><i></i><span>Kamera Frame</span><i></i><span>Ljuso Kozmetik</span><i></i><span>Medprime Clinic</span><i></i><span>Gourmeturca</span><i></i><span>Global Mask</span><i></i><span>Otelyönet</span><i></i></div>
   </div>
 </section>
 
