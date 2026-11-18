@@ -245,7 +245,7 @@
 
   // hero: kolaj girişi + parallax + metnin çekilmesi
   var heroTiles = $$('.hero__media .media');
-  gsap.from(heroTiles, { scale: 1.08, opacity: 0, duration: 1.6, ease: 'expo.out', stagger: 0.08 });
+  gsap.from(heroTiles, { scale: 1.08, duration: 1.6, ease: 'expo.out', stagger: 0.08 });
   gsap.to('.hero__in', { yPercent: -18, opacity: 0.15, ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
 

@@ -28,12 +28,15 @@
 <link rel="preload" as="image" href="/sunum/m/hero-cunda-p.webp">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7B74WD2X7W"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-7B74WD2X7W', { page_title: 'Sunum' });
+  /* GA4 betiği sayfa yüklendikten sonra gelir; o ana kadarki olaylar kuyrukta bekler */
+  window.addEventListener('load', function(){ setTimeout(function(){
+    var s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id=G-7B74WD2X7W'; document.head.appendChild(s);
+  }, 1200); });
 </script>
 
 <style>
@@ -90,7 +93,7 @@ em{font-style:normal;color:var(--red2)}
 
 /* ---------- 1 açılış ---------- */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:calc(var(--bar) + 24px) var(--gut) clamp(32px,5vw,64px);overflow:hidden;isolation:isolate}
-.hero__media{position:absolute;inset:-12px;z-index:-2;display:grid;grid-template-columns:repeat(3,1fr);gap:4px;filter:blur(2.5px) brightness(.62) saturate(.8)}
+.hero__media{position:absolute;inset:0;z-index:-2;display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
 .hero__media .media{border-radius:0}
 .hero__media .d{display:none}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,10,11,.66) 0%,rgba(10,10,11,.55) 35%,rgba(10,10,11,.88) 68%,rgba(10,10,11,.98) 100%)}
