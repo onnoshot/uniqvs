@@ -23,12 +23,15 @@
 
   function ev(name, p, beacon) {
     try {
-      var o = { marka: marka };
+      var o = { marka: marka, dil: document.documentElement.lang || 'tr' };
       for (var k in p) o[k] = p[k];
       if (beacon) o.transport_type = 'beacon';
       window.gtag && window.gtag('event', name, o);
     } catch (e) {}
   }
+
+  // dil geçişinde ?marka= parametresini koru
+  if (location.search) $$('.lang a').forEach(function (l) { l.href = l.getAttribute('href') + location.search; });
 
   var ref = 'dogrudan';
   try { if (document.referrer) ref = new URL(document.referrer).hostname; } catch (e) {}

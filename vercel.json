@@ -8,6 +8,10 @@
       "destination": "/sunum/index.html"
     },
     {
+      "source": "/sunum/en",
+      "destination": "/sunum/en/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
