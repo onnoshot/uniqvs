@@ -12,6 +12,14 @@
       "destination": "/sunum/en/index.html"
     },
     {
+      "source": "/ugurakyol",
+      "destination": "/ugurakyol/index.html"
+    },
+    {
+      "source": "/ugurakyol/",
+      "destination": "/ugurakyol/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
@@ -54,6 +62,24 @@
         {
           "key": "Accept-Ranges",
           "value": "bytes"
+        }
+      ]
+    },
+    {
+      "source": "/ugurakyol/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    },
+    {
+      "source": "/ugurakyol",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
         }
       ]
     },
